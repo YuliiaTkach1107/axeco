@@ -1,0 +1,329 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins&display=swap');
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    /* Colors */
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-input-background: var(--input-background);
+    --color-switch-background: var(--switch-background);
+    --color-ring: var(--ring);
+
+    /* Default Colors */
+    --color-default-1: var(--default-1);
+    --color-default-2: var(--default-2);
+    --color-default-3: var(--default-3);
+    --color-default-4: var(--default-4);
+    --color-default-5: var(--default-5);
+    --color-default-6: var(--default-6);
+    --color-default-7: var(--default-7);
+
+    /* Primary Colors */
+    --color-primary-blue: var(--primary-blue);
+    --color-primary-orange: var(--primary-orange);
+
+    /* Secondary Colors */
+    --color-secondary-orange: var(--secondary-orange);
+    --color-secondary-blue-light: var(--secondary-blue-light);
+    --color-secondary-section-1: var(--secondary-section-1);
+    --color-secondary-section-2: var(--secondary-section-2);
+    --color-secondary-button-1: var(--secondary-button-1);
+    --color-secondary-button-2: var(--secondary-button-2);
+
+    /* Background Colors */
+    --color-bg-light-1: var(--bg-light-1);
+    --color-bg-light-2: var(--bg-light-2);
+    --color-bg-light-3: var(--bg-light-3);
+    --color-bg-light-4: var(--bg-light-4);
+
+    /* Typography Colors */
+    --color-text-white: var(--text-white);
+    --color-text-blue-dark: var(--text-blue-dark);
+    --color-text-blue-light: var(--text-blue-light);
+    --color-text-orange: var(--text-orange);
+    --color-text-blue-bright: var(--text-blue-bright);
+    --color-text-blue-ordinary: var(--text-blue-ordinary);
+
+    /* Charts */
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    /* Radius */
+    --radius-sm: calc(var(--radius) - 2px);
+    --radius-md: var(--radius);
+    --radius-lg: calc(var(--radius) + 2px);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    /* Sidebar */
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+@layer utilities {
+
+    body,
+    html {
+        --font-sans:
+            'Open Sans', 'Poppins', ui-sans-serif, system-ui, sans-serif,
+            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+            'Noto Color Emoji';
+    }
+}
+
+:root {
+    /* Font Sizes */
+    --font-size: 16px;
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-base: 20px;
+    --text-lg: 22px;
+    --text-xl: 26px;
+    --text-2xl: 45px;
+    --text-3xl: 65px;
+
+    /* Font Families */
+    --font-poppins: 'Poppins', sans-serif;
+    --font-open-sans: 'Open Sans', sans-serif;
+
+    /* Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Default Colors (Dark-Light) */
+    --default-1: #0d4677;
+    --default-2: #3e5063;
+    --default-3: #6b7887;
+    --default-4: #9aa3ae;
+    --default-5: #ccd0d6;
+    --default-6: #f9f9f9;
+    --default-7: #ffffff;
+
+    /* Primary Colors (Logo colors) */
+    --primary-blue: #1654d8;
+    --primary-orange: #ff401f;
+
+    /* Secondary Colors */
+    --secondary-orange: #f2522e;
+    --secondary-blue-light: rgba(143, 155, 191, 0.8);
+    --secondary-section-1: #205a8c;
+    --secondary-section-2: #fbfbfb;
+    --secondary-button-1: #0d4677;
+    --secondary-button-2: #f9f9f9;
+
+    /* Background Colors */
+    --bg-light-1: #ffffff;
+    --bg-light-2: #f0f6fc;
+    --bg-light-3: #e8f3ff;
+    --bg-light-4: #ffb09e;
+
+    /* Typography Colors */
+    --text-white: #ffffff;
+    --text-blue-dark: #0d4677;
+    --text-blue-light: #4c6e9a;
+    --text-orange: #f2522e;
+    --text-blue-bright: #2e7eed;
+    --text-blue-ordinary: #205a8c;
+
+    /* Base System Colors */
+    --background: #ffffff;
+    --foreground: #0d4677;
+    --card: #ffffff;
+    --card-foreground: #0d4677;
+    --popover: #ffffff;
+    --popover-foreground: #0d4677;
+    --primary: #0d4677;
+    --primary-foreground: #ffffff;
+    --secondary: #f2522e;
+    --secondary-foreground: #ffffff;
+    --muted: #f9f9f9;
+    --muted-foreground: #4c6e9a;
+    --accent: #f2522e;
+    --accent-foreground: #ffffff;
+    --destructive: #ff401f;
+    --destructive-foreground: #ffffff;
+    --border: #c6e0fa;
+    --input: #205a8c;
+    --input-background: #ffffff;
+    --switch-background: #ffffff;
+    --ring: #4c6e9a;
+    --radius: 0.25rem;
+
+    /* Charts */
+    --chart-1: #1654d8;
+    --chart-2: #f2522e;
+    --chart-3: #4c6c9a;
+    --chart-4: #205a8c;
+    --chart-5: #ffb09e;
+
+    /* Sidebar */
+    --sidebar: #fbfbfb;
+    --sidebar-foreground: #0d4677;
+    --sidebar-primary: #0d4677;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #f0f6fc;
+    --sidebar-accent-foreground: #0d4677;
+    --sidebar-border: #ccd0d6;
+    --sidebar-ring: #4c6e9a;
+}
+
+.dark {
+    --background: #0d4677;
+    --foreground: #ffffff;
+    --card: #3e5063;
+    --card-foreground: #ffffff;
+    --popover: #3e5063;
+    --popover-foreground: #ffffff;
+    --primary: #ffffff;
+    --primary-foreground: #0d4677;
+    --secondary: #6b7887;
+    --secondary-foreground: #ffffff;
+    --muted: #6b7887;
+    --muted-foreground: #ccd0d6;
+    --accent: #205a8c;
+    --accent-foreground: #ffffff;
+    --destructive: #ff401f;
+    --destructive-foreground: #ffffff;
+    --border: #6b7887;
+    --input: #6b7887;
+    --ring: #4c6e9a;
+    --sidebar: #3e5063;
+    --sidebar-foreground: #ffffff;
+    --sidebar-primary: #1654d8;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #6b7887;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: #6b7887;
+    --sidebar-ring: #4c6e9a;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-family: var(--font-open-sans);
+        font-size: var(--font-size);
+    }
+
+    /**
+  * Typography styles based on UIKit
+  * H1: Poppins/Bold/65
+  * H2: Poppins/Regular/20
+  * H3: OpenSans/Bold/45
+  * P: Open Sans/Regular/26
+  * Main button: Open Sans/SemiBold/20
+  * Button-nav: Open Sans/SemiBold/22
+  * Input: Open Sans/Regular/26
+  */
+    h1 {
+        font-family: var(--font-poppins);
+        font-size: 65px;
+        font-weight: var(--font-weight-bold);
+        line-height: normal;
+    }
+
+    h2 {
+        font-family: var(--font-poppins);
+        font-size: 20px;
+        font-weight: var(--font-weight-normal);
+        line-height: normal;
+    }
+
+    h3 {
+        font-family: var(--font-open-sans);
+        font-size: 45px;
+        font-weight: var(--font-weight-bold);
+        line-height: normal;
+    }
+
+    h4 {
+        font-family: var(--font-open-sans);
+        font-size: 18px;
+        font-weight: var(--font-weight-bold);
+        line-height: normal;
+    }
+
+    p {
+        font-family: var(--font-open-sans);
+        font-size: 26px;
+        font-weight: var(--font-weight-normal);
+        line-height: normal;
+    }
+
+    label {
+        font-family: var(--font-open-sans);
+        font-size: 20px;
+        font-weight: var(--font-weight-semibold);
+        line-height: normal;
+    }
+
+    button {
+        font-family: var(--font-open-sans);
+        font-size: 16px;
+        font-weight: var(--font-weight-normal);
+        line-height: normal;
+    }
+
+    input,
+    textarea {
+        font-family: var(--font-open-sans);
+        font-size: 26px;
+        font-weight: var(--font-weight-normal);
+        line-height: normal;
+        letter-spacing: 0.1px;
+    }
+}
