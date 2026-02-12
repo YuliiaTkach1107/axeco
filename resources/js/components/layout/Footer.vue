@@ -4,9 +4,9 @@ const contactInfo = [
   {
     icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#0E9727" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z" stroke-width="0.1" stroke="#fff"/></svg>`,
     bgColor: "rgb(163,248,179,0.5)",
-    text: "+32 (0)2 734 07 99",
+    text: "+32 2 897 20 08",
     type: "tel",
-    link: "tel:+3227340799",
+    link: "tel:+3228972008",
     multiline: false
   },
   {
@@ -48,14 +48,14 @@ const contactInfo = [
 
         <div class="max-w-[260px]">
           <p class="text-[var(--text-blue-light)] leading-relaxed text-[14px]">
-            Votre partenaire de confiance pour des plaques professionnelles de qualité depuis 2003.
+            Votre partenaire de confiance pour une gestion transparente et rigoureuse de votre copropriété.
           </p>
         </div>
 
         <button
           class="cursor-pointer bg-[#f2522e] text-[#f9f9f9] rounded-full px-8 py-4
                  flex items-center justify-center gap-3 w-fit
-                 hover:bg-[#d94827] transition-colors"
+                 hover:bg-[#d94827] transition-colors active:scale-[0.97] focus:outline-none touch-manipulation "
         >
           <span class="text-[14px] font-semibold">Demander un devis</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
@@ -68,6 +68,9 @@ const contactInfo = [
           </svg>
         </button>
       </div>
+
+      <!-- Divider -->
+      <div class="flex w-full h-[1px] bg-[#205A8C] lg:hidden"></div>
 
       <!-- Quick links -->
       <div class="flex flex-col justify-center">
@@ -112,10 +115,10 @@ const contactInfo = [
     </div>
 
     <!-- Divider -->
-    <div class="w-full h-[1px] bg-[#205A8C] mt-10 mb-10"></div>
+    <div class="hidden lg:flex w-full h-[1px] bg-[#205A8C] mt-10 mb-10"></div>
 
     <!-- Bottom section -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+    <div class="flex flex-col md:flex-row items-center justify-between mt-10 gap-3 text-center md:text-left">
       <p class="text-[var(--text-blue-light)] text-[14px]">
         © 2025 Axeco. Tous droits réservés.
       </p>

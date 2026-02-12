@@ -8,6 +8,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 @theme inline {
     /* Colors */
     --color-background: var(--background);
@@ -118,8 +119,12 @@
             'Open Sans', 'Poppins', ui-sans-serif, system-ui, sans-serif,
             'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
             'Noto Color Emoji';
+        overscroll-behavior-y: none;
+
     }
 }
+
+
 
 :root {
     /* Font Sizes */
@@ -139,7 +144,7 @@
     /* Font Weights */
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
-    --font-weight-bold: 700;
+    --font-weight-bold: 800;
 
     /* Default Colors (Dark-Light) */
     --default-1: #0d4677;
@@ -259,6 +264,7 @@
         font-size: var(--font-size);
     }
 
+
     /**
   * Typography styles based on UIKit
   * H1: Poppins/Bold/65
@@ -292,7 +298,7 @@
 
     h4 {
         font-family: var(--font-open-sans);
-        font-size: 18px;
+        font-size: 20px;
         font-weight: var(--font-weight-bold);
         line-height: normal;
     }
