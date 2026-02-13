@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import MainLayout from '@/layouts/MainLayout.vue'
 import { ref,onMounted,onUnmounted,computed } from 'vue'
+import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
 
 const services = [
   {
@@ -146,695 +147,620 @@ const onServicesScroll = () => {
 </script>
 
 <template>
+<main id="page_accueil">
 <MainLayout>
    <!-- Hero Section -->
-  <section class="relative min-h-[700px] h-screen w-full overflow-hidden flex items-center">
-  
-  <div class='absolute inset-0 bg-[url("/images/page_accueil/bg-1.jpg")] bg-no-repeat bg-[position:100%_left] bg-[length:120%_120%] z-0'>
-    <div class="absolute inset-0 bg-black/40"></div>
-  </div>
-
-  <div class="absolute left-[-60%] 
-            sm:left-[-50%] md:left-[-50%] 
-            lg:left-[-35%]
-            top-[55%] md:top-[54%] lg:top-[59%] 
-            w-[140%] sm:w-[120%] md:w-[120%] lg:w-[100%] 
-            h-[100%] sm:h-[90%] md:h-[95%] lg:h-[85%]
-            bg-white/80 rounded-full z-10
-            -translate-y-1/2
-            origin-center
-            transition-all duration-700 ease-in-out">
-  </div>
-
-  <div class="relative z-20 w-full max-w-7xl mx-auto px-6 pt-25 md:pt-32 lg:pt-40">
-    <div class="max-w-[650px]">
-      <span class='inline-block text-[12px] border-2 border-[#205a8c] rounded-[33px] py-2 px-4 font-semibold'>
-        VOTRE PARTENAIRE DE CONFIANCE
-      </span>
-      
-      <h1 class='w-[70%] md:w-[85%] lg:w-[100%] text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold  text-[#0D4677]'>
-        Plus qu’un syndic,<br>
-        un partenaire de confiance
-      </h1>
-
-      <div class="w-[150px] md:w-[170px] lg:w-[200px] h-[3px] bg-[#4c6e9a] my-10 rounded"></div>
-
-      <div class="flex flex-col lg:flex-row gap-4 w-[280px] md:w-[280px] lg:w-auto">
-        <a href="#" 
-            class="inline-flex items-center gap-3
-             px-10 py-4 rounded-[33px]
-             text-white font-semibold text-[16px]
-             bg-[color:var(--accent)]
-             shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-             hover:bg-[#d94827]
-             transition-all
-             active:scale-[0.97]
-             focus:outline-none
-             touch-manipulation"
-    >
-          Demander une plaque
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a
-      href="#"
-      class="inline-flex items-center gap-3 w-55 lg:w-auto
-             px-10 py-4 rounded-[33px]
-             text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px]
-             shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-             hover:text-[color:var(--accent)]
-             border-[color:var(--accent)]
-             transition-all
-             active:scale-[0.97]
-             focus:outline-none
-             touch-manipulation"
-    >
-          Contactez-nous!
-        </a>
+<section class="relative min-h-[700px] h-screen w-full overflow-hidden flex items-center">
+   <div class='absolute inset-0 bg-[url("/images/page_accueil/bg-1.jpg")] bg-no-repeat bg-[position:100%_left] bg-[length:120%_120%] z-0'>
+      <div class="absolute inset-0 bg-black/40"></div>
+   </div>
+   <div class="absolute left-[-60%] 
+      sm:left-[-50%] md:left-[-50%] 
+      lg:left-[-35%]
+      top-[55%] md:top-[54%] lg:top-[59%] 
+      w-[140%] sm:w-[120%] md:w-[120%] lg:w-[100%] 
+      h-[100%] sm:h-[90%] md:h-[95%] lg:h-[85%]
+      bg-white/80 rounded-full z-10
+      -translate-y-1/2
+      origin-center
+      transition-all duration-700 ease-in-out">
+   </div>
+   <div class="relative z-20 w-full max-w-7xl mx-auto px-6 pt-25 md:pt-32 lg:pt-40">
+      <div class="max-w-[650px]">
+         <span class='inline-block text-[12px] border-2 border-[#205a8c] rounded-[33px] py-2 px-4 font-semibold'>
+         VOTRE PARTENAIRE DE CONFIANCE
+         </span>
+         <h1 class='w-[70%] md:w-[85%] lg:w-[100%] text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold  text-[#0D4677]'>
+            Plus qu’un syndic,<br>
+            un partenaire de confiance
+         </h1>
+         <div class="w-[150px] md:w-[170px] lg:w-[200px] h-[3px] bg-[#4c6e9a] my-10 rounded"></div>
+         <div class="flex flex-col lg:flex-row gap-4 w-[280px] md:w-[280px] lg:w-auto">
+            <a href="#" 
+               class="inline-flex items-center gap-3
+               px-10 py-4 rounded-[33px]
+               text-white font-semibold text-[16px]
+               bg-[color:var(--accent)]
+               shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+               hover:bg-[#d94827]
+               transition-all
+               active:scale-[0.97]
+               focus:outline-none
+               touch-manipulation"
+               >
+               Demander une plaque
+               <ArrowRight/>
+            </a>
+            <a
+               href="#"
+               class="inline-flex items-center gap-3 w-55 lg:w-auto
+               px-10 py-4 rounded-[33px]
+               text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px]
+               shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+               hover:text-[color:var(--accent)]
+               border-[color:var(--accent)]
+               transition-all
+               active:scale-[0.97]
+               focus:outline-none
+               touch-manipulation"
+               >
+            Contactez-nous!
+            </a>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </section>
-
 <!-- Bloc de confiance modernisé et compact -->
 <section class="relative flex flex-col items-center justify-center gap-3 py-8 px-6 lg:py-12 lg:px-12 text-center bg-white max-h-screen overflow-hidden">
-
-  <div 
-  class="hidden md:flex md:absolute rounded-full bg-gradient-to-br from-[#205a8c]/20 to-[#0d4677]/20 animate-pulse-slow
-         -top-6 -left-6 w-40 h-40          <!-- mobile -->
-         md:-top-10 md:-left-10 md:w-60 md:h-60
-         lg:-top-12 lg:-left-12 lg:w-60 lg:h-60">
-</div>
-
-<!-- Cercle inférieur droit -->
-<div 
-  class="hidden md:flex md:absolute rounded-full bg-gradient-to-tr from-[#0d4677]/20 to-[#205a8c]/20 animate-pulse-slow
-         -bottom-10 -right-8 w-56 h-56        <!-- mobile -->
-         md:-bottom-14 md:-right-12 md:w-72 md:h-72
-         lg:-bottom-16 lg:-right-12 lg:w-72 lg:h-72">
-</div>
-
-  <!-- Badge SVG -->
-  <div class="relative mb-2 group flex-shrink-0">
-    <svg xmlns="http://www.w3.org/2000/svg"
+   <div 
+      class="hidden md:flex md:absolute rounded-full bg-gradient-to-br from-[#205a8c]/20 to-[#0d4677]/20 animate-pulse-slow
+      -top-6 -left-6 w-40 h-40          <!-- mobile -->
+      md:-top-10 md:-left-10 md:w-60 md:h-60
+      lg:-top-12 lg:-left-12 lg:w-60 lg:h-60"></div>
+   <!-- Cercle inférieur droit -->
+   <div 
+      class="hidden md:flex md:absolute rounded-full bg-gradient-to-tr from-[#0d4677]/20 to-[#205a8c]/20 animate-pulse-slow
+      -bottom-10 -right-8 w-56 h-56        <!-- mobile -->
+      md:-bottom-14 md:-right-12 md:w-72 md:h-72
+      lg:-bottom-16 lg:-right-12 lg:w-72 lg:h-72"></div>
+   <!-- Badge SVG -->
+   <div aria-hidden="true" class="relative mb-2 group flex-shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 24 24"
          class="w-12 h-12 lg:w-16 lg:h-16 border-2 border-[#205a8c] rounded-lg transition-transform duration-500 group-hover:scale-110">
-      <g fill="none" stroke="#205a8c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-        <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9"/>
-        <path d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889"/>
-      </g>
-    </svg>
-    <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#205a8c] animate-bounce-slow"></div>
-    <div class="absolute -bottom-2 -left-2 w-4 h-4 rounded-full bg-[#0d4677] animate-bounce-slow"></div>
-  </div>
-
-  <!-- Contenu flexible -->
-  <div class="flex flex-col items-center flex-1 justify-center overflow-auto max-h-[80vh]">
-    <h2 class="font-bold text-[22px] lg:text-[32px] text-[#0d4677] leading-tight mb-1">
-      Axeco : gérer votre copropriété à 360° <br class="hidden lg:block" />
-      avec proximité et sérénité
-    </h2>
-
-    <p class="text-[16px] lg:text-[18px] text-[#627a9a] max-w-[80%] leading-relaxed mt-1">
-      Notre vision transversale repose sur l'interconnexion de nos pôles administratif, technique et financier. Grâce à <strong class="text-[#205a8c]">une rigueur absolue</strong> et à une <strong class="text-[#205a8c]">culture orientée solutions</strong>, nous <strong class="text-[#205a8c]">transformons vos défis administratifs</strong> en leviers de valorisation durable de votre patrimoine.
-    </p>
-
-    <!-- Pôles d'expertise -->
-<div class="flex flex-wrap justify-center gap-6 mt-4">
-
-  <!-- Administratif -->
-  <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
-
-    <!-- Orange glow -->
-    <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-    <div class="relative w-14 h-14 lg:w-16 lg:h-16
-                bg-gradient-to-br from-[#205a8c] to-[#0d4677]
-                rounded-full flex items-center justify-center
-                text-white font-bold text-xl lg:text-2xl
-                shadow-lg
-                transition-all duration-500
-                group-hover:from-[#f2522e] group-hover:to-[#d94328]">
-      A
-    </div>
-
-    <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
-      Administratif
-    </span>
-  </div>
-
-  <!-- Technique -->
-  <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
-
-    <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-    <div class="relative w-14 h-14 lg:w-16 lg:h-16
-                bg-gradient-to-br from-[#205a8c] to-[#0d4677]
-                rounded-full flex items-center justify-center
-                text-white font-bold text-xl lg:text-2xl
-                shadow-lg
-                transition-all duration-500
-                group-hover:from-[#f2522e] group-hover:to-[#d94328]">
-      T
-    </div>
-
-    <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
-      Technique
-    </span>
-  </div>
-
-  <!-- Financier -->
-  <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
-
-    <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-    <div class="relative w-14 h-14 lg:w-16 lg:h-16
-                bg-gradient-to-br from-[#205a8c] to-[#0d4677]
-                rounded-full flex items-center justify-center
-                text-white font-bold text-xl lg:text-2xl
-                shadow-lg
-                transition-all duration-500
-                group-hover:from-[#f2522e] group-hover:to-[#d94328]">
-      F
-    </div>
-
-    <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
-      Financier
-    </span>
-  </div>
-
-</div>
-
-    <p class="mt-3 italic text-[#627a9a] text-[16px] lg:text-[18px]">
-      "Une approche transversale pour une gestion complète"
-    </p>
-  </div>
-</section>
-
-
-  <!-- à propos -->
-<section class="bg-gradient-to-r from-[#F0F6FC] to-[#ffffff] py-16 lg:py-20">
-  <div class="flex flex-col items-center justify-center text-center">
-
-    <!-- Header -->
-    <div class="flex flex-col items-center text-center mb-5 lg:mb-8">
-      <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
-        QUI SOMMES-NOUS
+         <g fill="none" stroke="#205a8c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9"/>
+            <path d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889"/>
+         </g>
+      </svg>
+      <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#205a8c] animate-bounce-slow"></div>
+      <div class="absolute -bottom-2 -left-2 w-4 h-4 rounded-full bg-[#0d4677] animate-bounce-slow"></div>
+   </div>
+   <!-- Contenu flexible -->
+   <div class="flex flex-col items-center flex-1 justify-center overflow-auto max-h-[80vh]">
+      <h2 class="font-bold text-[22px] lg:text-[32px] text-[#0d4677] leading-tight mb-1">
+         Axeco : gérer votre copropriété à 360° <br class="hidden lg:block" />
+         avec proximité et sérénité
       </h2>
-      <h3 class="text-[28px] lg:text-[40px] mb-[13px]">
-        À propos
-      </h3>
-      <div class=" w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
-    </div>
-
-    <!-- Image + Text -->
-    <div class="flex flex-col lg:flex-row
-                gap-10 lg:gap-20
-                items-center justify-center
-                mb-16 lg:mb-[100px]
-                w-[90%]">
-
-      <!-- Image -->
-      <div class="w-full lg:w-[60%] h-[260px] lg:h-[450px]">
-        <img
-          src="/images/page_accueil/a_propos.png"
-          alt="Image à propos"
-          class="rounded-[20px] border border-[#0D4677]
-                 w-full h-full object-cover object-[center_30%]"
-        >
-      </div>
-
-      <!-- Text block -->
-      <div class="w-full lg:w-[40%]
-                  bg-gradient-to-b from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)]
-                  rounded-[20px]
-                  p-8 lg:p-10
-                  flex flex-col gap-6 lg:gap-8
-                  text-left">
-
-        <h4 class="text-[22px] lg:text-[30px] text-white">
-          L’essence d’Axeco
-        </h4>
-
-        <p class="text-[14px] lg:text-[16px] text-[color:rgb(255,255,255,0.88)] font-normal">
-          Fort de 30 ans d'expertise, <strong class="text-white">Axeco</strong> accompagne les copropriétés bruxelloises avec une vision 
-          engagée propre à ses valeurs : <strong class="text-white">allier éthique et transparence</strong>. 
-          Notre équipe pluridisciplinaire met son savoir-faire technique, 
-          juridique et financier au service d'une <strong class="text-white">gestion sur mesure</strong> axée
-          sur la <strong class="text-white">collaboration</strong> pour <strong class="text-white">valoriser durablement</strong> votre patrimoine en <strong class="text-white">transformant 
-          chaque défis en opportunité.</strong>
-
-        </p>
-
-        <a href="#"
-           class="inline-flex items-center gap-3
-                  px-8 lg:px-10 py-3 lg:py-4
-                  rounded-[33px] w-fit
-                  text-white font-semibold text-[15px] lg:text-[16px]
-                  bg-[color:var(--accent)]
-                  shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-                  hover:bg-[#d94827]
-                  transition-all 
-                  active:scale-[0.97]
-                  focus:outline-none
-                  touch-manipulation">
-          En savoir plus
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- Bottom CTA -->
-    <div class="flex flex-col items-center justify-center text-center
-                border border-dashed border-[#205A8C]
-                bg-[#fbfbfb] rounded-[20px]
-                w-[90%] lg:w-[70%]
-                m-auto py-8 px-6">
-
-      <p class="font-semibold text-[20px] lg:text-[26px] pb-6">
-        Derrière nos services se trouve une équipe de spécialistes
+      <p class="text-[16px] lg:text-[18px] text-[#627a9a] max-w-[80%] leading-relaxed mt-1">
+         Notre vision transversale repose sur l'interconnexion de nos pôles administratif, technique et financier. Grâce à <strong class="text-[#205a8c]">une rigueur absolue</strong> et à une <strong class="text-[#205a8c]">culture orientée solutions</strong>, nous <strong class="text-[#205a8c]">transformons vos défis administratifs</strong> en leviers de valorisation durable de votre patrimoine.
       </p>
-
-      <a href="#"
-         class="inline-flex items-center gap-3
-                px-10 py-4 rounded-[33px]
-                text-white font-semibold text-[16px]
-                bg-[color:var(--accent)]
-                shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-                hover:bg-[#d94827]
-                transition-all 
-                active:scale-[0.97]
-                focus:outline-none
-                touch-manipulation">
-        Découvrir l’équipe
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
-
-  </div>
+      <!-- Pôles d'expertise -->
+      <div class="flex flex-wrap justify-center gap-6 mt-4">
+         <!-- Administratif -->
+         <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
+            <!-- Orange glow -->
+            <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative w-14 h-14 lg:w-16 lg:h-16
+               bg-gradient-to-br from-[#205a8c] to-[#0d4677]
+               rounded-full flex items-center justify-center
+               text-white font-bold text-xl lg:text-2xl
+               shadow-lg
+               transition-all duration-500
+               group-hover:from-[#f2522e] group-hover:to-[#d94328]">
+               A
+            </div>
+            <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
+            Administratif
+            </span>
+         </div>
+         <!-- Technique -->
+         <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
+            <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative w-14 h-14 lg:w-16 lg:h-16
+               bg-gradient-to-br from-[#205a8c] to-[#0d4677]
+               rounded-full flex items-center justify-center
+               text-white font-bold text-xl lg:text-2xl
+               shadow-lg
+               transition-all duration-500
+               group-hover:from-[#f2522e] group-hover:to-[#d94328]">
+               T
+            </div>
+            <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
+            Technique
+            </span>
+         </div>
+         <!-- Financier -->
+         <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
+            <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="relative w-14 h-14 lg:w-16 lg:h-16
+               bg-gradient-to-br from-[#205a8c] to-[#0d4677]
+               rounded-full flex items-center justify-center
+               text-white font-bold text-xl lg:text-2xl
+               shadow-lg
+               transition-all duration-500
+               group-hover:from-[#f2522e] group-hover:to-[#d94328]">
+               F
+            </div>
+            <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
+            Financier
+            </span>
+         </div>
+      </div>
+      <p class="mt-3 italic text-[#627a9a] text-[16px] lg:text-[18px]">
+         "Une approche transversale pour une gestion complète"
+      </p>
+   </div>
 </section>
-
-  <!-- Services -->
-  <section class="py-20">
-    <!-- Header -->
-    <div class="flex flex-col items-center text-center mb-10 lg:mb-13">
+<!-- à propos -->
+<section class="bg-gradient-to-r from-[#F0F6FC] to-[#ffffff] py-16 lg:py-20">
+   <div class="flex flex-col items-center justify-center text-center">
+      <!-- Header -->
+      <div class="flex flex-col items-center text-center mb-5 lg:mb-8">
+         <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
+            QUI SOMMES-NOUS
+         </h2>
+         <h3 class="text-[28px] lg:text-[40px] mb-[13px]">
+            À propos
+         </h3>
+         <div class=" w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
+      </div>
+      <!-- Image + Text -->
+      <div class="flex flex-col lg:flex-row
+         gap-10 lg:gap-20
+         items-center justify-center
+         mb-16 lg:mb-[100px]
+         w-[90%]">
+         <!-- Image -->
+         <div class="w-full lg:w-[60%] h-[260px] lg:h-[450px]">
+            <img
+               src="/images/page_accueil/a_propos.png"
+               alt="Image à propos"
+               class="rounded-[20px] border border-[#0D4677]
+               w-full h-full object-cover object-[center_30%]"
+               >
+         </div>
+         <!-- Text block -->
+         <div class="w-full lg:w-[40%]
+            bg-gradient-to-b from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)]
+            rounded-[20px]
+            p-8 lg:p-10
+            flex flex-col gap-6 lg:gap-8
+            text-left">
+            <h4 class="text-[22px] lg:text-[30px] text-white">
+               L’essence d’Axeco
+            </h4>
+            <p class="text-[14px] lg:text-[16px] text-[color:rgb(255,255,255,0.88)] font-normal">
+               Fort de 30 ans d'expertise, <strong class="text-white">Axeco</strong> accompagne les copropriétés bruxelloises avec une vision 
+               engagée propre à ses valeurs : <strong class="text-white">allier éthique et transparence</strong>. 
+               Notre équipe pluridisciplinaire met son savoir-faire technique, 
+               juridique et financier au service d'une <strong class="text-white">gestion sur mesure</strong> axée
+               sur la <strong class="text-white">collaboration</strong> pour <strong class="text-white">valoriser durablement</strong> votre patrimoine en <strong class="text-white">transformant 
+               chaque défis en opportunité.</strong>
+            </p>
+            <a href="#"
+               class="inline-flex items-center gap-3
+               px-8 lg:px-10 py-3 lg:py-4
+               rounded-[33px] w-fit
+               text-white font-semibold text-[15px] lg:text-[16px]
+               bg-[color:var(--accent)]
+               shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+               hover:bg-[#d94827]
+               transition-all 
+               active:scale-[0.97]
+               focus:outline-none
+               touch-manipulation">
+               En savoir plus
+               <ArrowRight/>
+            </a>
+         </div>
+      </div>
+      <!-- Bottom CTA -->
+      <div class="flex flex-col items-center justify-center text-center
+         border border-dashed border-[#205A8C]
+         bg-[#fbfbfb] rounded-[20px]
+         w-[90%] lg:w-[70%]
+         m-auto py-8 px-6">
+         <p class="font-semibold text-[20px] lg:text-[26px] pb-6">
+            Derrière nos services se trouve une équipe de spécialistes
+         </p>
+         <a href="#"
+            class="inline-flex items-center gap-3
+            px-10 py-4 rounded-[33px]
+            text-white font-semibold text-[16px]
+            bg-[color:var(--accent)]
+            shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+            hover:bg-[#d94827]
+            transition-all 
+            active:scale-[0.97]
+            focus:outline-none
+            touch-manipulation">
+            Découvrir l’équipe
+            <ArrowRight/>
+         </a>
+      </div>
+   </div>
+</section>
+<!-- Services -->
+<section class="py-20">
+   <!-- Header -->
+   <div class="flex flex-col items-center text-center mb-10 lg:mb-13">
       <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
-        CE QUE NOUS OFFRONS
+         CE QUE NOUS OFFRONS
       </h2>
-
       <h3 class="text-[28px] lg:text-[40px] mb-[13px] text-[color:var(--text-blue-dark)]">
-        Nos Services
+         Nos Services
       </h3>
-
       <!-- Divider -->
       <div class=" w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
-
       <p class="text-[14px] lg:text-[18px] text-[color:var(--text-blue-light)] max-w-[600px]">
-        Des solutions complètes pour la gestion de vos copropriétés
+         Des solutions complètes pour la gestion de vos copropriétés
       </p>
-    </div>
-    <!-- Mobile/Table -->
-    <!-- Cards -->
-    <div class="lg:hidden overflow-hidden">
-      <div ref="servicesSlider" class="flex gap-6 max-w-[80%] overflow-x-auto scroll-smooth snap-x snap-mandatory  scrollbar-hide px-6 md:w-[60%] m-auto" @scroll="onServicesScroll">
-
-        <a
-          v-for="(service, index) in services"
-          :key="index"
-          :href="service.link"
-          class="cursor-pointer snap-center snap-always shrink-0 w-[100%] md:w-[85%] block"
-        >
-          <div
+   </div>
+   <!-- Mobile/Table -->
+   <!-- Cards -->
+   <div class="lg:hidden overflow-hidden">
+   <div ref="servicesSlider" class="flex gap-6 max-w-[80%] overflow-x-auto scroll-smooth snap-x snap-mandatory  scrollbar-hide px-6 md:w-[60%] m-auto" @scroll="onServicesScroll">
+      <a
+         v-for="(service, index) in services"
+         :key="index"
+         :href="service.link"
+         class="cursor-pointer snap-center snap-always shrink-0 w-[100%] md:w-[85%] block"
+         >
+         <div
             class="relative h-[100%] md:h-[100%] rounded-[24px] p-10
-                  border-2 border-[#c6e0fa]
-                  transition-all duration-300
-                  group-hover:-translate-y-2
-                  group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
+            border-2 border-[#c6e0fa]
+            transition-all duration-300
+            group-hover:-translate-y-2
+            group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
             style="
-              background-image: linear-gradient(
-                -42deg,
-                #ffffff 43%,
-                rgba(224,239,255,0.5) 100%
-              );
-              "
-          >
+            background-image: linear-gradient(
+            -42deg,
+            #ffffff 43%,
+            rgba(224,239,255,0.5) 100%
+            );
+            "
+            >
             <!-- Icon -->
             <div
-              class="w-[60px] h-[60px] rounded-[10px] mb-8
-                    flex items-center justify-center"
-              style="
-                background-image:
-                  linear-gradient(180deg, rgba(32,90,140,0.2), rgba(255,255,255,0.2)),
-                  linear-gradient(90deg, #205A8C, #205A8C);
-              "
-              v-html="service.icon"
-            />
-
-            <!-- Title -->
-            <h3 class="text-[20px] font-semibold text-[#0d4677] mb-8">
-              {{ service.title }}
-            </h3>
-
-            <!-- Description -->
-            <p class="text-[16px] text-[#627a9a] leading-relaxed">
-              {{ service.description }}
-            </p>
-          </div>
-        </a>
-        </div>
-        <!-- Dots -->
-        <div class="flex justify-center gap-2 mt-6">
-          <span
+               class="w-[60px] h-[60px] rounded-[10px] mb-8
+               flex items-center justify-center"
+               style="
+               background-image:
+               linear-gradient(180deg, rgba(32,90,140,0.2), rgba(255,255,255,0.2)),
+               linear-gradient(90deg, #205A8C, #205A8C);
+               "
+               v-html="service.icon"
+               />
+               <!-- Title -->
+               <h3 class="text-[20px] font-semibold text-[#0d4677] mb-8">
+                  {{ service.title }}
+               </h3>
+               <!-- Description -->
+               <p class="text-[16px] text-[#627a9a] leading-relaxed">
+                  {{ service.description }}
+               </p>
+            </div>
+      </a>
+      </div>
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-6">
+         <span
             v-for="(dot, index) in services"
             :key="index"
             class="w-2.5 h-2.5 rounded-full transition-all"
             :class="servicesIndex === index
-              ? 'bg-[#205A8C]'
-              : 'bg-[#c6e0fa]'"
-          ></span>
-        </div>
+            ? 'bg-[#205A8C]'
+            : 'bg-[#c6e0fa]'"
+            ></span>
       </div>
-
-    <!-- Desktop -->
-    <!-- Cards -->
-    <div class="hidden lg:flex justify-center">
-      <div class="grid gap-10 grid-cols-1 lg:grid-cols-3 lg:max-w-[95%] ">
-
-        <a
-          v-for="(service, index) in services"
-          :key="index"
-          :href="service.link"
-          class="cursor-pointer group block"
-        >
-          <div
+   </div>
+   <!-- Desktop -->
+   <!-- Cards -->
+   <div class="hidden lg:flex justify-center">
+   <div class="grid gap-10 grid-cols-1 lg:grid-cols-3 lg:max-w-[95%] ">
+      <a
+         v-for="(service, index) in services"
+         :key="index"
+         :href="service.link"
+         class="cursor-pointer group block"
+         >
+         <div
             class="relative h-[100%] rounded-[24px] p-10
-                  border-2 border-[#c6e0fa]
-                  transition-all duration-300
-                  group-hover:-translate-y-2
-                  group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
+            border-2 border-[#c6e0fa]
+            transition-all duration-300
+            group-hover:-translate-y-2
+            group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
             style="
-              background-image: linear-gradient(
-                -42deg,
-                #ffffff 43%,
-                rgba(224,239,255,0.5) 100%
-              );
+            background-image: linear-gradient(
+            -42deg,
+            #ffffff 43%,
+            rgba(224,239,255,0.5) 100%
+            );
             "
-          >
+            >
             <!-- Icon -->
             <div
-              class="w-[60px] h-[60px] rounded-[10px] mb-8
-                    flex items-center justify-center"
-              style="
-                background-image:
-                  linear-gradient(180deg, rgba(32,90,140,0.2), rgba(255,255,255,0.2)),
-                  linear-gradient(90deg, #205A8C, #205A8C);
-              "
-              v-html="service.icon"
-            />
-
-            <!-- Title -->
-            <h3 class="text-[22px] font-semibold text-[#0d4677] mb-8">
-              {{ service.title }}
-            </h3>
-
-            <!-- Description -->
-            <p class="text-[18px] text-[#627a9a] leading-relaxed">
-              {{ service.description }}
-            </p>
-          </div>
-        </a>
-
-      </div>
-    </div>
-
-    <!-- Bottom Button -->
-    <div class="flex justify-center mt-8">
-      <a
-        href="#"
-        class="inline-flex items-center gap-3
-              px-10 py-4 rounded-[33px]
-              text-white font-semibold text-[16px]
-              bg-[#0D4677]
-              shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-              hover:bg-[color:var(--accent)]
-              transition-all
-              active:scale-[0.97]
-              focus:outline-none
-              touch-manipulation"
-      >
-        Découvrir tous nos services
-        <svg  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+               class="w-[60px] h-[60px] rounded-[10px] mb-8
+               flex items-center justify-center"
+               style="
+               background-image:
+               linear-gradient(180deg, rgba(32,90,140,0.2), rgba(255,255,255,0.2)),
+               linear-gradient(90deg, #205A8C, #205A8C);
+               "
+               v-html="service.icon"
+               />
+               <!-- Title -->
+               <h3 class="text-[22px] font-semibold text-[#0d4677] mb-8">
+                  {{ service.title }}
+               </h3>
+               <!-- Description -->
+               <p class="text-[18px] text-[#627a9a] leading-relaxed">
+                  {{ service.description }}
+               </p>
+            </div>
       </a>
-    </div>
+      </div>
+   </div>
+   <!-- Bottom Button -->
+   <div class="flex justify-center mt-8">
+      <a
+         href="#"
+         class="inline-flex items-center gap-3
+         px-10 py-4 rounded-[33px]
+         text-white font-semibold text-[16px]
+         bg-[#0D4677]
+         shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+         hover:bg-[color:var(--accent)]
+         transition-all
+         active:scale-[0.97]
+         focus:outline-none
+         touch-manipulation"
+         >
+         Découvrir tous nos services
+         <ArrowRight/>
+      </a>
+   </div>
 </section>
-
 <!-- Actualités -->
 <section class="py-20 bg-[color:var(--bg-light-2)]">
-    <!-- Header -->
+   <!-- Header -->
    <div class="flex flex-col items-center text-center mb-5 lg:mb-8">
       <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">RESTEZ INFORMÉS</h2>
       <h3 class="text-[28px] lg:text-[40px] mb-[13px]">Actualités</h3>
       <!-- Divider -->
       <div class=" w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
+   </div>
+   <!-- Mobile/Tablette -->
+   <div class="lg:hidden block relative max-w-[90%] md:max-w-[75%] mx-auto">
+      <div
+         ref="newsSlider"
+         class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-6 px-3 items-start"
+         @scroll="onNewsScroll"
+         >
+         <div
+            v-for="(item, index) in mobileNews"
+            :key="item.id"
+            class="flex-shrink-0 w-full max-w-[85%] md:max-w-[70%] snap-start snap-always"
+            >
+            <a
+               :href="`/news/${item.slug}`"
+               class="block rounded-lg overflow-hidden bg-white shadow-xs"
+               >
+               <!-- Image -->
+               <div class="w-full aspect-[16/9] overflow-hidden">
+                  <img
+                     :src="item.image"
+                     alt=""
+                     class="w-full h-full object-cover"
+                     />
+               </div>
+               <!-- Content -->
+               <div class="py-6 px-4 flex flex-col justify-between h-[160px] md:h-[140px]">
+                  <span class="text-xs text-[color:var(--text-blue-ordinary)]">{{ item.date }}</span>
+                  <h3 class="text-[18px] font-semibold text-[#0d4677] mb-1 line-clamp-2">{{ item.title }}</h3>
+                  <p class="text-gray-600 text-[14px] line-clamp-3">{{ item.excerpt }}</p>
+               </div>
+            </a>
+         </div>
       </div>
-
-    <!-- Mobile/Tablette -->
-<div class="lg:hidden block relative max-w-[90%] md:max-w-[75%] mx-auto">
-  <div
-    ref="newsSlider"
-    class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-6 px-3 items-start"
-    @scroll="onNewsScroll"
-  >
-    <div
-      v-for="(item, index) in mobileNews"
-      :key="item.id"
-      class="flex-shrink-0 w-full max-w-[85%] md:max-w-[70%] snap-start snap-always"
-    >
-      <a
-        :href="`/news/${item.slug}`"
-        class="block rounded-lg overflow-hidden bg-white shadow-xs"
-      >
-        <!-- Image -->
-        <div class="w-full aspect-[16/9] overflow-hidden">
-          <img
-            :src="item.image"
-            alt=""
-            class="w-full h-full object-cover"
-          />
-        </div>
-
-        <!-- Content -->
-        <div class="py-6 px-4 flex flex-col justify-between h-[160px] md:h-[140px]">
-          <span class="text-xs text-[color:var(--text-blue-ordinary)]">{{ item.date }}</span>
-          <h3 class="text-[18px] font-semibold text-[#0d4677] mb-1 line-clamp-2">{{ item.title }}</h3>
-          <p class="text-gray-600 text-[14px] line-clamp-3">{{ item.excerpt }}</p>
-        </div>
-      </a>
-    </div>
-  </div>
-
-     <!-- Progress bar -->
-        <div class="w-[90%] h-1 bg-[#c6e0fa] rounded overflow-hidden mx-auto mt-8 mb-10">
-          <div
+      <!-- Progress bar -->
+      <div class="w-[90%] h-1 bg-[#c6e0fa] rounded overflow-hidden mx-auto mt-8 mb-10">
+         <div
             class="h-full bg-[#f2522e] transition-all duration-300"
             :style="{
-              width: progress + '%' 
+            width: progress + '%' 
             }"
-          ></div>
-        </div>
-    
-<!-- Bottom Button -->
-    <div class="flex justify-center">
-      <a
-        href="#"
-        class="inline-flex items-center gap-3
-              px-10 py-4 rounded-[33px]
-              text-white font-semibold text-[16px]
-              bg-[#0D4677]
-              shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-              hover:bg-[color:var(--accent)]
-              transition-all 
-              active:scale-[0.97]
-              focus:outline-none
-              touch-manipulation"        
-      >
-       Découvrir toutes les actualités
-        <svg  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-    </div>
-
-    
-
-      <!-- Desktop -->
-      <div class="hidden lg:block relative max-w-[90%] mx-auto">
-    <!-- Arrows -->
-    <div class="absolute top-2 right-4 flex gap-4 z-20">
-      <button @click="prev" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button @click="next" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Carrousel -->
-    <div class="flex overflow-hidden gap-10 pb-16 px-2 items-center justify-start">
-      <div
-        v-for="(item, index) in news"
-        :key="item.id"
-        class="flex-shrink-0 w-[450px] transition-transform duration-500"
-        :style="{ transform: `translateX(-${newsIndex * 420}px)` }"
-      >
-        <a :href="`/news/${item.slug}`" class="block rounded-lg overflow-hidden shadow-lg bg-white transition-shadow duration-500 ease-in-out hover:shadow-[0_12px_20px_rgba(16,43,64,0.25)]">
-          <img :src="item.image" alt="" class="w-full h-[200px] object-cover" />
-          <div class="py-4 px-6">
-            <span class="text-xs text-[color:var(--text-blue-ordinary)]">{{item.date}}</span>
-            <h3 class="text-lg font-semibold text-[#0d4677] mb-2">{{ item.title }}</h3>
-            <p class="text-gray-600 text-sm">{{ item.excerpt }}</p>
-          </div>
-        </a>
+            ></div>
       </div>
-    </div>
-    <!-- Bottom Button -->
-    <div class="flex justify-center">
-      <a
-        href="#"
-        class="inline-flex items-center gap-3
-              px-10 py-4 rounded-[33px]
-              text-white font-semibold text-[16px]
-              bg-[#0D4677]
-              shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-              hover:bg-[color:var(--accent)]
-              transition-all
-              active:scale-[0.97]
-              focus:outline-none
-              touch-manipulation"
-      >
-       Découvrir toutes les actualités
-        <svg  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
+      <!-- Bottom Button -->
+      <div class="flex justify-center">
+         <a
+            href="#"
+            class="inline-flex items-center gap-3
+            px-10 py-4 rounded-[33px]
+            text-white font-semibold text-[16px]
+            bg-[#0D4677]
+            shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+            hover:bg-[color:var(--accent)]
+            transition-all 
+            active:scale-[0.97]
+            focus:outline-none
+            touch-manipulation"        
+            >
+            Découvrir toutes les actualités
+            <ArrowRight/>
+         </a>
+      </div>
+   </div>
+   <!-- Desktop -->
+   <div class="hidden lg:block relative max-w-[90%] mx-auto">
+      <!-- Arrows -->
+      <div class="absolute top-2 right-4 flex gap-4 z-20">
+         <button aria-label="Actualité précédente" @click="prev" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+         </button>
+         <button aria-label="Actualité suivante" @click="next" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+         </button>
+      </div>
+      <!-- Carrousel -->
+      <div class="flex overflow-hidden gap-10 pb-16 px-2 items-center justify-start">
+         <div
+            v-for="(item, index) in news"
+            :key="item.id"
+            class="flex-shrink-0 w-[450px] transition-transform duration-500"
+            :style="{ transform: `translateX(-${newsIndex * 420}px)` }"
+            >
+            <a :href="`/news/${item.slug}`" class="block rounded-lg overflow-hidden shadow-lg bg-white transition-shadow duration-500 ease-in-out hover:shadow-[0_12px_20px_rgba(16,43,64,0.25)]">
+               <img :src="item.image" :alt="item.title" class="w-full h-[200px] object-cover" />
+               <div class="py-4 px-6">
+                  <span class="text-xs text-[color:var(--text-blue-ordinary)]">{{item.date}}</span>
+                  <h3 class="text-lg font-semibold text-[#0d4677] mb-2">{{ item.title }}</h3>
+                  <p class="text-gray-600 text-sm">{{ item.excerpt }}</p>
+               </div>
+            </a>
+         </div>
+      </div>
+      <!-- Bottom Button -->
+      <div class="flex justify-center">
+         <a
+            href="#"
+            class="inline-flex items-center gap-3
+            px-10 py-4 rounded-[33px]
+            text-white font-semibold text-[16px]
+            bg-[#0D4677]
+            shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+            hover:bg-[color:var(--accent)]
+            transition-all
+            active:scale-[0.97]
+            focus:outline-none
+            touch-manipulation"
+            >
+            Découvrir toutes les actualités
+            <ArrowRight/>
+         </a>
+      </div>
+   </div>
 </section>
-
 <!-- Offre gratuite -->
 <section class="bg-[color:var(--bg-light-2)] pb-20">
-  <div class="bg-gradient-to-b from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)] rounded-[20px] max-w-[80%] mx-auto py-8 px-10 text-center text-white flex flex-col items-center gap-8 lg:gap-6 ">
-    <div class="flex gap-3 bg-[rgb(255,255,255,0.2)] rounded-full px-7 py-5 items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><path fill="white" d="M1024 320.496c0-35.344-28.654-64-63.998-64H850.754c28.272-27.888 46.368-64.447 46.368-109.472c0-55.44-31.84-115.664-121.216-115.664c-117.6 0-215.84 125.216-262 195.408c-46.192-70.176-147.44-195.392-265.024-195.392c-89.376 0-121.216 60.224-121.216 115.664c0 45.008 18.592 81.584 47.44 109.472H64.002c-35.344 0-64 28.656-64 64V512.08h64.56v416.56c0 35.344 28.655 64 64 64h767.68c35.343 0 64-28.656 64-64V512.064h63.76V320.496zM775.906 95.376c39.568 0 57.216 16.625 57.216 51.665c0 71.088-79.344 109.439-153.968 109.439H570.818c45.471-67.536 125.504-161.104 205.088-161.104m-527.025.001c79.6 0 162.655 93.568 208.127 161.088H348.64c-74.624 0-156.976-39.344-156.976-110.432c0-35.024 17.648-50.656 57.217-50.656m711.12 352.687h-416V320.496h416zm-896-127.568h416v127.568h-416zm64.56 191.568h351.44v416.56h-351.44zm767.696 416.56H544.001v-416.56h352.256z" stroke-width="25.5" stroke="white"/></svg>
-      <h2 class="text-white text-[18px] lg:text-[20px]">OFFRE GRATUITE</h2>
-    </div>
-    <h3 class="text-[25px] lg:text-[30px]">Une offre gratuite, simplement</h3>
-    <p class="text-[16px] lg:text-[18px]" >N’hésitez pas à remplir le formulaire pour recevoir rapidement et efficacement une offre gratuite. </p>
-    <!-- Bottom Button -->
-    <div class="flex justify-center">
-      <a
-        href="#"
-        class="inline-flex items-center gap-3
-              px-10 py-4 rounded-[33px]
-              text-white font-semibold text-[16px]
-              bg-[color:var(--accent)]
-              shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-              hover:bg-[#d94827]
-              transition-all active:scale-[0.97]
-              focus:outline-none
-              touch-manipulation
-"
-      >
-       Demander un devis
-        <svg  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
+   <div class="bg-gradient-to-b from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)] rounded-[20px] max-w-[80%] mx-auto py-8 px-10 text-center text-white flex flex-col items-center gap-8 lg:gap-6 ">
+      <div aria-hidden='true' class="flex gap-3 bg-[rgb(255,255,255,0.2)] rounded-full px-7 py-5 items-center">
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024">
+            <path fill="white" d="M1024 320.496c0-35.344-28.654-64-63.998-64H850.754c28.272-27.888 46.368-64.447 46.368-109.472c0-55.44-31.84-115.664-121.216-115.664c-117.6 0-215.84 125.216-262 195.408c-46.192-70.176-147.44-195.392-265.024-195.392c-89.376 0-121.216 60.224-121.216 115.664c0 45.008 18.592 81.584 47.44 109.472H64.002c-35.344 0-64 28.656-64 64V512.08h64.56v416.56c0 35.344 28.655 64 64 64h767.68c35.343 0 64-28.656 64-64V512.064h63.76V320.496zM775.906 95.376c39.568 0 57.216 16.625 57.216 51.665c0 71.088-79.344 109.439-153.968 109.439H570.818c45.471-67.536 125.504-161.104 205.088-161.104m-527.025.001c79.6 0 162.655 93.568 208.127 161.088H348.64c-74.624 0-156.976-39.344-156.976-110.432c0-35.024 17.648-50.656 57.217-50.656m711.12 352.687h-416V320.496h416zm-896-127.568h416v127.568h-416zm64.56 191.568h351.44v416.56h-351.44zm767.696 416.56H544.001v-416.56h352.256z" stroke-width="25.5" stroke="white"/>
+         </svg>
+         <h2 class="text-white text-[18px] lg:text-[20px]">OFFRE GRATUITE</h2>
+      </div>
+      <h3 class="text-[25px] lg:text-[30px]">Une offre gratuite, simplement</h3>
+      <p class="text-[16px] lg:text-[18px]" >N’hésitez pas à remplir le formulaire pour recevoir rapidement et efficacement une offre gratuite. </p>
+      <!-- Bottom Button -->
+      <div class="flex justify-center">
+         <a
+            href="#"
+            class="inline-flex items-center gap-3
+            px-10 py-4 rounded-[33px]
+            text-white font-semibold text-[16px]
+            bg-[color:var(--accent)]
+            shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+            hover:bg-[#d94827]
+            transition-all active:scale-[0.97]
+            focus:outline-none
+            touch-manipulation
+            "
+            >
+            Demander une offre
+            <ArrowRight/>
+         </a>
+      </div>
+   </div>
 </section>
-
 <!-- FAQ -->
 <section class="py-20">
    <!-- Header -->
-    <div class="flex flex-col items-center text-center mb-10 lg:mb-13">
+   <div class="flex flex-col items-center text-center mb-10 lg:mb-13">
       <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
-        QUESTIONS FREQUÉNTES
+         QUESTIONS FREQUÉNTES
       </h2>
-
       <h3 class="text-[28px] lg:text-[40px] mb-[13px] text-[color:var(--text-blue-dark)]">
-        FAQ’s
+         FAQ’s
       </h3>
-
       <!-- Divider -->
       <div class="w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
-
       <p class="text-[14px] lg:text-[18px] text-[color:var(--text-blue-light)] max-w-[80%] font-[var(--font-open-sans)]">
-        Trouvez rapidement les réponses à vos questions.<br>
-        Besoin de plus d'informations ? N'hésitez pas à nous contacter !
+         Trouvez rapidement les réponses à vos questions.<br>
+         Besoin de plus d'informations ? N'hésitez pas à nous contacter !
       </p>
-    </div>
-      <div v-for="(item,index) in faq" :key="item.id" class="w-[95%] max-w-[95%] md:w-[80%] max-w-[80%] lg:max-w-[60%] mx-auto mb-6 border-2 border-[#C6E0FA] rounded-[20px] p-6 bg-gradient-to-r from-white to-[#E0EFFF]/50">
-      <button @click="toggle(index)" class="w-full flex justify-between items-center  text-left cursor-pointer py-3 active:scale-[0.98] transition-transform">
-        <h4 class=" text-[18px] lg:text-[20px] font-semibold text-[#0d4677] w-[90%] ">{{ item.question }}</h4>
-
-        <!-- Arrow -->
-        <svg
-          class="w-5 h-5 transition-transform duration-300"
-          :class="openIndex === index ? 'rotate-180 stroke-[color:var(--accent)]' : ''"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>  
-        <!-- Divider -->
+   </div>
+   <div v-for="(item,index) in faq" :key="item.id" class="w-[95%] max-w-[95%] md:w-[80%] max-w-[80%] lg:max-w-[60%] mx-auto mb-6 border-2 border-[#C6E0FA] rounded-[20px] p-6 bg-gradient-to-r from-white to-[#E0EFFF]/50">
+      <button @click="toggle(index)" 
+              :aria-expanded="openIndex === index ? 'true' : 'false'" 
+              :aria-controls="`faq-${index}`" 
+              class="w-full flex justify-between items-center  text-left cursor-pointer py-3 active:scale-[0.98] transition-transform">
+         <h4 class=" text-[18px] lg:text-[20px] font-semibold text-[#0d4677] w-[90%] ">{{ item.question }}</h4>
+         <!-- Arrow -->
+         <svg
+            aria-hidden="true"
+            class="w-5 h-5 transition-transform duration-300"
+            :class="openIndex === index ? 'rotate-180 stroke-[color:var(--accent)]' : ''"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+               d="M19 9l-7 7-7-7" />
+         </svg>
+      </button>
+      <!-- Divider -->
       <div v-if="openIndex ===index" class="w-[98%] h-[1px] bg-[#D9D9D9] rounded mt-6 mb-4"></div>
-        <!-- Answer -->
-        <transition 
-          enter-active-class="transition duration-300 ease-out"
-          enter-from-class="opacity-0 max-h-0"
-          enter-to-class="opacity-100 max-h-[200px]"
-          leave-active-class="transition duration-200 ease-in"
-          leave-from-class="opacity-100 max-h-[200px]"
-          leave-to-class="opacity-0 max-h-0"
-        >
-          <p v-if="openIndex === index" class="text-[color:var(--text-blue-light)] text-[14px] lg:text-sm overflow-hidden">{{ item.answer }}</p>
-        </transition>
-      </div>
-      <div class="flex flex-col items-center justify-center text-center border border-dashed border-[#205A8C] bg-[#FBFBFB] rounded-[20px] opacity-100 w-[95%] lg:w-[70%] px-6 m-auto py-10 mt-20">
+      <!-- Answer -->
+      <transition 
+         enter-active-class="transition duration-300 ease-out"
+         enter-from-class="opacity-0 max-h-0"
+         enter-to-class="opacity-100 max-h-[200px]"
+         leave-active-class="transition duration-200 ease-in"
+         leave-from-class="opacity-100 max-h-[200px]"
+         leave-to-class="opacity-0 max-h-0"
+         >
+         <p v-if="openIndex === index" :id="`faq-${index}`" class="text-[color:var(--text-blue-light)] text-[14px] lg:text-sm overflow-hidden">{{ item.answer }}</p>
+      </transition>
+   </div>
+   <div class="flex flex-col items-center justify-center text-center border border-dashed border-[#205A8C] bg-[#FBFBFB] rounded-[20px] opacity-100 w-[95%] lg:w-[70%] px-6 m-auto py-10 mt-20">
       <p class="font-semibold text-[20px] lg:text-[26px] pb-8">Vous ne trouvez pas la réponse à votre question ?</p>
       <a href="#" 
-            class="inline-flex items-center gap-3
-             px-10 py-4 rounded-[33px]
-             text-white font-semibold text-[16px]
-             bg-[#0D4677]
-             shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
-             hover:bg-[color:var(--accent)]
-             transition-all
-             active:scale-[0.97]
-             focus:outline-none
-             touch-manipulation"
-           >
-          Accéder à notre FAQ 
-          <svg  width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-    </div>
-  
-
+         class="inline-flex items-center gap-3
+         px-10 py-4 rounded-[33px]
+         text-white font-semibold text-[16px]
+         bg-[#0D4677]
+         shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
+         hover:bg-[color:var(--accent)]
+         transition-all
+         active:scale-[0.97]
+         focus:outline-none
+         touch-manipulation"
+         >
+         Accéder à notre FAQ 
+         <ArrowRight/>
+      </a>
+   </div>
 </section>
 
 </MainLayout>
- 
+</main>
 </template>
 <style scoped>
 
@@ -845,4 +771,4 @@ const onServicesScroll = () => {
   -ms-overflow-style: none;
   scrollbar-width: none;    
 }
-</style> проверь и скажи что нужно подправить 
+</style> 

@@ -16,5 +16,9 @@ Route::get('dashboard', function () {
 
 Route::get('/', function () {
     return Inertia::render('PageAccueil');
-});
+})->name('PageAccueil');
+
+Route::get('/services', function () {
+    return Inertia::render('Services');
+})->name('Services');
 require __DIR__.'/settings.php';
