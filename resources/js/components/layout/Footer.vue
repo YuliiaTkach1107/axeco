@@ -1,4 +1,6 @@
 <script setup>
+import { Link } from '@inertiajs/vue3'
+import { route } from 'ziggy-js'
 
 const contactInfo = [
   {
@@ -70,7 +72,7 @@ const contactInfo = [
          <div aria-label="Liens rapides du pied de page" class="flex flex-col justify-center">
             <ul class="flex flex-col gap-6 text-[16px]">
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
-               <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</a></li>
+               <li><Link :href="route('Services')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</Link></li>
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</a></li>
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</a></li>
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</a></li>

@@ -2,25 +2,34 @@
 import MainLayout from '@/layouts/MainLayout.vue'
 import { ref,onMounted,onUnmounted,computed } from 'vue'
 import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
+import { Link } from '@inertiajs/vue3'
+import { route } from 'ziggy-js'
+
 
 const services = [
   {
     title: 'Maintenance et gestion technique',
     description:
       'Nous pilotons la gestion technique de votre copropriété avec une vision à long terme, en anticipant les enjeux réglementaires.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill=#ffffff d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill=#ffffff d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"/></svg>`,
+    anchor: 'gestion-technique',
+    link: '/services#gestion-technique'
   },
   {
     title: 'Gestion administrative',
     description:
       'Une administration transparente, sécurisée et adaptée à votre réalité pour des échanges fluides et réactifs.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke=#ffffff stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.728 3H7.5a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h9a2.25 2.25 0 0 0 2.25-2.25V12M9.728 3C10.971 3 12 4.007 12 5.25V7.5a2.25 2.25 0 0 0 2.25 2.25h2.25A2.25 2.25 0 0 1 18.75 12M9.728 3c3.69 0 9.022 5.36 9.022 9"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke=#ffffff stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.728 3H7.5a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h9a2.25 2.25 0 0 0 2.25-2.25V12M9.728 3C10.971 3 12 4.007 12 5.25V7.5a2.25 2.25 0 0 0 2.25 2.25h2.25A2.25 2.25 0 0 1 18.75 12M9.728 3c3.69 0 9.022 5.36 9.022 9"/></svg>`,
+    anchor: 'gestion-administrative',
+    link: '/services#gestion-administrative'
   },
   {
     title: 'Gestion financière',
     description:
       'Nous assurons une gestion financière rigoureuse et transparente pour garantir des comptes clairs, fiables et respectueux des délais.',
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill=#ffffff d="M4 2H2v26a2 2 0 0 0 2 2h26v-2H4Z"/><path fill=#ffffff d="M30 9h-7v2h3.59L19 18.59l-4.29-4.3a1 1 0 0 0-1.42 0L6 21.59L7.41 23L14 16.41l4.29 4.3a1 1 0 0 0 1.42 0l8.29-8.3V16h2Z"/></svg>`
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill=#ffffff d="M4 2H2v26a2 2 0 0 0 2 2h26v-2H4Z"/><path fill=#ffffff d="M30 9h-7v2h3.59L19 18.59l-4.29-4.3a1 1 0 0 0-1.42 0L6 21.59L7.41 23L14 16.41l4.29 4.3a1 1 0 0 0 1.42 0l8.29-8.3V16h2Z"/></svg>`,
+    anchor: 'gestion-financiere',
+    link: '/services#gestion-financiere',
   }
 ]
 
@@ -154,11 +163,10 @@ const onServicesScroll = () => {
    <div class='absolute inset-0 bg-[url("/images/page_accueil/bg-1.jpg")] bg-no-repeat bg-[position:100%_left] bg-[length:120%_120%] z-0'>
       <div class="absolute inset-0 bg-black/40"></div>
    </div>
-   <div class="absolute left-[-60%] 
-      sm:left-[-50%] md:left-[-50%] 
+   <div class="absolute left-[-60%] md:left-[-50%] 
       lg:left-[-35%]
       top-[55%] md:top-[54%] lg:top-[59%] 
-      w-[140%] sm:w-[120%] md:w-[120%] lg:w-[100%] 
+      w-[160%] md:w-[120%] lg:w-[100%] 
       h-[100%] sm:h-[90%] md:h-[95%] lg:h-[85%]
       bg-white/80 rounded-full z-10
       -translate-y-1/2
@@ -167,18 +175,18 @@ const onServicesScroll = () => {
    </div>
    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 pt-25 md:pt-32 lg:pt-40">
       <div class="max-w-[650px]">
-         <span class='inline-block text-[12px] border-2 border-[#205a8c] rounded-[33px] py-2 px-4 font-semibold'>
+         <span class='inline-block text-xs border-2 border-[#205a8c] rounded-[33px] py-2 px-4 font-semibold'>
          VOTRE PARTENAIRE DE CONFIANCE
          </span>
          <h1 class='w-[70%] md:w-[85%] lg:w-[100%] text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold  text-[#0D4677]'>
             Plus qu’un syndic,<br>
-            un partenaire de confiance
+            votre partenaire au quotidien
          </h1>
          <div class="w-[150px] md:w-[170px] lg:w-[200px] h-[3px] bg-[#4c6e9a] my-10 rounded"></div>
-         <div class="flex flex-col lg:flex-row gap-4 w-[280px] md:w-[280px] lg:w-auto">
+         <div class="flex flex-col lg:flex-row gap-4 w-54 w-[240px] md:w-[280px] lg:w-auto">
             <a href="#" 
                class="inline-flex items-center gap-3
-               px-10 py-4 rounded-[33px]
+               px-4 lg:px-10 py-4 rounded-[33px]
                text-white font-semibold text-[16px]
                bg-[color:var(--accent)]
                shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
@@ -193,8 +201,8 @@ const onServicesScroll = () => {
             </a>
             <a
                href="#"
-               class="inline-flex items-center gap-3 w-55 lg:w-auto
-               px-10 py-4 rounded-[33px]
+               class="inline-flex items-center gap-3 w-fit lg:w-auto
+               px-6 lg:px-10 py-4 rounded-[33px]
                text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px]
                shadow-[4px_4px_10px_rgba(0,0,0,0.25)]
                hover:text-[color:var(--accent)]
@@ -212,22 +220,11 @@ const onServicesScroll = () => {
 </section>
 <!-- Bloc de confiance modernisé et compact -->
 <section class="relative flex flex-col items-center justify-center gap-3 py-8 px-6 lg:py-12 lg:px-12 text-center bg-white max-h-screen overflow-hidden">
-   <div 
-      class="hidden md:flex md:absolute rounded-full bg-gradient-to-br from-[#205a8c]/20 to-[#0d4677]/20 animate-pulse-slow
-      -top-6 -left-6 w-40 h-40          <!-- mobile -->
-      md:-top-10 md:-left-10 md:w-60 md:h-60
-      lg:-top-12 lg:-left-12 lg:w-60 lg:h-60"></div>
-   <!-- Cercle inférieur droit -->
-   <div 
-      class="hidden md:flex md:absolute rounded-full bg-gradient-to-tr from-[#0d4677]/20 to-[#205a8c]/20 animate-pulse-slow
-      -bottom-10 -right-8 w-56 h-56        <!-- mobile -->
-      md:-bottom-14 md:-right-12 md:w-72 md:h-72
-      lg:-bottom-16 lg:-right-12 lg:w-72 lg:h-72"></div>
    <!-- Badge SVG -->
    <div aria-hidden="true" class="relative mb-2 group flex-shrink-0">
       <svg xmlns="http://www.w3.org/2000/svg"
          viewBox="0 0 24 24"
-         class="w-12 h-12 lg:w-16 lg:h-16 border-2 border-[#205a8c] rounded-lg transition-transform duration-500 group-hover:scale-110">
+         class="w-12 h-12 lg:w-14 lg:h-14 border-2 border-[#205a8c] rounded-lg transition-transform duration-500 group-hover:scale-110">
          <g fill="none" stroke="#205a8c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
             <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9"/>
             <path d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889"/>
@@ -239,66 +236,10 @@ const onServicesScroll = () => {
    <!-- Contenu flexible -->
    <div class="flex flex-col items-center flex-1 justify-center overflow-auto max-h-[80vh]">
       <h2 class="font-bold text-[22px] lg:text-[32px] text-[#0d4677] leading-tight mb-1">
-         Axeco : gérer votre copropriété à 360° <br class="hidden lg:block" />
-         avec proximité et sérénité
+          Plus de 30 ans d’expérience à Bruxelles
       </h2>
-      <p class="text-[16px] lg:text-[18px] text-[#627a9a] max-w-[80%] leading-relaxed mt-1">
-         Notre vision transversale repose sur l'interconnexion de nos pôles administratif, technique et financier. Grâce à <strong class="text-[#205a8c]">une rigueur absolue</strong> et à une <strong class="text-[#205a8c]">culture orientée solutions</strong>, nous <strong class="text-[#205a8c]">transformons vos défis administratifs</strong> en leviers de valorisation durable de votre patrimoine.
-      </p>
-      <!-- Pôles d'expertise -->
-      <div class="flex flex-wrap justify-center gap-6 mt-4">
-         <!-- Administratif -->
-         <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
-            <!-- Orange glow -->
-            <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative w-14 h-14 lg:w-16 lg:h-16
-               bg-gradient-to-br from-[#205a8c] to-[#0d4677]
-               rounded-full flex items-center justify-center
-               text-white font-bold text-xl lg:text-2xl
-               shadow-lg
-               transition-all duration-500
-               group-hover:from-[#f2522e] group-hover:to-[#d94328]">
-               A
-            </div>
-            <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
-            Administratif
-            </span>
-         </div>
-         <!-- Technique -->
-         <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
-            <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative w-14 h-14 lg:w-16 lg:h-16
-               bg-gradient-to-br from-[#205a8c] to-[#0d4677]
-               rounded-full flex items-center justify-center
-               text-white font-bold text-xl lg:text-2xl
-               shadow-lg
-               transition-all duration-500
-               group-hover:from-[#f2522e] group-hover:to-[#d94328]">
-               T
-            </div>
-            <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
-            Technique
-            </span>
-         </div>
-         <!-- Financier -->
-         <div class="relative flex flex-col items-center group transition-transform duration-500 hover:-translate-y-1">
-            <div class="absolute inset-0 rounded-full bg-[#f2522e]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="relative w-14 h-14 lg:w-16 lg:h-16
-               bg-gradient-to-br from-[#205a8c] to-[#0d4677]
-               rounded-full flex items-center justify-center
-               text-white font-bold text-xl lg:text-2xl
-               shadow-lg
-               transition-all duration-500
-               group-hover:from-[#f2522e] group-hover:to-[#d94328]">
-               F
-            </div>
-            <span class="mt-1 text-[#0d4677] font-semibold transition-colors duration-300 group-hover:text-[#f2522e]">
-            Financier
-            </span>
-         </div>
-      </div>
-      <p class="mt-3 italic text-[#627a9a] text-[16px] lg:text-[18px]">
-         "Une approche transversale pour une gestion complète"
+      <p class="text-[16px] lg:text-[18px] text-[#627a9a] max-w-[100%] leading-relaxed mt-1">
+         Une expertise reconnue et une confiance bâtie au fil des années
       </p>
    </div>
 </section>
@@ -340,7 +281,7 @@ const onServicesScroll = () => {
             <h4 class="text-[22px] lg:text-[30px] text-white">
                L’essence d’Axeco
             </h4>
-            <p class="text-[14px] lg:text-[16px] text-[color:rgb(255,255,255,0.88)] font-normal">
+            <p class="text-[14px] lg:text-[16px] text-[color:rgb(255,255,255)] font-normal">
                Fort de 30 ans d'expertise, <strong class="text-white">Axeco</strong> accompagne les copropriétés bruxelloises avec une vision 
                engagée propre à ses valeurs : <strong class="text-white">allier éthique et transparence</strong>. 
                Notre équipe pluridisciplinaire met son savoir-faire technique, 
@@ -392,7 +333,7 @@ const onServicesScroll = () => {
    </div>
 </section>
 <!-- Services -->
-<section class="py-20">
+<section class="py-16 lg:py-20">
    <!-- Header -->
    <div class="flex flex-col items-center text-center mb-10 lg:mb-13">
       <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
@@ -403,7 +344,7 @@ const onServicesScroll = () => {
       </h3>
       <!-- Divider -->
       <div class=" w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
-      <p class="text-[14px] lg:text-[18px] text-[color:var(--text-blue-light)] max-w-[600px]">
+      <p class="text-[14px] lg:text-[18px] text-[color:var(--text-blue-light)] max-w-[80%]">
          Des solutions complètes pour la gestion de vos copropriétés
       </p>
    </div>
@@ -514,8 +455,8 @@ const onServicesScroll = () => {
    </div>
    <!-- Bottom Button -->
    <div class="flex justify-center mt-8">
-      <a
-         href="#"
+      <Link
+         :href="route('Services')"
          class="inline-flex items-center gap-3
          px-10 py-4 rounded-[33px]
          text-white font-semibold text-[16px]
@@ -529,11 +470,11 @@ const onServicesScroll = () => {
          >
          Découvrir tous nos services
          <ArrowRight/>
-      </a>
+      </Link>
    </div>
 </section>
 <!-- Actualités -->
-<section class="py-20 bg-[color:var(--bg-light-2)]">
+<section class="py-16 lg:py-20 bg-[color:var(--bg-light-2)]">
    <!-- Header -->
    <div class="flex flex-col items-center text-center mb-5 lg:mb-8">
       <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">RESTEZ INFORMÉS</h2>
@@ -690,7 +631,7 @@ const onServicesScroll = () => {
    </div>
 </section>
 <!-- FAQ -->
-<section class="py-20">
+<section class="py-16 lg:py-20">
    <!-- Header -->
    <div class="flex flex-col items-center text-center mb-10 lg:mb-13">
       <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
