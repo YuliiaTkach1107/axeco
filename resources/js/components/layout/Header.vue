@@ -40,7 +40,7 @@ onUnmounted(() => {
    <div class="main-header flex items-center justify-between">
       <!-- Logo -->
       <Link :href="route('PageAccueil')" class="logo cursor-pointer">
-      <img src="images/logo/AXECO_Logo.png" alt="Logo de l'entreprise AXECO" class="w-[180px] h-auto">
+      <img src="/images/logo/AXECO_Logo.png" alt="Logo de l'entreprise AXECO" class="w-[180px] h-auto">
       </Link>
       <!-- Navigation -->
       <nav aria-label="Menu principal du site">
@@ -48,8 +48,8 @@ onUnmounted(() => {
             <li><a href="#" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
             <li><Link :href="route('Services')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/services' }">Nos services</Link></li>
             <li><a href="#" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</a></li>
-            <li><a href="#" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</a></li>
-            <li><a href="#" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</a></li>
+            <li><Link :href="route('Actualites')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/actualites' }">Actualités</Link></li>
+            <li><Link :href="route('Contact')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/contact' }">Contact</Link></li>
          </ul>
       </nav>
       <!-- Burger Menu -->
@@ -91,8 +91,8 @@ onUnmounted(() => {
             <li><a href="#" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
             <li><Link :href="route('Services')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</Link></li>
             <li><a href="#" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</a></li>
-            <li><a href="#" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</a></li>
-            <li><a href="#" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</a></li>
+            <li><Link :href="route('Actualites')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</Link></li>
+            <li><Link :href="route('Contact')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</Link></li>
             <li>
                <!-- Bouton MyAXECO dans le menu mobile -->
                <a href="#" role="button" aria-label="Accéder à MyAXECO" class="cursor-pointer text-white bg-foreground items-center m-auto w-full text-[18px] py-[11px] px-[18px] gap-2 rounded-[33px] shadow-[4px_4px_6px_rgba(0,0,0,0.2)] mt-4 flex justify-center hover:[background:var(--accent)]  active:[background:var(--accent)] active:scale-[0.97] focus:outline-none touch-manipulation">

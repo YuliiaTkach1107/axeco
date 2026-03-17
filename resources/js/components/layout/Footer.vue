@@ -40,7 +40,7 @@ const contactInfo = [
          <div class="flex flex-col gap-6">
             <div class="w-[160px] h-auto">
                <img
-                  src="images/logo/AXECO_Logo.png"
+                  src="/images/logo/AXECO_Logo.png"
                   alt="AXECO – syndic et gestion de copropriété à Bruxelles"
                   class="w-full h-full object-cover"
                   />
@@ -74,8 +74,8 @@ const contactInfo = [
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
                <li><Link :href="route('Services')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</Link></li>
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</a></li>
-               <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</a></li>
-               <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</a></li>
+               <li><Link :href="route('Actualites')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</Link></li>
+               <li><Link :href="route('Contact')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</Link></li>
                <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FAQ</a></li>
             </ul>
          </div>

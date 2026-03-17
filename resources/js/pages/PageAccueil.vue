@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import MainLayout from '@/layouts/MainLayout.vue'
 import { ref,onMounted,onUnmounted,computed } from 'vue'
 import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
@@ -156,8 +156,8 @@ const onServicesScroll = () => {
 </script>
 
 <template>
-<main id="page_accueil">
 <MainLayout>
+<div id="page_accueil">
    <!-- Hero Section -->
 <section class="relative min-h-[700px] h-screen w-full overflow-hidden flex items-center">
    <div class='absolute inset-0 bg-[url("/images/page_accueil/bg-1.jpg")] bg-no-repeat bg-[position:100%_left] bg-[length:120%_120%] z-0'>
@@ -199,8 +199,8 @@ const onServicesScroll = () => {
                Demander une plaque
                <ArrowRight/>
             </a>
-            <a
-               href="#"
+            <Link
+               :href="route('Contact')"
                class="inline-flex items-center gap-3 w-fit lg:w-auto
                px-6 lg:px-10 py-4 rounded-[33px]
                text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px]
@@ -213,7 +213,7 @@ const onServicesScroll = () => {
                touch-manipulation"
                >
             Contactez-nous!
-            </a>
+            </Link>
          </div>
       </div>
    </div>
@@ -526,8 +526,7 @@ const onServicesScroll = () => {
       </div>
       <!-- Bottom Button -->
       <div class="flex justify-center">
-         <a
-            href="#"
+       <Link :href="route('Actualites')"
             class="inline-flex items-center gap-3
             px-10 py-4 rounded-[33px]
             text-white font-semibold text-[16px]
@@ -541,7 +540,7 @@ const onServicesScroll = () => {
             >
             Découvrir toutes les actualités
             <ArrowRight/>
-         </a>
+         </Link>
       </div>
    </div>
    <!-- Desktop -->
@@ -579,8 +578,7 @@ const onServicesScroll = () => {
       </div>
       <!-- Bottom Button -->
       <div class="flex justify-center">
-         <a
-            href="#"
+         <Link :href="route('Actualites')"
             class="inline-flex items-center gap-3
             px-10 py-4 rounded-[33px]
             text-white font-semibold text-[16px]
@@ -594,7 +592,7 @@ const onServicesScroll = () => {
             >
             Découvrir toutes les actualités
             <ArrowRight/>
-         </a>
+         </Link>
       </div>
    </div>
 </section>
@@ -700,8 +698,8 @@ const onServicesScroll = () => {
    </div>
 </section>
 
+</div>
 </MainLayout>
-</main>
 </template>
 <style scoped>
 
