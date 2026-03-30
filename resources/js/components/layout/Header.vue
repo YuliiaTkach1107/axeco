@@ -28,9 +28,16 @@ onUnmounted(() => {
    <!-- Slogan caché pour SEO -->
    <h1 class="sr-only">AXECO – entreprise de construction</h1>
    <!-- Topbar -->
-   <div class="topbar bg-[rgb(198,224,250,0.3)] ">
+   <div class="hidden lg:flex topbar bg-[rgb(198,224,250,0.3)] justify-end gap-20">
+        <a
+            href="tel:+3228972008" aria-label="Appeler +32 2 897 20 08"
+            class="phone cursor-pointer flex items-center justify-center gap-2 px-6 rounded-[10px]
+            hover:[color:var(--text-orange)] active:[color:var(--text-orange)] transition"
+            >
+            <span class="text-base">+32 2 897 20 08</span>
+      </a>
       <!-- Desktop -->
-      <ul class='hidden lg:flex items-center justify-end gap-4 mr-15 h-15 '>
+      <ul class='flex items-center justify-end gap-4 mr-15 h-15 '>
          <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FR</a></li>
          <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">NL</a></li>
          <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">EN</a></li>
@@ -45,11 +52,11 @@ onUnmounted(() => {
       <!-- Navigation -->
       <nav aria-label="Menu principal du site">
          <ul class="hidden lg:flex gap-10 text-[16px]" style="font-family: var(--font-open-sans); font-weight: var(--font-weight-nirmal)">
-            <li><a href="#" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
+            <li><Link :href="route('A_propos')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': $page.url === '/a-propos' }">À propos</Link></li>
             <li><Link :href="route('Services')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/services' }">Nos services</Link></li>
-            <li><a href="#" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</a></li>
-            <li><Link :href="route('Actualites')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/actualites' }">Actualités</Link></li>
-            <li><Link :href="route('Contact')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/contact' }">Contact</Link></li>
+            <li><Link :href="route('Notre_equipe')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url === '/notre-equipe'}">Notre équipe</Link></li>
+            <li><Link :href="route('Actualites')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]':  page.url.split('#')[0].startsWith('/actualites') }">Actualités</Link></li>
+            <li><Link :href="route('Contact')" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url.split('#')[0].startsWith('/contact') }">Contact</Link></li>
          </ul>
       </nav>
       <!-- Burger Menu -->
@@ -88,9 +95,9 @@ onUnmounted(() => {
    <transition name="slide-fade">
       <div id="mobile-menu" v-if="mobileMenuOpen" class="lg:hidden w-full min-h-screen bg-white px-6 py-4 ">
          <ul class="flex flex-col gap-6 text-[18px] text-center" style="font-family: var(--font-open-sans); font-weight: var(--font-weight-normal)">
-            <li><a href="#" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
+            <li><Link :href="route('A_propos')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</Link></li>
             <li><Link :href="route('Services')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</Link></li>
-            <li><a href="#" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</a></li>
+            <li><Link :href="route('Notre_equipe')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</Link></li>
             <li><Link :href="route('Actualites')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</Link></li>
             <li><Link :href="route('Contact')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</Link></li>
             <li>

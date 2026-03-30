@@ -1,6 +1,8 @@
 <script setup>  
+import {ref, reactive, watch, computed, onMounted} from 'vue'
 import MainLayout from '@/layouts/MainLayout.vue'
 import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
+import { useForm, usePage } from '@inertiajs/vue3'
 
 const contactInfo = [
   {
@@ -21,7 +23,6 @@ const contactInfo = [
     text: "info@axeco.immo",
     type: "email",
     link: "mailto:info@axeco.be",
-    type: "email",
     multiline: false,
   },
    {
@@ -32,7 +33,6 @@ const contactInfo = [
     type: "map",
     link: "https://maps.app.goo.gl/ciFDMCpNPhs6KVs5A",
     multiline: false,
-    type: "map",
     link:'https://maps.app.goo.gl/ciFDMCpNPhs6KVs5A'
   },
   {
@@ -45,11 +45,87 @@ const contactInfo = [
     multiline: false,
     link:null
   },
-
 ]
+
+const data = useForm({
+                frname: '',
+                name: '',
+                email: '',
+                message: '',
+                subject: 'info',
+                telephone: '',
+                adresse_immeuble: '',
+                numero_police: '',
+                code_postal: '',
+                nombre_lots: '',
+                file:null
+            })
+            const selectedFile = ref(null)
+            function handleFileUpload(e) {
+                const file = e.target.files[0]
+                selectedFile.value = file
+                data.file = file 
+            }
+            function submit(){
+                data.post(route('contact.send'), {
+                    forceFormData: true,
+                    preserveScroll: true,
+                    onSuccess: () => {
+                        data.reset()
+                        selectedFile.value = null
+                    },
+                    onError: (errors) => {
+                        console.log(errors)
+                    }
+                })
+            }
+            const page = usePage()
+            const flash = computed(() => page.props.flash)
+
+            const show = ref(false)
+
+            watch(
+                flash,
+                (newFlash) => {
+                    if (newFlash?.success || newFlash?.error) {
+                        show.value = true
+
+                        setTimeout(() => {
+                            show.value = false
+                        }, 4000)
+                    }
+                },
+                { immediate: true }
+)
+ onMounted(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const subjectParam = urlParams.get('subject');
+
+  if(subjectParam){
+    data.subject = subjectParam;
+  }
+ } )
 </script>
 <template>
 <MainLayout>
+  <transition name="fade">
+         <div
+            v-if="show && flash.success"
+            role="status"
+            aria-live="polite"
+            class="fixed top-24 lg:top-5 right-0 md:right-5 bg-[#0d4677] text-white px-6 py-3 rounded-xl shadow-lg z-50">
+            {{ flash.success }}
+         </div>
+      </transition>
+      <transition name="fade">
+         <div
+            v-if="show && flash.error"
+            role="alert"
+            aria-live="assertive"
+            class="fixed top-24 lg:top-5 right-0 md:right-5 bg-[#f2522e] text-white px-6 py-3 rounded-xl shadow-lg z-50">
+            {{ flash.error }}
+         </div>
+      </transition>
    <div id="contact" role="main">
     <section class='relative min-h-[700px] h-screen w-full flex flex-col items-center justify-center gap-10 pt-15 lg:pt-30 overflow-hidden  px-6 lg:px-12' style="background: linear-gradient(rgba(224,239,255) 0%, rgba(255,255,255) 100%)">
         <h1 class='hero-h1'>Discutons de votre demande</h1>
@@ -59,15 +135,15 @@ const contactInfo = [
          <div class="section-container flex flex-col items-center">
             <h2 class='section-h2'>INFORMATIONS DE CONTACT</h2>
             <h3 class="section-h3">Comment nous joindre</h3>
-            <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C] '></div>
+            <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C]'></div>
         </div>
         <div class='grid grid-cols-2'>
-            <a :href="info.link" v-for="info in contactInfo" :key="info.text">
+            <a :href="info.link" target="_blank" v-for="info in contactInfo" :key="info.text" class='w-full'>
                 <div class='group flex bg-white shadow-xl rounded-[15px] p-6 gap-6 mx-auto items-center mb-8 h-25 w-[75%] transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:shadow-2xl focus-within:-translate-y-1"' > 
                     <div v-html="info.icon" class="border rounded-[10px] p-3 bg-white w-fit" :style="{ borderColor: info.color, backgroundColor: info.color + '15' }"></div>
                     <div>
                         <h4 class='section-h4 text-lg'>{{ info.titre }}</h4>
-                        <p class='text-sm lg:text-sm text-[#205A8C] leading-relaxed'>{{ info.text }}</p>
+                        <p class='text-sm lg:text-base text-[#205A8C] leading-relaxed'>{{ info.text }}</p>
                     </div>
                 </div>
             </a>
@@ -96,13 +172,118 @@ const contactInfo = [
         </div>
         </div>
     </section>
-    <section class='py-16 lg:py-20' style="background: linear-gradient(rgba(255,176,158,0.05) 0%, rgba(255,255,255) 100%)" >
+    <section id='form' class='py-16 lg:py-20 scroll-mt-24 lg:scroll-mt-32' style="background: linear-gradient(rgba(255,176,158,0.05) 0%, rgba(255,255,255) 100%)" >
         <div class="section-container flex flex-col items-center">
             <h2 class='section-h2'>ÉCRIVEZ-NOUS</h2>
             <h3 class="section-h3">Envoyez-nous un message</h3>
             <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C] '></div>
             <p class='description'>Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
         </div>
+<form id="contact" @submit.prevent="submit" class="w-[80%] m-auto bg-[#F0F6FC]/50 px-8 py-10 mt-10 border-2 rounded-xl border-[#B9D6FE]">
+  <div class="grid grid-cols-2 gap-6 items-center">
+
+    <!-- Nom -->
+    <div class="champ">
+      <label for="fname" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Nom</label>
+      <input type="text" id="fname" name="fname" v-model="data.frname" placeholder="Entrez votre nom" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+
+    <!-- Prenom -->
+    <div class="champ">
+      <label for="name" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Prenom</label>
+      <input type="text" id="name" name="name" v-model="data.name" placeholder="Entrez votre prénom" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+
+    <!-- Email -->
+    <div class="champ col-span-2">
+      <label for="email" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Email</label>
+      <input type="email" id="email" name="email" v-model="data.email" placeholder="exemple@domain.com" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+
+  </div>
+
+  <!-- Sujet -->
+  <fieldset class="subject rounded-md mt-6">
+    <legend class="after:content-['*'] after:text-[#0d4677] after:ml-1">Sujet</legend>
+    <div class="flex flex-col md:flex-row md:gap-6 mt-2">
+      <label class="flex items-center gap-2">
+        <input type="radio" id="information_generale" name="subject" value="info" v-model="data.subject" checked>
+        Information générale
+      </label>
+      <label class="flex items-center gap-2">
+        <input type="radio" id="commande_plaquette" name="subject" value="commande" v-model="data.subject">
+        Commande plaquette(s)
+      </label>
+      <label class="flex items-center gap-2">
+        <input type="radio" id="demande_offre" name="subject" value="demande" v-model="data.subject">
+        Demande offre
+      </label>
+      <label class="flex items-center gap-2">
+        <input type="radio" id="demande_stage" name="subject" value="stage" v-model="data.subject">
+        Demande de stage
+      </label>
+    </div>
+  </fieldset>
+
+  <!-- Message -->
+  <div class="flex flex-col gap-2 mt-6">
+    <label for="message">Votre message</label>
+    <textarea id="message" rows="6" v-model="data.message" placeholder="Écrivez votre message ici..."
+      class="w-full px-6 py-5 bg-white border border-gray-200 rounded-[22px] shadow-sm text-[#0d4677] placeholder-[#728FB6] text-lg mt-4 hover:shadow-md transition-all duration-300 resize-none">
+    </textarea>
+  </div>
+    <div v-if="data.subject === 'stage'" class="mt-6">
+        <label class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors">
+        <span v-if="!selectedFile" class="text-gray-500">
+            Cliquez pour téléverser votre CV ou glissez-le ici
+        </span>
+        <span v-else class="text-[#0D4677] font-semibold">
+            Fichier sélectionné: {{ selectedFile.name }}
+        </span>
+        <input type="file" class="hidden" @change="handleFileUpload" required />
+        <p v-if="data.errors.file" class="text-red-500 mt-2 text-sm">{{ data.errors.file }}</p>
+      </label>
+    </div>
+  <!-- Дополнительные поля для 'demande' -->
+  <div v-if="data.subject === 'demande'" class="grid grid-cols-2 gap-6 items-center mt-6">
+    <div class="champ">
+      <label for="telephone" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Téléphone</label>
+      <input type="text" id="telephone" name="telephone" v-model="data.telephone" placeholder="Ex: +33 6 12 34 56 78" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+    <div class="champ">
+      <label for="adresse_immeuble" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Adresse immeuble</label>
+      <input type="text" id="adresse_immeuble" name="adresse_immeuble" v-model="data.adresse_immeuble" placeholder="Rue / Numéro / Ville" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+    <div class="champ">
+      <label for="numero_police" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Numéro de police</label>
+      <input type="text" id="numero_police" name="numero_police" v-model="data.numero_police" placeholder="Ex: 123456789" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+    <div class="champ">
+      <label for="code_postal" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Code postal</label>
+      <input type="text" id="code_postal" name="code_postal" v-model="data.code_postal" placeholder="Ex: 75001" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+    <div class="champ">
+      <label for="nombre_lots" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Nombre de lots</label>
+      <input type="text" id="nombre_lots" name="nombre_lots" v-model="data.nombre_lots" placeholder="Ex: 5" required
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition" />
+    </div>
+  </div>
+
+  <!-- Кнопка отправки -->
+  <div class="mt-6 text-center md:col-span-2">
+    <button type="submit"
+      class="bg-[#f2522e] text-white px-6 py-3 rounded-full cursor-pointer text-lg font-semibold hover:bg-[#0b3b62] transition">
+      Envoyer le message
+    </button>
+  </div>
+</form>
     </section>
     <section >
         <div class="bg-gradient-to-b py-10 from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)] max-w-[100%] mx-auto py-10 text-center text-white flex flex-col items-center gap-8 lg:gap-6 ">
@@ -114,4 +295,15 @@ const contactInfo = [
    </div>
 </MainLayout>
 </template>
-<style></style>
+<style scoped>
+  .fade-enter-active,
+  .fade-leave-active {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+</style>

@@ -4,7 +4,27 @@ import { ref,onMounted,onUnmounted,computed } from 'vue'
 import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
 import { Link } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
+import { Swiper,SwiperSlide } from 'swiper/vue'
+   import {Navigation } from 'swiper/modules'
+   import 'swiper/css'
+   import 'swiper/css/navigation'
 
+const modules = [Navigation]
+
+const swiperInstance = ref(null);
+
+const onSwiper = (swiper) => {
+  swiperInstance.value = swiper;
+};
+
+// Обнови функции кнопок
+function prev() {
+  swiperInstance.value?.slidePrev();
+}
+
+function next() {
+  swiperInstance.value?.slideNext();
+}
 
 const services = [
   {
@@ -33,53 +53,59 @@ const services = [
   }
 ]
 
-const news = [
-  {
-    id: 1,
-    title: 'Assemblée générale annuelle',
-    excerpt: 'Retour sur les décisions clés et les points importants abordés lors de l’assemblée générale annuelle.',
-    content: 'Contenu complet de la nouvelle 1...',
-    image: '/images/page_accueil/news.jpg',
-    date: '15 Jan 2025',
-    slug: 'assemblee-generale-annuelle'
-  },
-  {
-    id: 2,
-    title: 'Travaux de rénovation',
-    excerpt: 'Des travaux importants ont été réalisés pour améliorer la sécurité et le confort de vos immeubles.',
-    content: 'Contenu complet de la nouvelle 2...',
-    image: '/images/page_accueil/news.jpg',
-    date: '10 Feb 2025',
-    slug: 'travaux-renovation'
-  },
-  {
-    id: 3,
-    title: 'Nouvelle équipe de gestion',
-    excerpt: 'Découvrez notre nouvelle équipe qui accompagnera vos copropriétés avec professionnalisme.',
-    content: 'Contenu complet de la nouvelle 3...',
-    image: '/images/page_accueil/news.jpg',
-    date: '05 Mar 2025',
-    slug: 'nouvelle-equipe'
-  },
-  {
-    id: 4,
-    title: 'Assemblée générale annuelle',
-    excerpt: 'Retour sur les décisions clés et les points importants abordés lors de l’assemblée générale annuelle.',
-    content: 'Contenu complet de la nouvelle 1...',
-    image: '/images/page_accueil/news.jpg',
-    date: '15 Jan 2025',
-    slug: 'assemblee-generale-annuelle'
-  },
-  {
-    id: 5,
-    title: 'Travaux de rénovation',
-    excerpt: 'Des travaux importants ont été réalisés pour améliorer la sécurité et le confort de vos immeubles.',
-    content: 'Contenu complet de la nouvelle 2...',
-    image: '/images/page_accueil/news.jpg',
-    date: '10 Feb 2025',
-    slug: 'travaux-renovation'
-  },
-]
+// const news = [
+//   {
+//     id: 1,
+//     title: 'Assemblée générale annuelle',
+//     excerpt: 'Retour sur les décisions clés et les points importants abordés lors de l’assemblée générale annuelle.',
+//     content: 'Contenu complet de la nouvelle 1...',
+//     image: '/images/page_accueil/news.jpg',
+//     date: '15 Jan 2025',
+//     slug: 'assemblee-generale-annuelle'
+//   },
+//   {
+//     id: 2,
+//     title: 'Travaux de rénovation',
+//     excerpt: 'Des travaux importants ont été réalisés pour améliorer la sécurité et le confort de vos immeubles.',
+//     content: 'Contenu complet de la nouvelle 2...',
+//     image: '/images/page_accueil/news.jpg',
+//     date: '10 Feb 2025',
+//     slug: 'travaux-renovation'
+//   },
+//   {
+//     id: 3,
+//     title: 'Nouvelle équipe de gestion',
+//     excerpt: 'Découvrez notre nouvelle équipe qui accompagnera vos copropriétés avec professionnalisme.',
+//     content: 'Contenu complet de la nouvelle 3...',
+//     image: '/images/page_accueil/news.jpg',
+//     date: '05 Mar 2025',
+//     slug: 'nouvelle-equipe'
+//   },
+//   {
+//     id: 4,
+//     title: 'Assemblée générale annuelle',
+//     excerpt: 'Retour sur les décisions clés et les points importants abordés lors de l’assemblée générale annuelle.',
+//     content: 'Contenu complet de la nouvelle 1...',
+//     image: '/images/page_accueil/news.jpg',
+//     date: '15 Jan 2025',
+//     slug: 'assemblee-generale-annuelle'
+//   },
+//   {
+//     id: 5,
+//     title: 'Travaux de rénovation',
+//     excerpt: 'Des travaux importants ont été réalisés pour améliorer la sécurité et le confort de vos immeubles.',
+//     content: 'Contenu complet de la nouvelle 2...',
+//     image: '/images/page_accueil/news.jpg',
+//     date: '10 Feb 2025',
+//     slug: 'travaux-renovation'
+//   },
+// ]
+const props = defineProps({
+        articles: {
+            type: Array,
+            default: () => [] 
+        },
+        topics: Array})
 
 const faq=[
   {
@@ -110,14 +136,6 @@ const newsIndex = ref(0);
 const cardWidth=500
 const gap=20
 
-function prev() {
-  if (newsIndex.value > 0) newsIndex.value--
-  else newsIndex.value = news.length - 1
-};
-function next() {
-  if (newsIndex.value < news.length - 1) newsIndex.value++
-  else newsIndex.value = 0
-}
 
 const newsSlider = ref(null)
 const progress = ref(0)
@@ -132,7 +150,7 @@ const onNewsScroll = () => {
   progress.value = (scrollLeft / scrollWidth) * 100;
 };
 
-const mobileNews = computed(() => news.slice(0,6))
+const mobileNews = computed(() => props.articles.slice(0,6))
 
 //FAQ
 const openIndex = ref(null)
@@ -153,6 +171,13 @@ const onServicesScroll = () => {
 
   servicesIndex.value = Math.round(scrollLeft / width)
 }
+
+const backSection = ref('form') 
+onMounted(() => {
+    if (window.location.hash) {
+        backSection.value = window.location.hash.replace('#', '')
+    }
+})
 </script>
 
 <template>
@@ -184,7 +209,7 @@ const onServicesScroll = () => {
          </h1>
          <div class="w-[150px] md:w-[170px] lg:w-[200px] h-[3px] bg-[#4c6e9a] my-10 rounded"></div>
          <div class="flex flex-col lg:flex-row gap-4 w-54 w-[240px] md:w-[280px] lg:w-auto">
-            <a href="#" 
+            <Link :href="route('Contact', { subject: 'commande' }) + '#' + backSection" 
                class="inline-flex items-center gap-3
                px-4 lg:px-10 py-4 rounded-[33px]
                text-white font-semibold text-[16px]
@@ -198,9 +223,9 @@ const onServicesScroll = () => {
                >
                Demander une plaque
                <ArrowRight/>
-            </a>
+            </Link>
             <Link
-               :href="route('Contact')"
+               :href="route('Contact') + '#' + backSection"
                class="inline-flex items-center gap-3 w-fit lg:w-auto
                px-6 lg:px-10 py-4 rounded-[33px]
                text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px]
@@ -289,7 +314,7 @@ const onServicesScroll = () => {
                sur la <strong class="text-white">collaboration</strong> pour <strong class="text-white">valoriser durablement</strong> votre patrimoine en <strong class="text-white">transformant 
                chaque défis en opportunité.</strong>
             </p>
-            <a href="#"
+            <Link :href="route('A_propos')"
                class="inline-flex items-center gap-3
                px-8 lg:px-10 py-3 lg:py-4
                rounded-[33px] w-fit
@@ -303,7 +328,7 @@ const onServicesScroll = () => {
                touch-manipulation">
                En savoir plus
                <ArrowRight/>
-            </a>
+            </Link>
          </div>
       </div>
       <!-- Bottom CTA -->
@@ -315,7 +340,7 @@ const onServicesScroll = () => {
          <p class="font-semibold text-[20px] lg:text-[26px] pb-6">
             Derrière nos services se trouve une équipe de spécialistes
          </p>
-         <a href="#"
+         <Link :href='route("Notre_equipe")'
             class="inline-flex items-center gap-3
             px-10 py-4 rounded-[33px]
             text-white font-semibold text-[16px]
@@ -328,7 +353,7 @@ const onServicesScroll = () => {
             touch-manipulation">
             Découvrir l’équipe
             <ArrowRight/>
-         </a>
+         </Link>
       </div>
    </div>
 </section>
@@ -495,22 +520,21 @@ const onServicesScroll = () => {
             class="flex-shrink-0 w-full max-w-[85%] md:max-w-[70%] snap-start snap-always"
             >
             <a
-               :href="`/news/${item.slug}`"
+               :href="`/actualites/article/${item.id}`"
                class="block rounded-lg overflow-hidden bg-white shadow-xs"
                >
                <!-- Image -->
                <div class="w-full aspect-[16/9] overflow-hidden">
                   <img
-                     :src="item.image"
+                     :src="item.image_url"
                      alt=""
                      class="w-full h-full object-cover"
                      />
                </div>
                <!-- Content -->
-               <div class="py-6 px-4 flex flex-col justify-between h-[160px] md:h-[140px]">
-                  <span class="text-xs text-[color:var(--text-blue-ordinary)]">{{ item.date }}</span>
-                  <h3 class="text-[18px] font-semibold text-[#0d4677] mb-1 line-clamp-2">{{ item.title }}</h3>
-                  <p class="text-gray-600 text-[14px] line-clamp-3">{{ item.excerpt }}</p>
+               <div class="py-6 px-4 flex flex-col justify-between h-[160px] md:h-[110px]">
+                  <h3 class="text-[18px] font-semibold text-[#0d4677] mb-1 clamp-1">{{ item.title }}</h3>
+                  <p class="text-gray-600 text-[14px] clamp-2">{{ item.description }}</p>
                </div>
             </a>
          </div>
@@ -544,38 +568,43 @@ const onServicesScroll = () => {
       </div>
    </div>
    <!-- Desktop -->
-   <div class="hidden lg:block relative max-w-[90%] mx-auto">
-      <!-- Arrows -->
-      <div class="absolute top-2 right-4 flex gap-4 z-20">
-         <button aria-label="Actualité précédente" @click="prev" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-            </svg>
-         </button>
-         <button aria-label="Actualité suivante" @click="next" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-         </button>
-      </div>
-      <!-- Carrousel -->
-      <div class="flex overflow-hidden gap-10 pb-16 px-2 items-center justify-start">
-         <div
-            v-for="(item, index) in news"
-            :key="item.id"
-            class="flex-shrink-0 w-[450px] transition-transform duration-500"
-            :style="{ transform: `translateX(-${newsIndex * 420}px)` }"
-            >
-            <a :href="`/news/${item.slug}`" class="block rounded-lg overflow-hidden shadow-lg bg-white transition-shadow duration-500 ease-in-out hover:shadow-[0_12px_20px_rgba(16,43,64,0.25)]">
-               <img :src="item.image" :alt="item.title" class="w-full h-[200px] object-cover" />
-               <div class="py-4 px-6">
-                  <span class="text-xs text-[color:var(--text-blue-ordinary)]">{{item.date}}</span>
-                  <h3 class="text-lg font-semibold text-[#0d4677] mb-2">{{ item.title }}</h3>
-                  <p class="text-gray-600 text-sm">{{ item.excerpt }}</p>
-               </div>
-            </a>
-         </div>
-      </div>
+ <div class="hidden lg:block relative max-w-[90%] mx-auto">
+  <div class="absolute top-2 right-4 flex gap-4 z-20">
+    <button aria-label="Actualité précédente" @click="prev" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition disabled:opacity-50" disabled="!scrollLeft">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+    <button aria-label="Actualité suivante" @click="next" class="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center cursor-pointer hover:bg-gray-100 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="pb-16 px-2">
+    <Swiper
+      :modules="modules"
+      :slides-per-view="'auto'"
+      :space-between="40"
+      @swiper="onSwiper"
+      class="flex items-center justify-start px-4"
+    >
+      <SwiperSlide
+        v-for="item in props.articles"
+        :key="item.id"
+        class="!w-[450px] pb-10 px-2" 
+      >
+        <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden shadow-md bg-white transition-shadow duration-500 ease-in-out hover:shadow-[0_10px_10px_rgba(16,43,64,0.25)]">
+          <img :src="item.image_url" :alt="item.title" class="w-full h-[200px] object-cover" />
+          <div class="py-4 px-6 h-auto">
+            <h3 class="text-lg font-semibold text-[#0d4677] clamp-1 mb-2">{{ item.title }}</h3>
+            <p class="text-gray-600 text-sm clamp-2">{{ item.description }}</p>
+          </div>
+        </a>
+      </SwiperSlide>
+    </Swiper>
+  </div>
       <!-- Bottom Button -->
       <div class="flex justify-center">
          <Link :href="route('Actualites')"
@@ -594,7 +623,7 @@ const onServicesScroll = () => {
             <ArrowRight/>
          </Link>
       </div>
-   </div>
+      </div>
 </section>
 <!-- Offre gratuite -->
 <section class="bg-[color:var(--bg-light-2)] pb-20">

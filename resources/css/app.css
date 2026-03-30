@@ -300,9 +300,10 @@
         line-height: normal;
     }
 
-    label {
+    label,
+    legend {
         font-family: var(--font-open-sans);
-        font-size: 20px;
+        font-size: 16px;
         font-weight: var(--font-weight-semibold);
         line-height: normal;
     }
@@ -310,7 +311,6 @@
     button {
         font-family: var(--font-open-sans);
         font-size: 14px;
-        /* мобильная версия */
         font-weight: var(--font-weight-normal);
         line-height: normal;
     }
@@ -324,7 +324,7 @@
     input,
     textarea {
         font-family: var(--font-open-sans);
-        font-size: 26px;
+        font-size: 18px;
         font-weight: var(--font-weight-normal);
         line-height: normal;
         letter-spacing: 0.1px;
@@ -370,7 +370,7 @@
     }
 
     .description {
-        @apply text-[18px] text-[#627a9a] leading-relaxed
+        @apply text-sm lg:text-[18px] text-[#627a9a] leading-relaxed
     }
 
     /* Ограничение 2 строки с многоточием */
@@ -388,7 +388,41 @@
         overflow: hidden;
     }
 
+    .clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
     .highlight {
         color: #f2522e;
+    }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+    }
+
+    #contact input {
+        @apply border-1 border-gray-200 rounded-xl;
+    }
+
+    .champ {
+        @apply flex flex-col
+    }
+
+    .champ input {
+        @apply mt-4 bg-white shadow-sm h-[50px] pl-4;
+    }
+
+    .subject label {
+        @apply mt-4
     }
 }

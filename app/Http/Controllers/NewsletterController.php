@@ -13,6 +13,9 @@ class NewsletterController extends Controller
     public function subscribe(Request $request ){
         $request->validate([
             'email' => 'required|email|unique:subscribers,email',
+        ],
+        [
+            'email.unique' => 'Vous êtes déjà abonné à la newsletter.'
         ]);
 
         $subscriber = Subscriber::create([
