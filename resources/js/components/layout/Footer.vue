@@ -71,12 +71,12 @@ const contactInfo = [
          <!-- Quick links -->
          <div aria-label="Liens rapides du pied de page" class="flex flex-col justify-center">
             <ul class="flex flex-col gap-6 text-[16px]">
-               <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</a></li>
+               <li><Link :href="route('A_propos')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</Link></li>
                <li><Link :href="route('Services')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</Link></li>
                <li><Link :href="route('Notre_equipe')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</Link></li>
                <li><Link :href="route('Actualites')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</Link></li>
                <li><Link :href="route('Contact')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</Link></li>
-               <li><a href="#" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FAQ</a></li>
+               <li><Link :href="route('FAQ')" class="font-semibold cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FAQ</Link></li>
             </ul>
          </div>
          <!-- Contact -->

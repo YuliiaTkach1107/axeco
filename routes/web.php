@@ -22,6 +22,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('PageAccueil');
 
+Route::get('/faq', function () {
+    return Inertia::render('FAQ');
+})->name('FAQ');
 
 Route::get('/services', function () {
     return Inertia::render('Services');
