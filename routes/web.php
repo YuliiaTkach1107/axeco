@@ -10,11 +10,6 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
 
-/*Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canRegister' => Features::enabled(Features::registration()),
-    ]);
-})->name('home');*/
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -30,9 +25,7 @@ Route::get('/services', function () {
     return Inertia::render('Services');
 })->name('Services');
 
-// Route::get('/actualites', function () {
-//     return Inertia::render('Actualites');
-// })->name('Actualites');
+
 
 Route::get('/actualites', [ArticleController::class, 'index'])->name('Actualites');
 Route::get('actualites/article/{id}', [ArticleController::class, 'show'])->name('Article');

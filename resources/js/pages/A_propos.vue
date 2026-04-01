@@ -27,10 +27,10 @@
     ]
 
     const backSection = ref('form')
-   onMounted(() => {
-        if (window.location.hash) {
-            backSection.value = window.location.hash.replace('#', '')
-            }
+    onMounted(() => {
+      if (window.location.hash) {
+         backSection.value = window.location.hash.replace('#', '')
+      }
    })
 </script>
 <template>
@@ -38,6 +38,8 @@
     <Head>
       <title>À propos d'Axeco | Syndic de Copropriété à Bruxelles</title>
       <meta name="description" content="Découvrez Axeco, votre syndic professionnel à Bruxelles depuis 30 ans. Éthique, transparence et expertise pour la gestion de votre immeuble." />
+
+      <meta property="og:url" content="https://axeco.be/a-propos" />
       <meta property="og:title" content="À propos d'Axeco - Expertise Immobilière" />
       <meta property="og:type" content="website" />
       <link rel="canonical" href="https://axeco.be/a-propos" />
@@ -57,9 +59,9 @@
                <span class='inline-block text-sm py-2 px-2 lg:px-4 font-semibold'>EXPERTISE IMMOBILIÈRE DEPUIS 30 ANS</span>
             </div>
             <h1 class='text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold  text-[#0D4677]'>À propos</h1>
-            <p class="text-[16px] lg:text-[18px] text-[#627a9a] max-w-[90%] lg:max-w-[80%] leading-relaxed mt-1 mb-6">Nous bâtissons des solutions à 360°, aussi complètes que sur mesure, pour garantir une gestion durable et harmonieuse de votre patrimoine.</p>
+            <p class="text-[16px] lg:text-[18px] text-[#4c6e9a] max-w-[90%] lg:max-w-[80%] leading-relaxed mt-1 mb-6">Nous bâtissons des solutions à 360°, aussi complètes que sur mesure, pour garantir une gestion durable et harmonieuse de votre patrimoine.</p>
             <div class="flex flex-col items-center mt-2 lg:flex-row gap-4 w-[280px] md:w-[280px] lg:w-auto">
-               <Link :href="route('Contact', { subject: 'commande' }) + '#' + backSection" class="inline-flex items-center gap-3 px-10 py-4 rounded-[33px] text-white font-semibold text-[16px] bg-[color:var(--accent)] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#d94827] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
+               <Link :href="route('Contact', { subject: 'demande' }) + '#' + backSection" class="inline-flex items-center gap-3 px-10 py-4 rounded-[33px] text-white font-semibold text-[16px] bg-[color:var(--accent)] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#d94827] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                     Demander une offre <ArrowRight/>
                </Link>
                <Link :href="route('Contact') + '#' + backSection" class="inline-flex items-center gap-3 w-55 lg:w-auto px-10 py-4 rounded-[33px] text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:text-[color:var(--accent)] border-[color:var(--accent)] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
@@ -68,7 +70,7 @@
             </div>
          </div>
          <div class="relative hidden md:flex items-center justify-center my-auto h-[300px] w-[70%] items-center justify-center mx-auto  lg:flex items-center justify-center my-auto h-[70vh]">
-            <img src="/images/à_propos/à-propos.jpg" class="w-full h-full rounded-[20px] border-6 border-[#B9D6FE] shadow-xl object-cover object-top" alt="Notre expertise" />
+            <img src="/images/à_propos/à-propos.jpg" loading="lazy" class="w-full h-full rounded-[20px] border-6 border-[#B9D6FE] shadow-xl object-cover object-top" alt="Notre expertise" />
          </div>
       </div>
    </section>

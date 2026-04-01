@@ -338,7 +338,7 @@
 
 @layer components {
     .hero-paragraph {
-        @apply text-[16px] lg:text-[18px] text-[#627a9a] max-w-[90%] lg:max-w-[50%] leading-relaxed mt-1 mb-6;
+        @apply text-[16px] lg:text-[18px] text-[#4c6e9a] max-w-[90%] lg:max-w-[50%] leading-relaxed mt-1 mb-6;
     }
 
     .hero-h1 {
@@ -370,7 +370,7 @@
     }
 
     .description {
-        @apply text-sm lg:text-[18px] text-[#627a9a] leading-relaxed
+        @apply text-sm lg:text-[18px] text-[#4c6e9a] leading-relaxed
     }
 
     /* Ограничение 2 строки с многоточием */
@@ -424,5 +424,23 @@
 
     .subject label {
         @apply mt-4
+    }
+
+    :focus-visible {
+        outline: none;
+        ring: 2px solid #0D4677;
+        box-shadow: 0 0 0 4px rgba(13, 70, 119, 0.2);
+        border-radius: 8px;
+        transition: box-shadow 0.2s ease-in-out;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [tabindex="0"]:focus-visible {
+        outline: 2px solid #0D4677;
+        outline-offset: 2px;
     }
 }

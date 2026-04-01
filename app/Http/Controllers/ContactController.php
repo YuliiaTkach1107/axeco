@@ -44,7 +44,6 @@ class ContactController extends Controller
 
         $file = $request->file('file');
 
-        // добавляем файл в data (чтобы передать в Mail)
         $data['file'] = $file;
     }
          Mail::to('info@axeco.immo')->send(new ContactFormMail($data, $file));

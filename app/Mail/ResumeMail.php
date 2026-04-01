@@ -19,8 +19,8 @@ class ResumeMail extends Mailable
 
     public function __construct($file, $email)
     {
-        $this->file = $file;   // UploadedFile
-        $this->email = $email; // email кандидата
+        $this->file = $file;   
+        $this->email = $email; 
     }
 
     public function build()
@@ -35,8 +35,8 @@ class ResumeMail extends Mailable
                         'email' => $this->email,
                     ])
                     ->attachData(
-                        $fileContents, // содержимое файла
-                        $this->file->getClientOriginalName(),         // имя файла
+                        $fileContents, 
+                        $this->file->getClientOriginalName(),       
                             ['mime' => $this->file->getMimeType(),]
                 );
     }

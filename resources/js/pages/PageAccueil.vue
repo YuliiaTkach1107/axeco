@@ -136,6 +136,7 @@
    <Head>
       <title>Axeco | Syndic Immobilier Professionnel à Bruxelles</title>
       <meta name="description" content="Plus de 30 ans d'expertise en gestion de copropriété à Bruxelles. Gestion technique, administrative et financière transparente pour votre immeuble."/>
+      <meta property="og:url" content="https://axeco.be/" />
       <meta property="og:title" content="Axeco - Votre syndic de confiance à Bruxelles"/>
       <meta property="og:description" content="Expertise, éthique et transparence pour la gestion de votre patrimoine immobilier."/>
       <meta property="og:image" content="/images/page_accueil/bg-1.jpg" />
@@ -207,7 +208,7 @@
             <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center justify-center mb-16 lg:mb-[100px] w-[90%]">
                <!-- Image -->
                <div class="w-full lg:w-[60%] h-[260px] lg:h-[450px]">
-                  <img src="/images/page_accueil/a_propos.png" alt="Image à propos" class="rounded-[20px] border border-[#0D4677] w-full h-full object-cover object-[center_30%]"/>
+                  <img src="/images/page_accueil/a_propos.png" alt="Image à propos" loading="lazy" class="rounded-[20px] border border-[#0D4677] w-full h-full object-cover object-[center_30%]"/>
                </div>
                <!-- Text block -->
                <div class="w-full lg:w-[40%] bg-gradient-to-b from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)] rounded-[20px] p-8 lg:p-10 flex flex-col gap-6 lg:gap-8 text-left">
@@ -334,7 +335,7 @@
                   <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden bg-white shadow-xs">
                      <!-- Image -->
                      <div class="w-full aspect-[16/9] overflow-hidden">
-                        <img :src="item.image_url" alt="" class="w-full h-full object-cover"/>
+                        <img :src="item.image_url" alt="" loading="lazy" class="w-full h-full object-cover"/>
                      </div>
                      <!-- Content -->
                      <div class="py-6 px-4 flex flex-col justify-between h-[110px] md:h-[110px]">
@@ -383,7 +384,7 @@
                >
                   <SwiperSlide v-for="item in props.articles" :key="item.id" class="!w-[450px] pb-10 px-2">
                      <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden shadow-md bg-white transition-shadow duration-500 ease-in-out hover:shadow-[0_5px_10px_rgba(16,43,64,0.25)]">
-                        <img :src="item.image_url" :alt="item.title" class="w-full h-[200px] object-cover"/>
+                        <img :src="item.image_url" :alt="item.title" loading="lazy" class="w-full h-[200px] object-cover"/>
                         <div class="py-4 px-6 h-auto">
                            <h3 class="text-lg font-semibold text-[#0d4677] clamp-1 mb-2">{{ item.title }}</h3>
                            <p class="text-gray-600 text-sm clamp-2">{{ item.description }}</p>
