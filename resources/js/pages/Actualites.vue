@@ -65,7 +65,7 @@
 
    })
    const latestArticle = computed(()=>{
-         return filtredArticles.value[0]
+         return props.articles[0]
    })
    const suggestions = computed(() => {
          if (!query.value) return []
@@ -175,6 +175,9 @@
                      <img v-if='latestArticle.image_url' :src = latestArticle.image_url alt="" class="w-full h-full object-cover"/>
                   </div>
                   <div class='py-6 lg:py-10 px-6 lg:px-14 flex flex-col gap-2 lg:gap-4 justify-center'>
+                     <span v-if='latestArticle.topic' class="text-white font-semibold text-sm w-fit px-3 py-2 rounded-full " :style="{background: latestArticle.topic.color }" :aria-label="'Catégorie: ' + latestArticle.topic.title" > 
+                        {{ latestArticle.topic.title }}
+                     </span>
                      <h4 class='section-h4 mb-4'>{{latestArticle.title}}</h4>
                      <p class='text-[16px] lg:text-[18px] text-[#4c6e9a] leading-relaxed clamp-3'>{{latestArticle.description}}</p>
                      <Link :href="`actualites/article/${latestArticle.id}#featured`" class='button text-white bg-[#0d4677] w-fit lg:w-fit mt-2 lg:mt-6 text-sm lg:text-base'>

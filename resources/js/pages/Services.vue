@@ -10,60 +10,17 @@
    import 'swiper/css/pagination'
    
    const modules = [Pagination];
-   const services = [
-       {
-           title: 'Maintenance et gestion technique',
-           description:`Nous pilotons vos <strong> entretiens, actions conservatoires </strong> et <strong> travaux </strong> avec une vision à long terme pour faire de chaque contrainte, une opportunité technique. Nous proposons une <strong> gestion 360° </strong> pour répondre aux <strong> exigences de demain </strong> et <strong> garantir la pérennité </strong> de votre copropriété devant les prochains <strong> enjeux réglementaires.</strong>`,
-           image: '/images/services/gestion_technique.jpg',
-           accentColor:'#2E7EED',
-           bgColor:'rgb(46,126,237,0.2)',
-           details:[
-               'Entretien préventif des équipements',
-               'Suivi des interventions techniques',
-               'Inspections régulières des bâtiments',
-               'Gestion des travaux de rénovation',
-               'Coordination avec les prestataires',
-               'Gestion des urgences 24/7'
-           ],
-           anchor: 'gestion-technique', 
-           link: '/services#gestion-technique'
-       },
-   
-       {
-           title: 'Gestion administrative',
-           description:`Gardez le contrôle grâce à une <strong> administration transparente </strong> et <strong>structurée</strong> de l'ensemble du volet administratif de votre copropriété. Qu'ils soient totalement ou partiellement digitalisés, <strong>nos services s’ajustent à votre réalité</strong> pour simplifier les échanges et garantir une réactivité optimale à tous les résidents, le tout, avec une <strong>sécurité absolue</strong> et <strong> une conformité stricte à la protection de vos données.</strong>`,
-           image: '/images/services/gestion_administrative.jpg',
-           accentColor:'#F2522E',
-           bgColor:'rgb(242,82,46,0.2)',
-           details:[
-               'Organisation des assemblées générales',
-               'Rédaction des procès - verbaux',
-               'Gestion des contrats et assurances',
-               'Tenue du registre de copropriété',
-               'Gestion des réclamations',
-               'Conformité réglementaire'
-           ],
-           anchor: 'gestion-administrative', 
-           link: '/services#gestion-administrative'
-       },
-       {
-           title: 'Gestion financière',
-           description:` <strong> La rigueur comptable au cœur de notre engagement où nous allions ponctualité et innovation.</strong> Au-delà du simple syndic, nous agissons en experts financiers : tenue des comptes, contrôle strict des pièces justificatives et maîtrise des flux. Pour répondre à vos besoins, nous proposons une <strong> solution de gestion totalement ou partiellement digitalisée  afin de garantir</strong> des décomptes de charges clairs et livrés dans les délais. Nos solutions sont modulables pour tenir compte de la réalité <strong> de votre immeuble. </strong>`,
-           image: '/images/services/gestion_financière.png',
-           accentColor:'#0D4677',
-           bgColor:'rgb(13,70,119,0.2)',
-           details:[
-               'Établissement des budgets prévisionnels',
-               'Recouvrement des charges',
-               'Reporting financier détaillé',
-               'Gestion de la comptabilité',
-               'Suivi de trésorerie',
-               'Conseils en optimisation fiscale'
-           ],
-           anchor: 'gestion-financiere',
-           link: '/services#gestion-financiere'
-       },
-   ]
+ 
+   const props = defineProps({
+      services: {
+            type: Array,
+            default: () => []
+      },
+      details: {
+            type: Array,
+            default: () => []
+      }
+   })
    const openDetailsIndex = ref(null)
    
    const valeurs = [
@@ -256,7 +213,7 @@
       <section class="services py-8 lg:py-20" aria-labelledby="services-title" style="background-image: linear-gradient(to bottom, #FFFFFF 0%, #F0F6FC 50%, #FFFFFF 100%);">
          <h2 id="services-title" class="sr-only">Liste complète des services</h2>
          <div class="max-w-7xl mx-auto px-6">
-            <div v-for="(service, index) in services" :key="index" class="mb-18 lg:mb-28">
+            <div v-for="(service, index) in props.services" :key="index" class="mb-18 lg:mb-28">
                <div 
                   :id="service.anchor"
                   :class="[
@@ -272,37 +229,37 @@
                <div class="flex flex-col lg:flex-row gap-10 lg:gap-20">
                   <div class="w-full lg:w-1/2">
                      <div class="bg-white rounded-[28px] shadow-xl overflow-hidden">
-                        <img :src="service.image" :alt="service.title" class="w-full h-[320px] object-cover"/>
+                        <img :src="service.image_url" :alt="service.title" class="w-full h-[320px] object-cover"/>
                         <div class="p-6 md:p-8">
                            <h3 class="text-[26px] md:text-[30px] font-semibold text-[#0D4677]"> {{ service.title }}</h3>
                         </div>
                      </div>
                   </div>
-                  <div class="w-full lg:w-1/2 flex flex-col justify-start">
-                     <p class="text-[#4c6e9a] text-[16px] lg:text-[18px] leading-relaxed mb-4" v-html="service.description"></p>
-                     <button
-                        :id="'service-button-' + index"
-                        type="button"
-                        v-if="service.details"
-                        @click="openDetailsIndex = openDetailsIndex === index ? null : index"
-                        :aria-expanded="openDetailsIndex === index"
-                        :aria-controls="'service-details-' + index"
-                        :aria-labelledby="'service-button-' + index"
-                        class="group cursor-pointer text-[#0d4677] text-[18px] font-bold flex items-center gap-2 mb-2 focus-visible:ring-2 focus-visible:ring-[#F2522E]focus-visible:ring-offset-2"
-                     >
-                        <span class='text-[18px] font-bold'>{{ openDetailsIndex === index ? '−' : '+' }}</span> 
-                        Détails
-                     </button>
-                     <transition name="accordion" @enter="enter" @leave="leave">
-                        <ul 
-                           v-if="openDetailsIndex === index && service.details"
-                           class="list-disc ml-6 text-[#4c6e9a] space-y-1 text-[16px]"
-                           :id="'service-details-' + index"
-                           role="region"
-                           >
-                           <li v-for="(item, i) in service.details" :key="i">{{ item }}</li>
-                        </ul>
-                     </transition>
+                  <div class=" rich-editor w-full lg:w-1/2 flex flex-col justify-start">
+                     <p v-html="service.content"></p>
+                        <button
+                           :id="'service-button-' + index"
+                           type="button"
+                           v-if="service.details"
+                           @click="openDetailsIndex = openDetailsIndex === index ? null : index"
+                           :aria-expanded="openDetailsIndex === index"
+                           :aria-controls="'service-details-' + index"
+                           :aria-labelledby="'service-button-' + index"
+                           class="group cursor-pointer text-[#0d4677] text-[18px] font-bold flex items-center gap-2 mb-2 focus-visible:ring-2 focus-visible:ring-[#F2522E]focus-visible:ring-offset-2"
+                        >
+                           <span class='text-[18px] font-bold'>{{ openDetailsIndex === index ? '−' : '+' }}</span> 
+                           Détails
+                        </button>
+                        <transition name="accordion" @enter="enter" @leave="leave">
+                           <ul 
+                              v-if="openDetailsIndex === index && service.details"
+                              class="list-disc ml-6 text-[#4c6e9a] space-y-1 text-[16px]"
+                              :id="'service-details-' + index"
+                              role="region"
+                              >
+                              <li v-for="(item, i) in service.details" :key="i">{{ item.content }}</li>
+                           </ul>
+                        </transition>
                   </div>
                </div>
             </div>

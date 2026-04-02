@@ -46,9 +46,7 @@
                </nav>
                <div class="flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm opacity-90">
                   <time :datetime="article.date_publication" v-if="article.date_publication">{{ article.date_publication }}</time>
-                  <span v-if="article.topic" class="px-2 py-1 md:px-3 md:py-1 rounded-full text-white text-xs md:text-sm" :style="{ background: article.topic.color }">
-                    {{ article.topic.title }}
-                  </span>
+                  <span v-if="article.topic" class="px-2 py-1 md:px-3 md:py-1 rounded-full text-white text-xs md:text-sm" :style="{ background: article.topic.color }">{{ article.topic.title }}</span>
                </div>
                <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{{ article.title }}</h1>
                <p class="text-sm md:text-lg opacity-90 leading-relaxed line-clamp-3 md:line-clamp-none">{{ article.description }}</p>

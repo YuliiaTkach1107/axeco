@@ -233,7 +233,7 @@
             <span v-if='data.errors.message' id="message-error" role="alert" class="text-red-500 text-xs mt-1">Veuillez écrire votre message</span>
          </div>
          <div v-if="data.subject === 'stage'" class="mt-6">
-            <label tabindex="0" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors focus-within:ring-2 focus-within:ring-[#0D4677] focus-within:border-[#0D4677] outline-none transition">
+            <label tabindex="0" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors">
                <span v-if="!selectedFile" class="text-gray-500 text-base text-center">Cliquez pour téléverser votre CV ou glissez-le ici</span>
                <span v-else class="text-[#0D4677] font-semibold text-base text-center">Fichier sélectionné: {{ selectedFile.name }}</span>
                <input type="file" class="hidden" @change="handleFileUpload" :aria-invalid="data.errors.file ? 'true' : 'false'" aria-describedby="file-error" required />

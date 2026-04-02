@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Topic;
+use App\Models\Service;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -16,10 +17,12 @@ class HomeController extends Controller
                                 ->take(6)
                                 ->get();
         $topics = Topic::all();
+        $services = Service::all();
 
     return Inertia::render('PageAccueil', [
         'articles' => $articles,
-        'topics'   => $topics
+        'topics'   => $topics,
+        'services' => $services,
     ]);
 }
 }

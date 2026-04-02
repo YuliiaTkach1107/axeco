@@ -35,6 +35,8 @@
         "vue-tsc": "^2.2.4"
     },
     "dependencies": {
+        "@iconify/json": "^2.2.458",
+        "@iconify/vue": "^5.0.0",
         "@inertiajs/vue3": "^2.3.7",
         "@tailwindcss/line-clamp": "^0.4.4",
         "@unhead/vue": "^2.1.4",

@@ -13,7 +13,7 @@ class EmployeTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Employe::truncate();
+        //Employe::truncate();
         Employe::factory()->count(10)->create();
     }
 }

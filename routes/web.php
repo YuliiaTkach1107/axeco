@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
 
 
 Route::get('/dashboard', function () {
@@ -21,10 +22,7 @@ Route::get('/faq', function () {
     return Inertia::render('FAQ');
 })->name('FAQ');
 
-Route::get('/services', function () {
-    return Inertia::render('Services');
-})->name('Services');
-
+Route::get('/services', [ServiceController::class, 'index'])->name('Services');
 
 
 Route::get('/actualites', [ArticleController::class, 'index'])->name('Actualites');

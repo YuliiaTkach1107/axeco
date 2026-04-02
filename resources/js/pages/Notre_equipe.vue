@@ -154,7 +154,7 @@
             <h3 class='section-h3 text-center'>Rejoinez notre équipe</h3>
             <p class='description text-center'>Vous êtes passionné par l'immobilier et souhaitez faire partie d'une équipe dynamique ? Découvrez nos opportunités de carrière.</p>
             <form @submit.prevent="submit" class="w-full flex flex-col gap-6">
-                <label class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-[#4c6e9a] rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
+                <label tabindex='0' class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-[#4c6e9a] rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                     <span v-if="!selectedFile" class="text-[#4c6e9a] text-center">Cliquez pour téléverser votre CV ou glissez-le ici</span>
                     <span v-else class="text-[#0D4677] font-semibold text-center">Fichier sélectionné: {{ selectedFile.name }}</span>
                     <input type="file" class="hidden" @change="handleFileUpload" aria-label="Téléverser votre CV" accept='.pdf,.doc,.docx' required />

@@ -35,35 +35,40 @@
    swiperInstance.value?.slideNext();
    }
 
-   const services = [
-   {
-   title: 'Maintenance et gestion technique',
-   description:'Nous pilotons la gestion technique de votre copropriété avec une vision à long terme, en anticipant les enjeux réglementaires.',
-   icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill=#ffffff d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"/></svg>`,
-   anchor: 'gestion-technique',
-   link: '/services#gestion-technique'
-   },
-   {
-   title: 'Gestion administrative',
-   description:'Une administration transparente, sécurisée et adaptée à votre réalité pour des échanges fluides et réactifs.',
-   icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke=#ffffff stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.728 3H7.5a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h9a2.25 2.25 0 0 0 2.25-2.25V12M9.728 3C10.971 3 12 4.007 12 5.25V7.5a2.25 2.25 0 0 0 2.25 2.25h2.25A2.25 2.25 0 0 1 18.75 12M9.728 3c3.69 0 9.022 5.36 9.022 9"/></svg>`,
-   anchor: 'gestion-administrative',
-   link: '/services#gestion-administrative'
-   },
-   {
-   title: 'Gestion financière',
-   description:'Nous assurons une gestion financière rigoureuse et transparente pour garantir des comptes clairs, fiables et respectueux des délais.',
-   icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill=#ffffff d="M4 2H2v26a2 2 0 0 0 2 2h26v-2H4Z"/><path fill=#ffffff d="M30 9h-7v2h3.59L19 18.59l-4.29-4.3a1 1 0 0 0-1.42 0L6 21.59L7.41 23L14 16.41l4.29 4.3a1 1 0 0 0 1.42 0l8.29-8.3V16h2Z"/></svg>`,
-   anchor: 'gestion-financiere',
-   link: '/services#gestion-financiere',
-   }]
+   // const services = [
+   // {
+   // title: 'Maintenance et gestion technique',
+   // description:'Nous pilotons la gestion technique de votre copropriété avec une vision à long terme, en anticipant les enjeux réglementaires.',
+   // icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill=#ffffff d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"/></svg>`,
+   // anchor: 'gestion-technique',
+   // link: '/services#gestion-technique'
+   // },
+   // {
+   // title: 'Gestion administrative',
+   // description:'Une administration transparente, sécurisée et adaptée à votre réalité pour des échanges fluides et réactifs.',
+   // icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke=#ffffff stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.728 3H7.5a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h9a2.25 2.25 0 0 0 2.25-2.25V12M9.728 3C10.971 3 12 4.007 12 5.25V7.5a2.25 2.25 0 0 0 2.25 2.25h2.25A2.25 2.25 0 0 1 18.75 12M9.728 3c3.69 0 9.022 5.36 9.022 9"/></svg>`,
+   // anchor: 'gestion-administrative',
+   // link: '/services#gestion-administrative'
+   // },
+   // {
+   // title: 'Gestion financière',
+   // description:'Nous assurons une gestion financière rigoureuse et transparente pour garantir des comptes clairs, fiables et respectueux des délais.',
+   // icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill=#ffffff d="M4 2H2v26a2 2 0 0 0 2 2h26v-2H4Z"/><path fill=#ffffff d="M30 9h-7v2h3.59L19 18.59l-4.29-4.3a1 1 0 0 0-1.42 0L6 21.59L7.41 23L14 16.41l4.29 4.3a1 1 0 0 0 1.42 0l8.29-8.3V16h2Z"/></svg>`,
+   // anchor: 'gestion-financiere',
+   // link: '/services#gestion-financiere',
+   // }]
 
    const props = defineProps({
       articles: {
             type: Array,
             default: () => []
       },
-      topics: Array})
+      topics: Array,
+      services: {
+            type: Array,
+            default: () => []
+      }
+   })
 
    const faq=[
    {
@@ -267,7 +272,7 @@
                :pagination="{ clickable: true }"
                class="mySwiper !px-6 !pb-12"
                >
-               <SwiperSlide v-for="(service, index) in services" :key="index" class="!h-auto flex">
+               <SwiperSlide v-for="(service, index) in props.services" :key="index" class="!h-auto flex">
                   <a
                      :href="service.link"
                      class="flex flex-col h-full rounded-[24px] p-10 border-2 border-[#c6e0fa] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
@@ -290,7 +295,7 @@
          <!-- Cards -->
          <div class="hidden lg:flex justify-center">
             <div class="grid gap-10 grid-cols-1 lg:grid-cols-3 lg:max-w-[95%]">
-               <a v-for="(service, index) in services" :key="index" :href="service.link" class="cursor-pointer group block">
+               <a v-for="(service, index) in props.services" :key="index" :href="service.link" class="cursor-pointer group block">
                   <div class="relative h-[100%] rounded-[24px] p-10 border-2 border-[#c6e0fa] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
                      style="background-image: linear-gradient(-42deg,#ffffff 43%,rgba(224, 239, 255, 0.5) 100%);">
                      <!-- Icon -->
@@ -370,7 +375,7 @@
                   </svg>
                </button>
             </div>
-            <div class="">
+            <div>
                <Swiper
                   :modules="modules"
                   :slides-per-view="'auto'"
