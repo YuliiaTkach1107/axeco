@@ -13,10 +13,21 @@ class Employe extends Model
         'nom',
         'prenom',
         'email',
-        'topic_id',
         'telephone',
-        'departement',
+        'departement_id',
+        'position_id',
+        'avatar',
     ];
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function departement()
+    {
+        return $this->belongsTo(Departement::class);
+    }
 }
 
 

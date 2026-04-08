@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Article;
 use App\Models\Topic;
+use App\Models\Subscriber;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewsletterArticleMail;
 
 
 class ArticleController extends Controller
@@ -80,4 +83,12 @@ class ArticleController extends Controller
     {
         //
     }
+    public function sendNewsletter(Article $article)
+{
+    $subscribers = Subscriber::where('is_verified', true)->get();
+
+    foreach($subscribers as $subscriber){
+        Mail::to($subscriber->email)->send(new NewsletterArticleMail($subscriber, $article));
+    }
+}
 }

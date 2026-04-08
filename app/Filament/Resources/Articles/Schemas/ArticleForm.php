@@ -20,6 +20,7 @@ class ArticleForm
                 DatePicker::make('date_publication')
                     ->required(),
                 FileUpload::make('image_url')
+                    ->label('Image')
                     ->image()
                     ->directory('articles')
                     ->disk('public')

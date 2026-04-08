@@ -328,6 +328,8 @@
         font-weight: var(--font-weight-normal);
         line-height: normal;
         letter-spacing: 0.1px;
+        color: #9ca3af;
+        -webkit-text-fill-color: #9ca3af;
     }
 
     a {

@@ -6,6 +6,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\ColorPicker;
 use Filament\Schemas\Schema;
 
 class ServiceForm
@@ -35,13 +36,16 @@ class ServiceForm
                         'undo',
                     ]),
                 FileUpload::make('image_url')
+                    ->label('Image')
                     ->image()
                     ->directory('services')
                     ->disk('public')
                     ->required(),
-                TextInput::make('accentColor')
+                ColorPicker::make('accentColor')
+                    ->label('Accent Color')
                     ->required(),
-                TextInput::make('bgColor')
+                ColorPicker::make('bgColor')
+                    ->label('Background Color')
                     ->required(),
                 TextInput::make('anchor')
                     ->required(),

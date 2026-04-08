@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Employe;
+use App\Models\Position;
+use App\Models\Departement;
 
 class EmployeController extends Controller
 {
@@ -13,9 +15,13 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        $employes = Employe::all();
+        $employes = Employe::with(['position', 'departement'])->get();
+        $position = Position::all();
+        $departement = Departement::all();
          return Inertia::render('Notre_equipe', [
-            'employes'=>$employes
+            'employes'=>$employes,
+            'position'=>$position,
+            'departement'=>$departement,
         ]);
     }
 

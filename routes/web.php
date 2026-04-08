@@ -10,6 +10,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\FaqController;
 
 
 Route::get('/dashboard', function () {
@@ -18,9 +19,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('PageAccueil');
 
-Route::get('/faq', function () {
-    return Inertia::render('FAQ');
-})->name('FAQ');
+Route::get('/faq', [FaqController::class, 'index'])->name('FAQ');
+
 
 Route::get('/services', [ServiceController::class, 'index'])->name('Services');
 
@@ -47,7 +47,7 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
     ->name('newsletter.unsubscribe');
 
 
-
+Route::get('/contact', [ContactController::class, 'index'])->name('Contact');;
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 Route::post('/resume-send', [ResumeController::class, 'send'])->name('resume.send');
 require __DIR__.'/settings.php';

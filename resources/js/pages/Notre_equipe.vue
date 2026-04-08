@@ -8,16 +8,18 @@
     import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
     
     const props = defineProps({
-        employes: Array
+        employes: Array,
+        position: Array,
+        departement: Array,
     })
     const groupedEmployes = computed(() => {
         const groups = {}
 
         props.employes.forEach(emp => {
-            if(!groups[emp.departement]){
-                groups[emp.departement] = []
+            if(!groups[emp.departement.id]){
+                groups[emp.departement.id] = []
             }
-            groups[emp.departement].push(emp)
+            groups[emp.departement.id].push(emp)
         })
         return groups
     })
@@ -26,8 +28,8 @@
         const groups = {}
 
         props.employes.forEach(emp => {
-            if(!groups[emp.departement]) groups[emp.departement] = []
-            groups[emp.departement].push(emp)
+            if(!groups[emp.departement.title]) groups[emp.departement.title] = []
+            groups[emp.departement.title].push(emp)
         })
 
         const entries = Object.entries(groups)
@@ -108,7 +110,7 @@
     <transition name="fade">
          <div v-if="show && flash.error" role="alert" aria-live="assertive" class="fixed top-24 lg:top-5 right-0 md:right-5 bg-[#f2522e] text-white px-6 py-3 rounded-xl shadow-lg z-50"> {{ flash.error }} </div>
     </transition>
-    <section id="main-content" class="hero relative w-full h-full min-h-screen px-6 lg:px-12" style="background: linear-gradient(rgba(255,255,255) 0%, rgba(240,246,252) 100%)">
+    <section id="main-content" class="hero relative w-full h-full min-h-screen px-6 lg:px-12" style="background: linear-gradient(rgba(255,255,255) 0%, rgba(240,246,252) 50%, rgba(255,255,255) 100%)">
         <div aria-hidden='true' class="hidden md:flex absolute left-20 top-50 w-[150px] h-[150px] border-3 border-[#F2522E] rotate-22 rounded-[33px] opacity-20"></div>
         <div aria-hidden='true' class="hidden md:flex absolute right-70 top-140 w-[100px] h-[100px] border-3 border-[#2E7EED] -rotate-54 rounded-[33px] opacity-20"></div>
         <div class="px-6 flex flex-col items-center relative z-20 w-full max-w-7xl mx-auto pt-40 md:pt-60 lg:pt-60 pb-6 lg:pb-6 h-[100%]">
@@ -136,7 +138,7 @@
                     </picture>
                     <div class="space-y-1">
                         <p class="font-medium text-lg text-[#0d4677]" v-if="emp.prenom || emp.nom">{{ emp.prenom }} {{ emp.nom }}</p>
-                        <p class="text-xl text-[#2e7eed]  font-semibold">{{ emp.position }}</p>
+                        <p class="text-xl text-[#2e7eed]  font-semibold">{{ emp.position.title }}</p>
                         <p class="text-sm text-[#4c6e9a] break-all">{{ emp.email }}</p>
                         <p class="text-sm text-[#4c6e9a]">{{ emp.telephone }}</p>
                     </div>
@@ -162,7 +164,7 @@
                 </label>
                 <div class="flex flex-col gap-2">
                     <label for="email" class="text-gray-700 font-medium">Email <span class="text-[#0d4677]">*</span></label>
-                    <input type="email" id="email" name="email" v-model="data.email"  class="px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition-all" placeholder="exemple@domain.com" required/>
+                    <input type="email" id="email" name="email" v-model="data.email"  class="px-4 py-3 border border-gray-300 text-gray-400 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition-all" placeholder="exemple@domain.com" required/>
                 </div>
                 <button type="submit" class="inline-flex items-center justify-center px-10 py-4 rounded-[33px] w-fit m-auto text-white font-semibold text-[16px] bg-[#0D4677] cursor-pointer shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[color:var(--accent)] transition-all active:scale-[0.97] focus:outline-none touch-manipulation">
                     Envoyer sa candidature
@@ -179,7 +181,7 @@
                     <a href="tel:+3228972008" aria-label="Appeler +32 2 897 20 08" class="inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:text-[color:var(--accent)] border-[color:var(--accent)] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                         Appelez-nous
                     </a>
-                    <Link :href="route('Contact') + '#' + backSection" class="inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] text-white font-semibold text-[16px] bg-[color:var(--accent)] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#d94827] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
+                    <Link :href="route('Contact', { subject: 'stage' }) + '#' + backSection"  class="inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] text-white font-semibold text-[16px] bg-[color:var(--accent)] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#d94827] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                         Contactez-nous! <ArrowRight/>
                     </Link>
                 </div>

@@ -5,9 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactFormMail;
+use App\Models\Contact;
+use Inertia\Inertia;
 
 class ContactController extends Controller
 {
+    public function index()
+    {
+        $contacts = Contact::all();
+        return Inertia::render('Contact', [
+            'contacts' => $contacts
+        ]);
+    }
     public function send(Request $request){
         $data = $request->validate([
             'frname' => 'required|string',

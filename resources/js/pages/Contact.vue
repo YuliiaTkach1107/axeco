@@ -5,48 +5,9 @@
   import { useForm, usePage,Link, Head } from '@inertiajs/vue3'
   import { route } from 'ziggy-js'
 
-  const contactInfo = [
-    {
-      titre: "Téléphone",
-      color: "#0E9727",
-      icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#0E9727" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z" stroke-width="0.1" stroke="#fff"/></svg>`,
-      text: "+32 2 897 20 08",
-      type: "tel",
-      link: "tel:+3228972008",
-      type: "tel",
-      multiline: false,
-      link:'tel:+3228972008'
-    },
-    {
-      titre: "Email",
-      color: "#0d4677",
-      icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#0d4677" d="M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zM12 12.116L4 6.885v10.5q0 .269.173.442t.443.173h14.769q.269 0 .442-.173t.173-.443v-10.5zM12 11l7.692-5H4.308zM4 6.885V6v11.385q0 .269.173.442t.443.173H4z" stroke-width="1" stroke="#0d4677"/></svg>`,
-      text: "info@axeco.immo",
-      type: "email",
-      link: "mailto:info@axeco.be",
-      multiline: false,
-    },
-    {
-      titre: "Adresse",
-      color: "#f2522e",
-      icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#f2522e" d="M11.5 7A2.5 2.5 0 0 1 14 9.5a2.5 2.5 0 0 1-2.5 2.5A2.5 2.5 0 0 1 9 9.5A2.5 2.5 0 0 1 11.5 7m0 1A1.5 1.5 0 0 0 10 9.5a1.5 1.5 0 0 0 1.5 1.5A1.5 1.5 0 0 0 13 9.5A1.5 1.5 0 0 0 11.5 8m-4.7 4.36l4.7 7.73l4.7-7.73c.51-.86.8-1.81.8-2.86A5.5 5.5 0 0 0 11.5 4A5.5 5.5 0 0 0 6 9.5c0 1.05.29 2 .8 2.86m10.25.52L11.5 22l-5.55-9.12C5.35 11.89 5 10.74 5 9.5A6.5 6.5 0 0 1 11.5 3A6.5 6.5 0 0 1 18 9.5c0 1.24-.35 2.39-.95 3.38" stroke-width="1.2" stroke="#f2522e"/></svg>`,
-      text: "Chaussée de La Hulpe 150 1170 Bruxelles – Belgique",
-      type: "map",
-      link: "https://maps.app.goo.gl/ciFDMCpNPhs6KVs5A",
-      multiline: false,
-      link:'https://maps.app.goo.gl/ciFDMCpNPhs6KVs5A'
-    },
-    {
-      titre:"Horaires",
-      color: "#2E7EED",
-      icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#2E7EED" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M11 8v5h5"/></g></svg>`,
-      text: "Lun-Ven: 9h00 - 18h00",
-      type: "map",
-      link: "https://maps.app.goo.gl/ciFDMCpNPhs6KVs5A",
-      multiline: false,
-      link:null
-    },
-  ]
+    const props = defineProps({
+        contacts: Array,
+    })
 
   const data = useForm({
                   frname: '',
@@ -139,13 +100,14 @@
          <h3 class="section-h3 text-center">Comment nous joindre</h3>
          <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C]'></div>
       </div>
+
       <div class='flex flex-col  md:grid grid-cols-2'>
-         <a :href="info.link" target="_blank" v-for="info in contactInfo" :key="info.text" class='w-full mb-8' :aria-label="info.link ? info.titre + ': ' + info.text : ''">
+         <a :href="info.link" target="_blank" v-for="info in props.contacts" :key="info.text" class='w-full mb-8' :aria-label="info.link ? info.title + ': ' + info.content : ''">
             <div class='group flex bg-white shadow-xl rounded-[15px] p-6 gap-6 mx-auto items-center h-25 w-[90%] transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:shadow-2xl focus-within:-translate-y-1"' >
                <div v-html="info.icon" aria-hidden="true" class="border rounded-[10px] p-3 bg-white w-fit" :style="{ borderColor: info.color, backgroundColor: info.color + '15' }"></div>
                <div>
-                  <h4 class='section-h4 text-base lg:text-lg'>{{ info.titre }}</h4>
-                  <p class='text-sm md:text-xs lg:text-base text-[#205A8C] leading-relaxed'>{{ info.text }}</p>
+                  <h4 class='section-h4 text-base lg:text-lg'>{{ info.title }}</h4>
+                  <p class='text-sm md:text-xs lg:text-base text-[#205A8C] leading-relaxed'>{{ info.content }}</p>
                </div>
             </div>
          </a>
@@ -229,7 +191,7 @@
          <!-- Message -->
          <div class="flex flex-col gap-2 mt-6">
             <label for="message">Votre message</label>
-            <textarea id="message" rows="6" v-model="data.message" :aria-invalid="data.errors.message ? 'true' : 'false'" aria-describedby="message-error" placeholder="Écrivez votre message ici..." class="w-full px-6 py-5 bg-white border border-gray-200 rounded-[22px] shadow-sm text-[#0d4677] focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition placeholder:text-base mt-4 hover:shadow-md transition-all duration-300 resize-none"></textarea>
+            <textarea id="message" rows="6" v-model="data.message" :aria-invalid="data.errors.message ? 'true' : 'false'" aria-describedby="message-error" placeholder="Écrivez votre message ici..." class="w-full px-6 py-5 bg-white border border-gray-200 rounded-[22px] shadow-sm focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition placeholder:text-base mt-4 hover:shadow-md transition-all duration-300 resize-none"></textarea>
             <span v-if='data.errors.message' id="message-error" role="alert" class="text-red-500 text-xs mt-1">Veuillez écrire votre message</span>
          </div>
          <div v-if="data.subject === 'stage'" class="mt-6">

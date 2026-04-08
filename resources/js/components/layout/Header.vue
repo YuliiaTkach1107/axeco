@@ -3,6 +3,10 @@
    import { Link,usePage } from '@inertiajs/vue3'
    import { route } from 'ziggy-js'
 
+    const props = defineProps({
+        contacts: Array,
+    })
+
    const page = usePage()
 
    const mobileMenuOpen = ref(false)
@@ -54,13 +58,13 @@
             </ul>
          </nav>
          <!-- Burger Menu -->
-         <button @click="mobileMenuOpen = !mobileMenuOpen" class="cursor-pointer lg:hidden focus:outline-none mr-8 flex flex-col justify-between w-6 h-6 relative" aria-label="Ouvrir le menu mobile" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-menu">
+         <button @click="mobileMenuOpen = !mobileMenuOpen" class="cursor-pointer lg:hidden mr-8 flex flex-col justify-between w-6 h-6 relative" aria-label="Ouvrir le menu mobile" :aria-expanded="mobileMenuOpen.toString()" aria-controls="mobile-menu">
             <span :class="[ 'block h-0.5 w-full bg-foreground transform transition-all duration-300 ease-in-out origin-center', mobileMenuOpen ? 'rotate-45 translate-y-2' : '']"></span>
             <span :class="['block h-0.5 w-full bg-foreground transform transition-all duration-300 ease-in-out', mobileMenuOpen ? 'opacity-0' : '']"></span>
             <span :class="[ 'block h-0.5 w-full bg-foreground transform transition-all duration-300 ease-in-out origin-center', mobileMenuOpen ? '-rotate-45 -translate-y-3.5' : '']"></span>
          </button>
          <!-- Bouton -->
-         <a href="#" aria-label="Accéder à MyAXECO" class="hidden flex items-center gap-2 cursor-pointer lg:flex text-white bg-foreground text-[16px] py-[11px] px-[18px] rounded-[33px] mr-10 shadow-[4px_4px_6px_rgba(0,0,0,0.2)] hover:[background:var(--accent)] active:[background:var(--accent)] active:scale-[0.97] focus:outline-none touch-manipulation">
+         <a href="#" aria-label="Accéder à MyAXECO" class="hidden flex items-center gap-2 cursor-pointer lg:flex text-white bg-foreground text-[16px] py-[11px] px-[18px] rounded-[33px] mr-10 shadow-[4px_4px_6px_rgba(0,0,0,0.2)] hover:[background:var(--accent)] active:[background:var(--accent)] active:scale-[0.97]  touch-manipulation">
             MyAXECO
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24">
                <path fill="#fff" d="M12 11.385q-1.237 0-2.119-.882T9 8.385t.881-2.12T12 5.386t2.119.88t.881 2.12t-.881 2.118t-2.119.882m-7 7.23V16.97q0-.619.36-1.158q.361-.54.97-.838q1.416-.679 2.834-1.018q1.417-.34 2.836-.34t2.837.34t2.832 1.018q.61.298.97.838q.361.539.361 1.158v1.646zm1-1h12v-.646q0-.332-.215-.625q-.214-.292-.593-.494q-1.234-.598-2.546-.916T12 14.616t-2.646.318t-2.546.916q-.38.202-.593.494Q6 16.637 6 16.97zm6-7.23q.825 0 1.413-.588T14 8.384t-.587-1.412T12 6.384t-1.412.588T10 8.384t.588 1.413t1.412.587m0 7.232" stroke-width="0.3" stroke="#fff"/>
@@ -78,7 +82,7 @@
                <li><Link :href="route('Contact')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</Link></li>
                <li>
                   <!-- Bouton MyAXECO dans le menu mobile -->
-                  <a href="#" role="button" aria-label="Accéder à MyAXECO" class="cursor-pointer text-white bg-foreground items-center m-auto w-full text-[18px] py-[11px] px-[18px] gap-2 rounded-[33px] shadow-[4px_4px_6px_rgba(0,0,0,0.2)] mt-4 flex justify-center hover:[background:var(--accent)]  active:[background:var(--accent)] active:scale-[0.97] focus:outline-none touch-manipulation">
+                  <a href="#" role="button" aria-label="Accéder à MyAXECO" class="cursor-pointer text-white bg-foreground items-center m-auto w-full text-[18px] py-[11px] px-[18px] gap-2 rounded-[33px] shadow-[4px_4px_6px_rgba(0,0,0,0.2)] mt-4 flex justify-center hover:[background:var(--accent)]  active:[background:var(--accent)] active:scale-[0.97] touch-manipulation">
                      MyAXECO
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="#fff" d="M12 11.385q-1.237 0-2.119-.882T9 8.385t.881-2.12T12 5.386t2.119.88t.881 2.12t-.881 2.118t-2.119.882m-7 7.23V16.97q0-.619.36-1.158q.361-.54.97-.838q1.416-.679 2.834-1.018q1.417-.34 2.836-.34t2.837.34t2.832 1.018q.61.298.97.838q.361.539.361 1.158v1.646zm1-1h12v-.646q0-.332-.215-.625q-.214-.292-.593-.494q-1.234-.598-2.546-.916T12 14.616t-2.646.318t-2.546.916q-.38.202-.593.494Q6 16.637 6 16.97zm6-7.23q.825 0 1.413-.588T14 8.384t-.587-1.412T12 6.384t-1.412.588T10 8.384t.588 1.413t1.412.587m0 7.232" stroke-width="0.3" stroke="#fff"/>

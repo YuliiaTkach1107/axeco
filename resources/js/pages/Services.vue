@@ -19,36 +19,13 @@
       details: {
             type: Array,
             default: () => []
+      },
+      valeurs: {
+            type: Array,
+            default: () => []
       }
    })
    const openDetailsIndex = ref(null)
-   
-   const valeurs = [
-       {
-           id:1,
-           icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M12 13a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm-6 9v-3a6 6 0 1 1 12 0v3M13 5c.404-1.664 2.015-3 4-3c2.172 0 3.98 1.79 4 4c-.02 2.21-1.828 4-4 4h-1h1c3.288 0 6 2.686 6 6v2M11 5c-.404-1.664-2.015-3-4-3c-2.172 0-3.98 1.79-4 4c.02 2.21 1.828 4 4 4h1h-1c-3.288 0-6 2.686-6 6v2"/></svg>`,
-           title:'Une équipe d\'experts',
-           text:'Des collaborateurs chevronnés et passionnés.'
-       },
-       {
-           id:2,
-           icon:`<svg width="24" height="24" viewBox="0 0 37 34" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 24.8346L19.8333 28.168C20.1616 28.4963 20.5514 28.7567 20.9803 28.9344C21.4093 29.1121 21.869 29.2035 22.3333 29.2035C22.7976 29.2035 23.2574 29.1121 23.6863 28.9344C24.1153 28.7567 24.505 28.4963 24.8333 28.168C25.1616 27.8397 25.4221 27.4499 25.5997 27.021C25.7774 26.592 25.8689 26.1323 25.8689 25.668C25.8689 25.2037 25.7774 24.7439 25.5997 24.315C25.4221 23.886 25.1616 23.4963 24.8333 23.168" stroke="#0D4677" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.5002 19.8342L25.6669 24.0008C26.3299 24.6639 27.2292 25.0364 28.1669 25.0364C29.1046 25.0364 30.0038 24.6639 30.6669 24.0008C31.3299 23.3378 31.7024 22.4385 31.7024 21.5008C31.7024 20.5632 31.3299 19.6639 30.6669 19.0008L24.2002 12.5342C23.2627 11.5978 21.9919 11.0719 20.6669 11.0719C19.3419 11.0719 18.0711 11.5978 17.1335 12.5342L15.6669 14.0008C15.0038 14.6639 14.1046 15.0364 13.1669 15.0364C12.2292 15.0364 11.3299 14.6639 10.6669 14.0008C10.0038 13.3378 9.63135 12.4385 9.63135 11.5008C9.63135 10.5632 10.0038 9.66388 10.6669 9.00084L15.3502 4.31751C16.8706 2.80108 18.8534 1.83509 20.9846 1.57246C23.1159 1.30983 25.2738 1.76556 27.1169 2.86751L27.9002 3.33417C28.6099 3.76248 29.4536 3.91103 30.2669 3.75084L33.1669 3.16751" stroke="#0D4677" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M33.1667 1.50098L34.8333 19.8343H31.5M3.16667 1.50098L1.5 19.8343L12.3333 30.6676C12.9964 31.3307 13.8957 31.7032 14.8333 31.7032C15.771 31.7032 16.6703 31.3307 17.3333 30.6676C17.9964 30.0046 18.3689 29.1053 18.3689 28.1676C18.3689 27.23 17.9964 26.3307 17.3333 25.6676M3.16667 3.16764H16.5" stroke="#0D4677" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-           title:'L\'humain d\'abord',
-           text:'Une écoute active et une collaboration étroite avec chaque acteur de la résidence.'
-       },
-       {
-           id:3,
-           icon:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21.5 9a10 10 0 0 0-19 0M2 5v4h4m12 6h4v4M2.5 15a10 10 0 0 0 19 0"/></svg>`,
-           title:'Une solution 360°',
-           text:'Une gestion complète, flexible et parfaitement adaptée à vos spécificités.'
-       },
-       {
-           id:4,
-           icon:`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M14 16.59L11.41 14L10 15.41l4 4l8-8L20.59 10z"/><path fill="currentColor" d="m16 30l-6.176-3.293A10.98 10.98 0 0 1 4 17V4a2 2 0 0 1 2-2h20a2 2 0 0 1 2 2v13a10.98 10.98 0 0 1-5.824 9.707ZM6 4v13a8.99 8.99 0 0 0 4.766 7.942L16 27.733l5.234-2.79A8.99 8.99 0 0 0 26 17V4Z"/></svg>`,
-           title:'Une éthique absolue',
-           text:'La garantie d\'un accompagnement serein, intègre et transparent.'
-       }
-   ]
    
    const listRefs = ref({})
    
@@ -273,14 +250,14 @@
             <!-- Desktop -->
             <div class="hidden lg:flex justify-center">
                <div class="grid gap-10 grid-cols-1 lg:grid-cols-4 lg:max-w-[95%] ">
-                  <div v-for="(valeur, index) in valeurs" :key="index" class="group block">
+                  <div v-for="(valeur, index) in props.valeurs" :key="index" class="group block">
                      <div class="relative h-[100%] rounded-[24px] p-5 border-2 border-[#c6e0fa] bg-white transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]">
                         <!-- Icon -->
                         <div class="w-[60px] h-[60px] rounded-full mb-8 mx-auto flex items-center justify-center bg-[rgb(143,155,191,0.3)]" v-html="valeur.icon" />
                            <!-- Title -->
                            <h3 class="text-[22px] font-semibold text-[#0d4677] mb-8">  {{ valeur.title }} </h3>
                            <!-- Description -->
-                           <p class="text-[18px] text-[#4c6e9a] leading-relaxed">{{ valeur.text }}</p>
+                           <p class="text-[18px] text-[#4c6e9a] leading-relaxed">{{ valeur.content }}</p>
                         </div>
                      </div>
                </div>

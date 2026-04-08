@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Topic;
 use App\Models\Service;
+use App\Models\FAQ;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -18,11 +19,13 @@ class HomeController extends Controller
                                 ->get();
         $topics = Topic::all();
         $services = Service::all();
+        $faqs=FAQ::latest()->take(4)->get();
 
     return Inertia::render('PageAccueil', [
         'articles' => $articles,
         'topics'   => $topics,
         'services' => $services,
+        'faqs'=>$faqs,
     ]);
 }
 }

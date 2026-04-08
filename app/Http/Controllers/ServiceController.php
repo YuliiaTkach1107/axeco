@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Detail;
+use App\Models\Valeur;
 use Inertia\Inertia;
 
 
@@ -17,10 +18,12 @@ class ServiceController extends Controller
     {
         $services = Service::with('details')->get();
         $details = Detail::all();
+        $valeurs = Valeur::all();
 
     return Inertia::render('Services', [
         'services' => $services,
         'details' => $details,
+        'valeurs' => $valeurs,
     ]);
     }
 
