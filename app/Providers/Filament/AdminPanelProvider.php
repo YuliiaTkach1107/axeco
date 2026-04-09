@@ -29,8 +29,30 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => [
+                    50 => '#f0f6fc',
+                    100 => '#e8f3ff',
+                    200 => '#c6e0fa',
+                    300 => '#9aa3ae',
+                    400 => '#4c6e9a',
+                    500 => '#0d4677', 
+                    600 => '#0a3a63',
+                    700 => '#082d4d',
+                    800 => '#052138',
+                    900 => '#031424',
+                    950 => '#010a12',
+                ],
+                'danger' => Color::rgb('rgb(242, 82, 46)'),
+                'info' => Color::Blue,
+                'success' => Color::Emerald,
+                'warning' => Color::Orange,
+                'gray' => Color::Slate,
             ])
+            ->font('Open Sans')
+            ->brandName('Axeco Syndic')
+            ->brandLogo(asset('images/logo/AXECO_Logo.jpg'))
+            ->viteTheme('resources/css/filament/admin/theme.css')
+            ->defaultThemeMode(\Filament\Enums\ThemeMode::Light)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

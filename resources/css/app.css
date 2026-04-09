@@ -328,8 +328,12 @@
         font-weight: var(--font-weight-normal);
         line-height: normal;
         letter-spacing: 0.1px;
-        color: #9ca3af;
-        -webkit-text-fill-color: #9ca3af;
+        @apply text-gray-500;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        @apply text-gray-400 opacity-100;
     }
 
     a {
@@ -448,5 +452,24 @@
 
     .rich-editor p {
         @apply text-[#4c6e9a] text-[16px] lg:text-[18px] leading-relaxed mb-4;
+    }
+
+    input.newsletter {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    /* Стилизуем сам плейсхолдер */
+    input.newsletter::placeholder {
+        color: #F1F1F1 !important;
+        -webkit-text-fill-color: #F1F1F1 !important;
+        opacity: 1 !important;
+    }
+
+    /* Для Chrome и Safari */
+    input.newsletter::-webkit-input-placeholder {
+        color: #F1F1F1 !important;
+        -webkit-text-fill-color: #F1F1F1 !important;
+        opacity: 1 !important;
     }
 }

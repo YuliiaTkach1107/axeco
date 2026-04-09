@@ -57,15 +57,32 @@
          result = result.filter(article => article.topic_id === activeSujet.value)
       }
       result.sort((a, b) => {
-         const dateA = new Date(a.date_publication)
-         const dateB = new Date(b.date_publication)
-         return sortOrder.value === 'desc' ? dateB - dateA : dateA - dateB
-      })
+         const dateA = new Date(a.date_publication);
+         const dateB = new Date(b.date_publication);
+         
+         if (sortOrder.value === 'desc') {
+
+            if (dateB - dateA !== 0) return dateB - dateA;
+            return b.id - a.id;
+         } else {
+            if (dateA - dateB !== 0) return dateA - dateB;
+            return a.id - b.id;
+         }
+      });
       return result
 
    })
-   const latestArticle = computed(()=>{
-         return props.articles[0]
+
+   const latestArticle = computed(() => {
+      if (!props.articles || props.articles.length === 0) return null
+
+      const sorted = [...props.articles].sort((a, b) => {
+         const dateA = new Date(a.date_publication)
+         const dateB = new Date(b.date_publication)
+         return dateB - dateA || b.id - a.id
+      })
+
+      return sorted[0]
    })
    const suggestions = computed(() => {
          if (!query.value) return []
@@ -170,7 +187,7 @@
                <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C]'></div>
                <Link :href="`actualites/article/${latestArticle.id}#featured`">
                <article class='flex flex-col lg:grid grid-cols-2 h-[80%] bg-white rounded-[30px] overflow-hidden m-auto' >
-                  <div class="relative h-[200px] md:h-[300px] lg:h-full">
+                  <div class="relative h-[200px] md:h-[300px] lg:h-[400px]">
                      <span class="absolute top-6 left-4 lg:left-10 text-white text-sm bg-[#f2522e] px-3 py-2 rounded-full">NOUVEAU</span>
                      <img v-if='latestArticle.image_url' :src = latestArticle.image_url alt="" class="w-full h-full object-cover"/>
                   </div>

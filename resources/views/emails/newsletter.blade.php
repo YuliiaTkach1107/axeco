@@ -9,8 +9,10 @@
 <p>Si vous ne souhaitez plus recevoir nos emails, <br>
 vous pouvez vous désabonner à tout moment en cliquant ici :</p>
 
-<a href="{{ route('articles.show', $article) }}">Lire l’article</a>
-
+<a href="{{ route('Article', ['id' => $article->id]) }}" 
+   style="display: inline-block; padding: 12px 24px; background-color: #0d4677; color: #ffffff; text-decoration: none; border-radius: 25px; font-weight: bold;">
+    Lire l’article
+</a>
 <p>
     Si vous souhaitez vous désabonner :
 </p>
