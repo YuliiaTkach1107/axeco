@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Positions\Tables;
+namespace App\Filament\Admin\Resources\Website\Positions\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -15,12 +15,16 @@ class PositionsTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label('Nom')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

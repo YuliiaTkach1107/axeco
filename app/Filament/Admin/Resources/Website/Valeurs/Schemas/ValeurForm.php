@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Valeurs\Schemas;
+namespace App\Filament\Admin\Resources\Website\Valeurs\Schemas;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+
 
 class ValeurForm
 {
@@ -13,11 +15,14 @@ class ValeurForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Titre')
                     ->required(),
                 Textarea::make('icon')
+                    ->label('Icône')
                     ->required()
                     ->columnSpanFull(),
                 Textarea::make('content')
+                    ->label('Contenu')
                     ->required()
                     ->columnSpanFull(),
             ]);

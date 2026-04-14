@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Details\RelationManagers;
+namespace App\Filament\Admin\Resources\Website\Details\RelationManagers;
 
 use Filament\Actions\AttachAction;
 use Filament\Actions\BulkActionGroup;

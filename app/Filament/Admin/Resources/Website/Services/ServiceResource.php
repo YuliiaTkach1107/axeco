@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Services;
+namespace App\Filament\Admin\Resources\Website\Services;
 
-use App\Filament\Resources\Services\Pages\CreateService;
-use App\Filament\Resources\Services\Pages\EditService;
-use App\Filament\Resources\Services\Pages\ListServices;
-use App\Filament\Resources\Services\Schemas\ServiceForm;
-use App\Filament\Resources\Services\Tables\ServicesTable;
+use App\Filament\Admin\Resources\Website\Services\Pages\CreateService;
+use App\Filament\Admin\Resources\Website\Services\Pages\EditService;
+use App\Filament\Admin\Resources\Website\Services\Pages\ListServices;
+use App\Filament\Admin\Resources\Website\Services\Schemas\ServiceForm;
+use App\Filament\Admin\Resources\Website\Services\Tables\ServicesTable;
+use App\Filament\Clusters\Website\Services\ServicesCluster;
 use App\Models\Service;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,11 +19,13 @@ class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::QueueList;
 
-    protected static ?string $recordTitleAttribute = 'Service';
-    protected static  string|UnitEnum|null  $navigationGroup = 'Services';
+    protected static ?int $navigationSort = 1;
 
+    protected static ?string $recordTitleAttribute = 'title';
+
+    protected static ?string $cluster = ServicesCluster::class;
 
     public static function form(Schema $schema): Schema
     {

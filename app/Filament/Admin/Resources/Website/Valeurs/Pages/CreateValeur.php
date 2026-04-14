@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Valeurs\Pages;
+namespace App\Filament\Admin\Resources\Website\Valeurs\Pages;
 
-use App\Filament\Resources\Valeurs\ValeurResource;
+use App\Filament\Admin\Resources\Website\Valeurs\ValeurResource;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateValeur extends CreateRecord

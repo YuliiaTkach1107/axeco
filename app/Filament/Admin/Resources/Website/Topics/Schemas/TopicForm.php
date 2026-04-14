@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Topics\Schemas;
+namespace App\Filament\Admin\Resources\Website\Topics\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -12,8 +12,10 @@ class TopicForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Nom')
                     ->required(),
                 TextInput::make('color')
+                    ->label('Couleur')
                     ->required()
                     ->default('#0d4677'),
             ]);

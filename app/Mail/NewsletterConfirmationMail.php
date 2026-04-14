@@ -3,16 +3,15 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-
 class NewsletterConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $subscriber;
 
     /**
@@ -23,8 +22,9 @@ class NewsletterConfirmationMail extends Mailable
         $this->subscriber = $subscriber;
     }
 
-    public function build(){
-        return $this -> subject('Confirmez votre abonnement')->view('emails.newsletter-confirmation');
+    public function build()
+    {
+        return $this->subject('Confirmez votre abonnement')->view('emails.newsletter-confirmation');
     }
 
     /**

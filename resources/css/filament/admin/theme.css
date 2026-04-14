@@ -19,16 +19,51 @@
         border-right: 1px solid #ccd0d6 !important;
     }
 
+    .fi-sidebar-header {
+        height: 100px;
+    }
+
     .fi-sidebar-item-button {
         @apply !text-[#0d4677];
     }
 
     .fi-logo {
-        width: 100% !important;
-        height: 100% !important;
+        height: auto !important;
+        object-fit: contain;
     }
 
-    .fi-topbar-start {
-        width: 150px;
+    /* 📱 mobile */
+    @media (max-width: 640px) {
+        .fi-topbar-start {
+            width: 140px;
+            /* увеличили */
+        }
+
+        .fi-logo {
+            height: 100px !important;
+            /* увеличили */
+        }
+    }
+
+    /* 📱 tablet */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        .fi-topbar-start {
+            width: 180px;
+        }
+
+        .fi-logo {
+            height: 100px !important;
+        }
+    }
+
+    /* 💻 desktop */
+    @media (min-width: 1025px) {
+        .fi-topbar-start {
+            width: 150px;
+        }
+
+        .fi-logo {
+            max-height: auto;
+        }
     }
 }

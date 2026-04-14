@@ -10,16 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::table('subscribers', function (Blueprint $table) {
-        $table->string('unsubscribe_token')->nullable()->after('verification_token');
-    });
-}
+    {
+        Schema::table('subscribers', function (Blueprint $table) {
+            $table->string('unsubscribe_token')->nullable()->after('verification_token');
+        });
+    }
 
-public function down(): void
-{
-    Schema::table('subscribers', function (Blueprint $table) {
-        $table->dropColumn('unsubscribe_token');
-    });
-}
+    public function down(): void
+    {
+        Schema::table('subscribers', function (Blueprint $table) {
+            $table->dropColumn('unsubscribe_token');
+        });
+    }
 };

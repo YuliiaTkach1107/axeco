@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Services\Schemas;
+namespace App\Filament\Admin\Resources\Website\Services\Schemas;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class ServiceForm
@@ -16,14 +16,17 @@ class ServiceForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Titre')
                     ->required(),
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Textarea::make('icon')
+                    ->label('Icône')
                     ->required()
                     ->columnSpanFull(),
-                RichEditor::make('content')       
+                RichEditor::make('content')
+                    ->label('Contenu')
                     ->required()
                     ->columnSpanFull()
                     ->toolbarButtons([
@@ -40,16 +43,19 @@ class ServiceForm
                     ->image()
                     ->directory('services')
                     ->disk('public')
+                    ->imageEditor()
                     ->required(),
                 ColorPicker::make('accentColor')
-                    ->label('Accent Color')
+                    ->label('Couleur d’accent')
                     ->required(),
                 ColorPicker::make('bgColor')
-                    ->label('Background Color')
+                    ->label('Couleur de fond')
                     ->required(),
                 TextInput::make('anchor')
+                    ->label('Ancre')
                     ->required(),
                 TextInput::make('link')
+                    ->label('Lien (URL)')
                     ->required(),
             ]);
     }

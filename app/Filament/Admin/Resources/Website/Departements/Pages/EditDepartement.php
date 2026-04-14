@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Departements\Pages;
+namespace App\Filament\Admin\Resources\Website\Departements\Pages;
 
-use App\Filament\Resources\Departements\DepartementResource;
+use App\Filament\Admin\Resources\Website\Departements\DepartementResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 

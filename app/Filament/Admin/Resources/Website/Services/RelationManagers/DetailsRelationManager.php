@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Services\RelationManagers;
+namespace App\Filament\Admin\Resources\Website\Services\RelationManagers;
 
 use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
@@ -36,10 +36,12 @@ class DetailsRelationManager extends RelationManager
             ->recordTitleAttribute('content')
             ->columns([
                 TextColumn::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

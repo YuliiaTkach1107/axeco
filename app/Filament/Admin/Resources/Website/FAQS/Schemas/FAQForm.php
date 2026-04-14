@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\FAQS\Schemas;
+namespace App\Filament\Admin\Resources\Website\FAQS\Schemas;
 
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -15,6 +15,7 @@ class FAQForm
                     ->required()
                     ->columnSpanFull(),
                 Textarea::make('answer')
+                    ->label('Réponse')
                     ->required()
                     ->columnSpanFull(),
             ]);

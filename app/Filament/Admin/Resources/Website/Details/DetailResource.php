@@ -1,30 +1,37 @@
 <?php
 
-namespace App\Filament\Resources\Details;
+namespace App\Filament\Admin\Resources\Website\Details;
 
-use App\Filament\Resources\Details\Pages\CreateDetail;
-use App\Filament\Resources\Details\Pages\EditDetail;
-use App\Filament\Resources\Details\Pages\ListDetails;
-use App\Filament\Resources\Details\Schemas\DetailForm;
-use App\Filament\Resources\Details\Tables\DetailsTable;
+use App\Filament\Admin\Resources\Website\Details\Pages\CreateDetail;
+use App\Filament\Admin\Resources\Website\Details\Pages\EditDetail;
+use App\Filament\Admin\Resources\Website\Details\Pages\ListDetails;
+use App\Filament\Admin\Resources\Website\Details\Schemas\DetailForm;
+use App\Filament\Admin\Resources\Website\Details\Tables\DetailsTable;
+use App\Filament\Clusters\Website\Services\ServicesCluster;
 use App\Models\Detail;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Filament\Forms\Components\Select;
 
 class DetailResource extends Resource
 {
     protected static ?string $model = Detail::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ListBullet;
 
-    protected static ?string $recordTitleAttribute = 'Detail';
-    protected static  string|UnitEnum|null  $navigationGroup = 'Services';
+    protected static ?int $navigationSort = 2;
 
+    protected static ?string $recordTitleAttribute = 'content';
+
+    protected static ?string $navigationLabel = 'Détails';
+
+    protected static ?string $pluralModelLabel = 'Détails';
+
+    protected static ?string $modelLabel = 'détail';
+
+    protected static ?string $cluster = ServicesCluster::class;
 
     public static function form(Schema $schema): Schema
     {
@@ -38,7 +45,7 @@ class DetailResource extends Resource
 
     public static function getRelations(): array
     {
-        return [ 
+        return [
             //
         ];
     }
@@ -51,5 +58,4 @@ class DetailResource extends Resource
             'edit' => EditDetail::route('/{record}/edit'),
         ];
     }
-
 }

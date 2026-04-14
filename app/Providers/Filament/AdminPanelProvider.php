@@ -2,6 +2,14 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Admin\Widgets\AnnouncementsStats;
+use App\Filament\Admin\Widgets\BuildingsStats;
+use App\Filament\Admin\Widgets\IntervenantsStats;
+use App\Filament\Admin\Widgets\ResidentsStats;
+use App\Filament\Admin\Widgets\TicketsStats;
+use App\Filament\Widgets\LatestAnnouncements;
+use App\Filament\Widgets\LatestTickets;
+use App\Filament\Widgets\QuickActions;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -10,8 +18,6 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -35,7 +41,7 @@ class AdminPanelProvider extends PanelProvider
                     200 => '#c6e0fa',
                     300 => '#9aa3ae',
                     400 => '#4c6e9a',
-                    500 => '#0d4677', 
+                    500 => '#0d4677',
                     600 => '#0a3a63',
                     700 => '#082d4d',
                     800 => '#052138',
@@ -50,19 +56,26 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Open Sans')
             ->brandName('Axeco Syndic')
-            ->brandLogo(asset('images/logo/AXECO_Logo.jpg'))
+            ->brandLogo(asset('images/logo/AXECO_Logo.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->defaultThemeMode(\Filament\Enums\ThemeMode::Light)
-            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
-            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+            ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
+            ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->topNavigation()
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                TicketsStats::class,
+                AnnouncementsStats::class,
+                BuildingsStats::class,
+                IntervenantsStats::class,
+                ResidentsStats::class,
+                LatestTickets::class,
+                QuickActions::class,
+                LatestAnnouncements::class,
             ])
+            // ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -74,8 +87,10 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
+            ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
             ->authMiddleware([
                 Authenticate::class,
             ]);
+
     }
 }

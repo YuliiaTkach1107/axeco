@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\FAQS\Tables;
+namespace App\Filament\Admin\Resources\Website\FAQS\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -15,15 +15,20 @@ class FAQSTable
         return $table
             ->columns([
                 TextColumn::make('question')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('answer')
+                    ->label('Réponse')
                     ->limit(50)
+                    ->wrap()
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

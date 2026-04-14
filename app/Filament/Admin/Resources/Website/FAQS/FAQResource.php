@@ -1,26 +1,35 @@
 <?php
 
-namespace App\Filament\Resources\FAQS;
+namespace App\Filament\Admin\Resources\Website\FAQS;
 
-use App\Filament\Resources\FAQS\Pages\CreateFAQ;
-use App\Filament\Resources\FAQS\Pages\EditFAQ;
-use App\Filament\Resources\FAQS\Pages\ListFAQS;
-use App\Filament\Resources\FAQS\Schemas\FAQForm;
-use App\Filament\Resources\FAQS\Tables\FAQSTable;
+use App\Filament\Admin\Resources\Website\FAQS\Pages\CreateFAQ;
+use App\Filament\Admin\Resources\Website\FAQS\Pages\EditFAQ;
+use App\Filament\Admin\Resources\Website\FAQS\Pages\ListFAQS;
+use App\Filament\Admin\Resources\Website\FAQS\Schemas\FAQForm;
+use App\Filament\Admin\Resources\Website\FAQS\Tables\FAQSTable;
 use App\Models\FAQ;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class FAQResource extends Resource
 {
     protected static ?string $model = FAQ::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::QuestionMarkCircle;
 
-    protected static ?string $recordTitleAttribute = 'FAQ';
+    protected static ?string $recordTitleAttribute = 'question';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Website';
+
+    protected static ?string $navigationLabel = 'FAQ';
+
+    protected static ?string $pluralModelLabel = 'FAQ';
+
+    protected static ?string $modelLabel = 'question';
 
     public static function form(Schema $schema): Schema
     {

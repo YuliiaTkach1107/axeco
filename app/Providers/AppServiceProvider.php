@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
-use App\Models\Contact;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,10 +26,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Inertia::share([
-        'footerContacts' => function () {
-            return Contact::all();
-        },
-    ]);
+            'footerContacts' => function () {
+                return Contact::all();
+            },
+            'headerContacts' => function () {
+                return Contact::where('type', 'tel')->get();
+            },
+        ]);
         $this->configureDefaults();
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\FAQS\Pages;
+namespace App\Filament\Admin\Resources\Website\FAQS\Pages;
 
-use App\Filament\Resources\FAQS\FAQResource;
+use App\Filament\Admin\Resources\Website\FAQS\FAQResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 

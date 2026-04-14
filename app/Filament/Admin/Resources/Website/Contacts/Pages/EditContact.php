@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\Contacts\Pages;
+namespace App\Filament\Admin\Resources\Website\Contacts\Pages;
 
-use App\Filament\Resources\Contacts\ContactResource;
+use App\Filament\Admin\Resources\Website\Contacts\ContactResource;
 use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 

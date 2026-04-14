@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Valeur;
 use Inertia\Inertia;
 
 class ValeurController extends Controller
 {
-   public function index()
+    public function index()
     {
         $valeurs = Valeur::all();
-         return Inertia::render('Services', [
-            'valeurs'=>$valeurs
+
+        return Inertia::render('Services', [
+            'valeurs' => $valeurs,
         ]);
     }
 }

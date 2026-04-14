@@ -253,7 +253,7 @@
                   <div v-for="(valeur, index) in props.valeurs" :key="index" class="group block">
                      <div class="relative h-[100%] rounded-[24px] p-5 border-2 border-[#c6e0fa] bg-white transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]">
                         <!-- Icon -->
-                        <div class="w-[60px] h-[60px] rounded-full mb-8 mx-auto flex items-center justify-center bg-[rgb(143,155,191,0.3)]" v-html="valeur.icon" />
+                        <div class="w-[60px] h-[60px] rounded-full mb-8 mx-auto flex items-center justify-center bg-[rgb(143,155,191,0.3)]" v-html="valeur.icon"/>
                            <!-- Title -->
                            <h3 class="text-[22px] font-semibold text-[#0d4677] mb-8">  {{ valeur.title }} </h3>
                            <!-- Description -->

@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+
 use App\Models\Article;
 use Illuminate\Database\Seeder;
 
@@ -11,7 +12,7 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //Article::truncate();
+        // Article::truncate();
         Article::factory()->count(10)->create();
     }
 }

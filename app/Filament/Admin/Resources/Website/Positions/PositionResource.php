@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Positions;
+namespace App\Filament\Admin\Resources\Website\Positions;
 
-use App\Filament\Resources\Positions\Pages\CreatePosition;
-use App\Filament\Resources\Positions\Pages\EditPosition;
-use App\Filament\Resources\Positions\Pages\ListPositions;
-use App\Filament\Resources\Positions\Schemas\PositionForm;
-use App\Filament\Resources\Positions\Tables\PositionsTable;
+use App\Filament\Admin\Resources\Website\Positions\Pages\CreatePosition;
+use App\Filament\Admin\Resources\Website\Positions\Pages\EditPosition;
+use App\Filament\Admin\Resources\Website\Positions\Pages\ListPositions;
+use App\Filament\Admin\Resources\Website\Positions\Schemas\PositionForm;
+use App\Filament\Admin\Resources\Website\Positions\Tables\PositionsTable;
+use App\Filament\Clusters\Website\Employes\EmployesCluster;
 use App\Models\Position;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,10 +19,19 @@ class PositionResource extends Resource
 {
     protected static ?string $model = Position::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    protected static  string|UnitEnum|null  $navigationGroup = 'Notre équipe';
+    protected static ?int $navigationSort = 3;
 
-    protected static ?string $recordTitleAttribute = 'Position';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Briefcase;
+
+    protected static ?string $cluster = EmployesCluster::class;
+
+    protected static ?string $recordTitleAttribute = 'title';
+
+    protected static ?string $navigationLabel = 'Postes';
+
+    protected static ?string $pluralModelLabel = 'Postes';
+
+    protected static ?string $modelLabel = 'poste';
 
     public static function form(Schema $schema): Schema
     {

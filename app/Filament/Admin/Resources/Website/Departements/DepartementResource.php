@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Departements;
+namespace App\Filament\Admin\Resources\Website\Departements;
 
-use App\Filament\Resources\Departements\Pages\CreateDepartement;
-use App\Filament\Resources\Departements\Pages\EditDepartement;
-use App\Filament\Resources\Departements\Pages\ListDepartements;
-use App\Filament\Resources\Departements\Schemas\DepartementForm;
-use App\Filament\Resources\Departements\Tables\DepartementsTable;
+use App\Filament\Admin\Resources\Website\Departements\Pages\CreateDepartement;
+use App\Filament\Admin\Resources\Website\Departements\Pages\EditDepartement;
+use App\Filament\Admin\Resources\Website\Departements\Pages\ListDepartements;
+use App\Filament\Admin\Resources\Website\Departements\Schemas\DepartementForm;
+use App\Filament\Admin\Resources\Website\Departements\Tables\DepartementsTable;
+use App\Filament\Clusters\Website\Employes\EmployesCluster;
 use App\Models\Departement;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,10 +19,19 @@ class DepartementResource extends Resource
 {
     protected static ?string $model = Departement::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    protected static  string|UnitEnum|null  $navigationGroup = 'Notre équipe';
+    protected static ?int $navigationSort = 2;
 
-    protected static ?string $recordTitleAttribute = 'Departement';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::BuildingOffice2;
+
+    protected static ?string $cluster = EmployesCluster::class;
+
+    protected static ?string $recordTitleAttribute = 'title';
+
+    protected static ?string $navigationLabel = 'Départements';
+
+    protected static ?string $pluralModelLabel = 'Départements';
+
+    protected static ?string $modelLabel = 'département';
 
     public static function form(Schema $schema): Schema
     {

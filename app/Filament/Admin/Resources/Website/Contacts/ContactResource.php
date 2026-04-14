@@ -1,26 +1,29 @@
 <?php
 
-namespace App\Filament\Resources\Contacts;
+namespace App\Filament\Admin\Resources\Website\Contacts;
 
-use App\Filament\Resources\Contacts\Pages\CreateContact;
-use App\Filament\Resources\Contacts\Pages\EditContact;
-use App\Filament\Resources\Contacts\Pages\ListContacts;
-use App\Filament\Resources\Contacts\Schemas\ContactForm;
-use App\Filament\Resources\Contacts\Tables\ContactsTable;
+use App\Filament\Admin\Resources\Website\Contacts\Pages\CreateContact;
+use App\Filament\Admin\Resources\Website\Contacts\Pages\EditContact;
+use App\Filament\Admin\Resources\Website\Contacts\Pages\ListContacts;
+use App\Filament\Admin\Resources\Website\Contacts\Schemas\ContactForm;
+use App\Filament\Admin\Resources\Website\Contacts\Tables\ContactsTable;
 use App\Models\Contact;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ChatBubbleLeftRight;
 
-    protected static ?string $recordTitleAttribute = 'Contact';
+    protected static string|UnitEnum|null $navigationGroup = 'Website';
+
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {

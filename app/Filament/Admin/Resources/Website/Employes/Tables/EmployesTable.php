@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\Employes\Tables;
+namespace App\Filament\Admin\Resources\Website\Employes\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class EmployesTable
@@ -16,33 +17,43 @@ class EmployesTable
         return $table
             ->columns([
                 TextColumn::make('nom')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('prenom')
-                    ->searchable(),
+                    ->label('Prénom')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('position.title')
-                    ->searchable(),
+                    ->label('Poste'),
                 TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
+                    ->label('Adresse e-mail'),
                 TextColumn::make('telephone')
-                    ->searchable(),
+                    ->label('Téléphone'),
                 TextColumn::make('departement.title')
-                    ->searchable(),
+                    ->label('Département'),
                 ImageColumn::make('avatar')
+                    ->label('Photo')
                     ->disk('public')
-                    ->square()                  
+                    ->square()
                     ->size(80),
                 TextColumn::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('departement_id')
+                    ->relationship('departement', 'title')
+                    ->label('Département'),
+                SelectFilter::make('position_id')
+                    ->relationship('position', 'title')
+                    ->label('Poste'),
             ])
             ->recordActions([
                 EditAction::make(),

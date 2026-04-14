@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Positions\Schemas;
+namespace App\Filament\Admin\Resources\Website\Positions\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -12,6 +12,7 @@ class PositionForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Nom')
                     ->required(),
             ]);
     }

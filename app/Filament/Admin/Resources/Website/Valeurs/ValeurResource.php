@@ -1,27 +1,29 @@
 <?php
 
-namespace App\Filament\Resources\Valeurs;
+namespace App\Filament\Admin\Resources\Website\Valeurs;
 
-use App\Filament\Resources\Valeurs\Pages\CreateValeur;
-use App\Filament\Resources\Valeurs\Pages\EditValeur;
-use App\Filament\Resources\Valeurs\Pages\ListValeurs;
-use App\Filament\Resources\Valeurs\Schemas\ValeurForm;
-use App\Filament\Resources\Valeurs\Tables\ValeursTable;
+use App\Filament\Admin\Resources\Website\Valeurs\Pages\CreateValeur;
+use App\Filament\Admin\Resources\Website\Valeurs\Pages\EditValeur;
+use App\Filament\Admin\Resources\Website\Valeurs\Pages\ListValeurs;
+use App\Filament\Admin\Resources\Website\Valeurs\Schemas\ValeurForm;
+use App\Filament\Admin\Resources\Website\Valeurs\Tables\ValeursTable;
 use App\Models\Valeur;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ValeurResource extends Resource
 {
     protected static ?string $model = Valeur::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::ShieldCheck;
 
-    protected static ?string $recordTitleAttribute = 'Valeur';
+    protected static string|UnitEnum|null $navigationGroup = 'Website';
+
+    protected static ?string $recordTitleAttribute = 'title';
 
     public static function form(Schema $schema): Schema
     {

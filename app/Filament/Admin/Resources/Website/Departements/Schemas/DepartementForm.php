@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Departements\Schemas;
+namespace App\Filament\Admin\Resources\Website\Departements\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -12,6 +12,7 @@ class DepartementForm
         return $schema
             ->components([
                 TextInput::make('title')
+                    ->label('Nom')
                     ->required(),
             ]);
     }

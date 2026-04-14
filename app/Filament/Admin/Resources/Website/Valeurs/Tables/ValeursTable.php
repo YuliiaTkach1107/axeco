@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Valeurs\Tables;
+namespace App\Filament\Admin\Resources\Website\Valeurs\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
@@ -15,15 +15,22 @@ class ValeursTable
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label('Titre')
+                    ->sortable()
                     ->searchable(),
-                TextColumn::make('content'),
+                TextColumn::make('content')
+                    ->label('Contenu')
+                    ->limit(50),
                 TextColumn::make('icon')
+                    ->label('Icône')
                     ->limit(10),
                 TextColumn::make('created_at')
+                    ->label('Créé le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
+                    ->label('Mis à jour le')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

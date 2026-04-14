@@ -33,9 +33,11 @@
       <h1 class="sr-only">AXECO – entreprise de construction</h1>
       <!-- Topbar -->
       <div class="hidden lg:flex topbar bg-[rgb(198,224,250,0.3)] justify-end gap-20">
-         <a href="tel:+3228972008" aria-label="Appeler +32 2 897 20 08" class="phone cursor-pointer flex items-center justify-center gap-2 px-6 rounded-[10px] hover:[color:var(--text-orange)] active:[color:var(--text-orange)] transition">
-            <span class="text-base">+32 2 897 20 08</span>
-         </a>
+         <div v-for="(item) in $page.props.headerContacts" :key="item.id" class='flex items-center justify-center gap-2'>
+            <a :href="item.link" target="_blank" rel="noopener noreferrer" :aria-label="'Appeler ' + item.content" class="phone cursor-pointer px-6 rounded-[10px] hover:[color:var(--text-orange)] active:[color:var(--text-orange)] transition">
+               <span class="text-base">{{ item.content }}</span>
+            </a>
+         </div>
          <!-- Desktop -->
          <ul class='flex items-center justify-end gap-4 mr-15 h-15 '>
             <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FR</a></li>
@@ -90,18 +92,14 @@
                   </a>
                </li>
             </ul>
-            <a href="tel:+3228972008" aria-label="Appeler +32 2 897 20 08" class="phone cursor-pointer flex items-center justify-center gap-2 mt-6 bg-[rgb(163,248,179,0.5)] w-70 m-auto py-4 px-6 rounded-[10px] hover:bg-[rgb(163,248,179,0.7)] transition">
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path fill="#0E9727" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z" stroke-width="0.1" stroke="#fff"/>
-               </svg>
-               <span class="text-[#0e9727] text-[18px]">+32 2 897 20 08</span>
-            </a>
-            <a href="mailto:info@axeco.immo" aria-label="Envoyer un mail à info@axeco.immo" class="mail cursor-pointer flex items-center justify-center gap-2 mt-6  bg-[rgb(249,217,210,0.5)] w-70 m-auto py-4 px-6 rounded-[10px] hover:bg-[rgb(249,217,210,0.7)] transition">
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                  <path fill="#f2522e" d="M4.616 19q-.691 0-1.153-.462T3 17.384V6.616q0-.691.463-1.153T4.615 5h14.77q.69 0 1.152.463T21 6.616v10.769q0 .69-.463 1.153T19.385 19zM12 12.116L4 6.885v10.5q0 .269.173.442t.443.173h14.769q.269 0 .442-.173t.173-.443v-10.5zM12 11l7.692-5H4.308zM4 6.885V6v11.385q0 .269.173.442t.443.173H4z" stroke-width="1" stroke="#f2522e"/>
-               </svg>
-               <span class="text-[#f2522e] text-[18px]">info@axeco.immo</span>
-            </a>
+            <div v-for="(item) in $page.props.headerContacts" :key="item.id">
+               <a :href="item.link" target="_blank" rel="noopener noreferrer" :aria-label="'Appeler ' + item.content" class="phone cursor-pointer flex items-center justify-center gap-2 mt-6 bg-[rgb(163,248,179,0.5)] w-70 m-auto py-4 px-6 rounded-[10px] hover:bg-[rgb(163,248,179,0.7)] transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                     <path fill="#0E9727" d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z" stroke-width="0.1" stroke="#fff"/>
+                  </svg>
+                  <span class="text-[#0e9727] text-[18px]">{{ item.content }}</span>
+               </a>
+            </div>
             <ul class="flex items-center justify-center gap-4 mt-6 m-auto">
                <li><a hreflang="#" class="cursor-pointer hover:[color:var(--text-orange)]">FR</a></li>
                <li><a hreflang="#" class="cursor-pointer hover:[color:var(--text-orange)]">NL</a></li>

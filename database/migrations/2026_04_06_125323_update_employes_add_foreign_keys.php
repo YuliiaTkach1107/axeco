@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('employes', function (Blueprint $table) {
-            // Если старые текстовые поля есть — удаляем их
             if (Schema::hasColumn('employes', 'position')) {
                 $table->dropColumn('position');
             }
@@ -27,7 +26,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-        public function down(): void
+    public function down(): void
     {
         Schema::table('employes', function (Blueprint $table) {
             $table->string('position')->nullable();
@@ -38,5 +37,4 @@ return new class extends Migration
             $table->dropColumn(['position_id', 'departement_id']);
         });
     }
-    };
-
+};

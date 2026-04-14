@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Articles\Pages;
+namespace App\Filament\Admin\Resources\Website\Articles\Pages;
 
-use App\Filament\Resources\Articles\ArticleResource;
-use Filament\Resources\Pages\CreateRecord;
-use App\Models\Subscriber;
-use Illuminate\Support\Facades\Mail;
+use App\Filament\Admin\Resources\Website\Articles\ArticleResource;
 use App\Mail\NewArticlePublishedMail;
+use App\Models\Subscriber;
+use Filament\Resources\Pages\CreateRecord;
+use Illuminate\Support\Facades\Mail;
 
 class CreateArticle extends CreateRecord
 {
@@ -23,4 +23,3 @@ class CreateArticle extends CreateRecord
         }
     }
 }
-

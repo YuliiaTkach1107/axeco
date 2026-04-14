@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\Employes;
+namespace App\Filament\Admin\Resources\Website\Employes;
 
-use App\Filament\Resources\Employes\Pages\CreateEmploye;
-use App\Filament\Resources\Employes\Pages\EditEmploye;
-use App\Filament\Resources\Employes\Pages\ListEmployes;
-use App\Filament\Resources\Employes\Schemas\EmployeForm;
-use App\Filament\Resources\Employes\Tables\EmployesTable;
+use App\Filament\Admin\Resources\Website\Employes\Pages\CreateEmploye;
+use App\Filament\Admin\Resources\Website\Employes\Pages\EditEmploye;
+use App\Filament\Admin\Resources\Website\Employes\Pages\ListEmployes;
+use App\Filament\Admin\Resources\Website\Employes\Schemas\EmployeForm;
+use App\Filament\Admin\Resources\Website\Employes\Tables\EmployesTable;
+use App\Filament\Clusters\Website\Employes\EmployesCluster;
 use App\Models\Employe;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -19,11 +19,19 @@ class EmployeResource extends Resource
 {
     protected static ?string $model = Employe::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
-    protected static  string|UnitEnum|null  $navigationGroup = 'Notre équipe';
+    protected static ?int $navigationSort = 1;
 
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::Identification;
 
-    protected static ?string $recordTitleAttribute = 'Employes';
+    protected static ?string $cluster = EmployesCluster::class;
+
+    protected static ?string $recordTitleAttribute = 'full_name';
+
+    protected static ?string $navigationLabel = 'Employés';
+
+    protected static ?string $pluralModelLabel = 'Employés';
+
+    protected static ?string $modelLabel = 'employé';
 
     public static function form(Schema $schema): Schema
     {
