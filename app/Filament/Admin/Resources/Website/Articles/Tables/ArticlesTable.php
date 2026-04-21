@@ -30,6 +30,7 @@ class ArticlesTable
                     ->square()
                     ->size(80),
                 TextColumn::make('description')
+                    ->tooltip(fn ($record) => $record->description)
                     ->limit(50),
                 TextColumn::make('content')
                     ->label('Contenu')

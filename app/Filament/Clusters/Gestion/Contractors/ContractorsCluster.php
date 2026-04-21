@@ -7,14 +7,25 @@ use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class ContractorsCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::WrenchScrewdriver;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
-
-    protected static ?string $navigationLabel = 'Intervenants';
+    public static function getNavigationGroup(): string|UnitEnum|null
+        {
+            return Auth::user()?->role === 'admin'
+                ? 'Gestion copropriété'
+                : null;
+        }
+    public static function getNavigationLabel(): string
+        {
+            return Auth::user()?->role === 'admin'
+                    ? 'Intervenants'
+                    : 'Mon profil';
+        }
+    
 
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 

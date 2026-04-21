@@ -122,4 +122,67 @@
             </div>
         </x-filament::section>
     @endif
+    @if($user->role === 'resident')
+    <x-filament::section>
+        <x-slot name="heading">
+            <div class="flex items-center gap-2">
+                <x-filament::icon
+                    icon="heroicon-m-bolt"
+                    class="h-5 w-5 text-primary-500"
+                />
+                <span class="text-base font-semibold tracking-tight">
+                    Actions rapides
+                </span>
+            </div>
+        </x-slot>
+
+        <div class="grid grid-cols-1 gap-3">
+
+            {{-- Créer demande --}}
+            <x-filament::button
+                href="{{ route('filament.admin.resources.gestion.tickets.create') }}"
+                tag="a"
+                icon="heroicon-m-wrench-screwdriver"
+                color="gray"
+                class="justify-center md:justify-start shadow-sm h-12"
+            >
+                Créer une demande
+            </x-filament::button>
+
+            {{-- Mes demandes --}}
+            <x-filament::button
+                href="{{ route('filament.admin.resources.gestion.tickets.index') }}"
+                tag="a"
+                icon="heroicon-m-inbox"
+                color="gray"
+                class="justify-center md:justify-start shadow-sm h-12"
+            >
+                Mes demandes
+            </x-filament::button>
+
+            {{-- Annonces du bâtiment --}}
+            <x-filament::button
+                href="{{ route('filament.admin.resources.gestion.announcements.index') }}"
+                tag="a"
+                icon="heroicon-m-megaphone"
+                color="gray"
+                class="justify-center md:justify-start shadow-sm h-12"
+            >
+                Annonces du bâtiment
+            </x-filament::button>
+
+            {{-- Documents --}}
+            <x-filament::button
+                href="{{ route('filament.admin.resources.gestion.documents.index') }}"
+                tag="a"
+                icon="heroicon-m-document-text"
+                color="gray"
+                class="justify-center md:justify-start shadow-sm h-12"
+            >
+                Documents
+            </x-filament::button>
+
+        </div>
+    </x-filament::section>
+@endif
 </x-filament-widgets::widget>

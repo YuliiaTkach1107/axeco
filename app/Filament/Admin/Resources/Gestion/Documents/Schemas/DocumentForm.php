@@ -8,6 +8,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Get;
 
 class DocumentForm
 {
@@ -40,22 +41,26 @@ class DocumentForm
                         'building' => 'Copropriété',
                         'public' => 'Public',
                     ])
-                    ->required(),
+                    ->required()
+                    ->reactive(),
                 Select::make('building_id')
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->searchable()
                     ->preload()
-                    ->required(),
+                    ->required()
+                    ->nullable(),
                 Select::make('user_id')
                     ->label('Propriétaire du document')
-                    ->relationship('user', 'name')
+                    ->relationship(
+                        name: 'user',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn ($query) =>
+                            $query->whereIn('role', ['proprietaire', 'resident'])
+                    )
                     ->preload()
                     ->searchable()
-                    ->required(),
-                Toggle::make('est_public')
-                    ->label('Visible aux résidents')
-                    ->required(),
+                    ->nullable()
             ]);
     }
 }

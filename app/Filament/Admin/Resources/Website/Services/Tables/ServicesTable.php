@@ -21,6 +21,7 @@ class ServicesTable
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('description')
+                    ->tooltip(fn ($record) => $record->description)
                     ->limit(50),
                 TextColumn::make('icon')
                     ->label('Icône')

@@ -25,8 +25,13 @@ class ApartmentResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'numero';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
-
+    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return Auth::user()?->role === 'admin'
+            ? 'Gestion copropriété'
+            : null;
+    }
     protected static ?string $navigationLabel = 'Appartements';
 
     protected static ?string $pluralModelLabel = 'Appartements';

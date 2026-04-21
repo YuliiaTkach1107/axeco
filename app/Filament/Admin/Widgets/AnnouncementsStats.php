@@ -25,6 +25,13 @@ class AnnouncementsStats extends StatsOverviewWidget
 
             });
         }
+        if ($user->role === 'resident') {
+            $query->whereIn('building_id', function ($sub) use ($user) {
+                $sub->select('copropriete_id')
+                    ->from('residents')
+                    ->where('user_id', $user->id);
+            });
+    }
 
         return [
             Stat::make('Annonces', $query->count())

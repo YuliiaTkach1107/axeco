@@ -67,7 +67,7 @@ class DocumentsTable
                     ->searchable(),
                 IconColumn::make('est_public')
                      ->label('Visible aux résidents')
-                    ->boolean(),
+                     ->boolean(),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()

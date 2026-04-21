@@ -27,4 +27,19 @@ class Document extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    protected static function booted()
+    {
+        static::creating(function ($doc) {
+
+        if ($doc->type === 'public') {
+            $doc->building_id = null;
+            $doc->user_id = null;
+        }
+
+        if ($doc->type === 'building') {
+            $doc->user_id = null;
+        }
+        $doc->est_public = ($doc->type === 'public');
+    });
+    }
 }

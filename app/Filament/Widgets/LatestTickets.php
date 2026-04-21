@@ -34,6 +34,9 @@ class LatestTickets extends TableWidget
                 if ($user->role === 'contractor') {
                     $query->where('contractor_id', $user->contractor->id);
                 }
+                if ($user->role === 'resident' && $user->resident) {
+                    $query->where('resident_id', $user->resident->id);
+                }
 
                 return $query->latest();
             })

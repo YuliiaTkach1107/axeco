@@ -26,7 +26,13 @@ class AnnouncementResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'titre';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return Auth::user()?->role === 'admin'
+            ? 'Gestion copropriété'
+            : null;
+    }
 
     protected static ?string $navigationLabel = 'Annonces';
 
@@ -71,6 +77,9 @@ class AnnouncementResource extends Resource
                     ->where('user_id', $user->id);
             });
         }
+        if ($user?->role === 'resident' && $user->resident) {
+            return $query->where('building_id', $user->resident->copropriete_id);
+        }
 
         return $query;
     }
@@ -80,7 +89,7 @@ class AnnouncementResource extends Resource
     }
     public static function canAccess(): bool
     {
-        return in_array(Auth::user()->role, ['admin', 'proprietaire']);
+        return in_array(Auth::user()->role, ['admin', 'proprietaire','resident']);
     }
     public static function canCreate(): bool
     {

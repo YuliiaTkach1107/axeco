@@ -34,6 +34,13 @@ class LatestAnnouncements extends TableWidget
 
                 });
             }
+             if ($user->role === 'resident') {
+                $query->whereIn('building_id', function ($sub) use ($user) {
+                    $sub->select('copropriete_id')
+                        ->from('residents')
+                        ->where('user_id', $user->id);
+                });
+    }
 
             return $query->latest()->limit(5);
         })

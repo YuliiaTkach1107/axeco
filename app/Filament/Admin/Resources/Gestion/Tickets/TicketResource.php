@@ -25,7 +25,13 @@ class TicketResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return Auth::user()?->role === 'admin'
+            ? 'Gestion copropriété'
+            : null;
+    }
 
     protected static ?string $navigationLabel = 'Demandes';
 
@@ -74,6 +80,9 @@ class TicketResource extends Resource
         if ($user->role === 'contractor') {
             return $query->where('contractor_id', $user->contractor?->id);
         }
+        if ($user->role === 'resident' && $user->resident) {
+            return $query->where('apartment_id', $user->resident->appartement_id);
+        }
 
         return $query;
     }
@@ -83,7 +92,7 @@ class TicketResource extends Resource
     }
     public static function canCreate(): bool
     {
-        return in_array(Auth::user()->role, ['admin', 'proprietaire']);
+        return in_array(Auth::user()->role, ['admin', 'proprietaire','resident']);
     }
     public static function canEdit($record): bool
     {

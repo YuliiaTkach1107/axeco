@@ -73,6 +73,7 @@ class TicketForm
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
+                    ->hidden(fn () => Auth::user()?->role === 'resident')
                     ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire'),
                 Select::make('apartment_id')
                     ->label('Appartement')
@@ -93,7 +94,8 @@ class TicketForm
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire'),
+                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire')
+                    ->hidden(fn () => Auth::user()?->role === 'resident'),
                 Select::make('resident_id')
                     ->required()
                     ->label('Résident')
@@ -114,7 +116,8 @@ class TicketForm
                             ->toArray();
                     })
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire'),
+                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire')
+                    ->hidden(fn () => Auth::user()?->role === 'resident'),
                 Select::make('contractor_id')
                     ->label('Entrepreneur')
                     ->relationship('contractor', 'nom')
@@ -138,5 +141,5 @@ class TicketForm
                 DateTimePicker::make('assigne_le')->label('Assigné le') ->visible(fn () => Auth::user()?->role === 'admin'),
                 DateTimePicker::make('resolu_le')->label('Résolu le') ->visible(fn () => Auth::user()?->role === 'admin'),
                     ]);
-                    }
+            }
 }

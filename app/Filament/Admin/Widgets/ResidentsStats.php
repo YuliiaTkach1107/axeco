@@ -34,6 +34,6 @@ class ResidentsStats extends StatsOverviewWidget
     
     public static function canView(): bool
     {
-        return Auth::user()?->role !== 'contractor';
+         return !in_array(Auth::user()->role,[ 'contractor','resident']);
     }
 }

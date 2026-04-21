@@ -20,7 +20,7 @@ class IntervenantsStats extends StatsOverviewWidget
 
     public static function canView(): bool
     {
-         return !in_array(Auth::user()->role,['proprietaire', 'contractor']);
+         return !in_array(Auth::user()->role,['proprietaire', 'contractor','resident']);
     }
 
     protected int|string|array $columnSpan = 1;

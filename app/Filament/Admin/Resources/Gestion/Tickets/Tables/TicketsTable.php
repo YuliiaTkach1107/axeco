@@ -21,7 +21,8 @@ class TicketsTable
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('description')
-                    ->limit(50),
+                    ->limit(50)
+                    ->tooltip(fn ($record) => $record->description),
                 TextColumn::make('statut')
                     ->badge()
                     ->color(fn ($state) => match ($state) {

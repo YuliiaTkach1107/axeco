@@ -26,11 +26,29 @@ class ResidentResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'full_name';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return Auth::user()?->role === 'admin'
+            ? 'Gestion copropriété'
+            : null;
+    }
 
-    protected static ?string $navigationLabel = 'Résidents';
+    // protected static ?string $navigationLabel = 'Résidents';
+    public static function getNavigationLabel(): string
+    {
+        return Auth::user()?->role === 'resident'
+            ? 'Mon Profil'
+            : 'Résidents';
+    }
 
-    protected static ?string $pluralModelLabel = 'Résidents';
+    // protected static ?string $pluralModelLabel = 'Résidents';
+    public static function getPluralModelLabel(): string
+    {
+        return Auth::user()?->role === 'resident'
+            ? 'Mon Profil'
+            : 'Résidents';
+    }
 
     protected static ?string $modelLabel = 'résident';
 
@@ -70,6 +88,9 @@ class ResidentResource extends Resource
                     $q->where('user_id', $user->id);
                 });
             }
+            if (Auth::user()?->role === 'resident') {
+                $query->where('user_id', Auth::id());
+            }
 
             return $query;
         }
@@ -81,6 +102,7 @@ class ResidentResource extends Resource
         return in_array($user->role, [
             'admin',
             'proprietaire',
+            'resident'
         ]);
     }
     public static function canView($record): bool

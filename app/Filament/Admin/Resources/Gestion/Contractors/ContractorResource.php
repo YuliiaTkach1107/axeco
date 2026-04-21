@@ -15,6 +15,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class ContractorResource extends Resource
 {
@@ -26,10 +27,18 @@ class ContractorResource extends Resource
 
     protected static ?string $cluster = ContractorsCluster::class;
 
-    protected static ?string $navigationLabel = 'Entrepreneurs';
-
-    protected static ?string $pluralModelLabel = 'Entrepreneurs';
-
+    public static function getNavigationLabel(): string
+        {
+            return Auth::user()?->role === 'contractor'
+                ? 'Mon profil'
+                : 'Entrepreneurs';
+        }
+    public static function getPluralModelLabel(): string
+            {
+                return Auth::user()?->role === 'contractor'
+                    ? 'Mon profil'
+                    : 'Entrepreneurs';
+            }
     protected static ?string $modelLabel = 'entrepreneur';
 
     public static function form(Schema $schema): Schema
@@ -59,6 +68,17 @@ class ContractorResource extends Resource
     }
     public static function canViewAny(): bool
     {
-        return Auth::user()->role === 'admin';
+        $user = Auth::user();
+        return in_array($user->role, ['admin', 'contractor']);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (Auth::user()?->role === 'contractor') {
+            return $query->where('user_id', Auth::id());
+        }
+        return $query;
     }
 }

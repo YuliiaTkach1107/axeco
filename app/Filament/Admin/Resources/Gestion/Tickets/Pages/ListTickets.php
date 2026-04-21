@@ -14,7 +14,7 @@ class ListTickets extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make()->visible(fn () => Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'proprietaire'),
+            CreateAction::make()->visible(fn () => Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'proprietaire'|| Auth::user()->role === 'resident'),
         ];
     }
 }

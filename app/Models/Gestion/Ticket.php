@@ -72,5 +72,17 @@ class Ticket extends Model
                 $ticket->resolu_le = now();
         }
         });
+        static::creating(function ($ticket) {
+
+            $user = Auth::user();
+
+            if ($user?->role === 'resident' && $user->resident) {
+                $ticket->resident_id = $user->resident->id;
+                $ticket->apartment_id = $user->resident->appartement_id;
+                $ticket->building_id = $user->resident->copropriete_id;
+                $ticket->statut = 'ouvert';
+            }
+
+});
     }
 }

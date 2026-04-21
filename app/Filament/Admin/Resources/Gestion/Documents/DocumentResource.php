@@ -25,8 +25,14 @@ class DocumentResource extends Resource
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocument;
 
     protected static ?string $recordTitleAttribute = 'titre';
-    protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
+    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
 
+    public static function getNavigationGroup(): string|UnitEnum|null
+    {
+        return Auth::user()?->role === 'admin'
+            ? 'Gestion copropriété'
+            : null;
+    }
     public static function form(Schema $schema): Schema
     {
         return DocumentForm::configure($schema);
@@ -77,6 +83,18 @@ class DocumentResource extends Resource
             });
         }
 
+        if ($user?->role === 'resident' && $user->resident) {
+            $residentId = $user->resident->id;
+            return $query->where(function ($q) use ($residentId) {
+                $q->where('type', 'public')
+                
+                ->orWhere(function ($q) use ($residentId) {
+                    $q->where('type', 'personal')
+                        ->where('resident_id', $residentId);
+                });
+            });
+        }
+
         return $query;
     }
         // $query = parent::getEloquentQuery();
@@ -90,7 +108,7 @@ class DocumentResource extends Resource
     
     public static function canViewAny(): bool
     {
-        return in_array(Auth::user()->role, ['admin', 'proprietaire']);
+        return in_array(Auth::user()->role, ['admin', 'proprietaire','resident']);
     }
     public static function canCreate(): bool
     {
