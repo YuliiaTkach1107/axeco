@@ -14,6 +14,9 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Gestion\Apartment;
 
 class DocumentResource extends Resource
 {
@@ -48,5 +51,59 @@ class DocumentResource extends Resource
             'create' => CreateDocument::route('/create'),
             'edit' => EditDocument::route('/{record}/edit'),
         ];
+    }
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = Auth::user();
+
+        if ($user->role === 'proprietaire') {
+            $buildingIds = Apartment::where('user_id', $user->id)
+            ->pluck('copropriete_id');
+
+            return $query->where(function ($q) use ($user, $buildingIds) {
+
+                $q->where(function ($q1) use ($buildingIds) {
+                    $q1->where('type', 'building')
+                    ->whereIn('building_id', $buildingIds);
+                })
+
+                ->orWhere(function ($q2) use ($user) {
+                    $q2->where('type', 'personal')
+                    ->where('user_id', $user->id);
+                })
+
+                ->orWhere('type', 'public');
+            });
+        }
+
+        return $query;
+    }
+        // $query = parent::getEloquentQuery();
+        // $user = Auth::user();
+
+        // if ($user->role === 'proprietaire') {
+        //     return $query->where('building_id', $user->building_id);
+        // }
+
+        // return $query;
+    
+    public static function canViewAny(): bool
+    {
+        return in_array(Auth::user()->role, ['admin', 'proprietaire']);
+    }
+    public static function canCreate(): bool
+    {
+        return Auth::user()?->role === 'admin';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return Auth::user()?->role === 'admin';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return Auth::user()?->role === 'admin';
     }
 }

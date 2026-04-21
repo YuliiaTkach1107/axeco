@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentsTable
 {
@@ -21,6 +22,10 @@ class ApartmentsTable
                 TextColumn::make('building.nom')
                     ->label('Copropriété')
                     ->searchable(),
+                TextColumn::make('user.name')
+                    ->label('Propriétaire')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('etage')
                     ->label('Étage'),
                 TextColumn::make('surface')
@@ -59,11 +64,11 @@ class ApartmentsTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin')
                 ]),
             ]);
     }

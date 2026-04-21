@@ -51,7 +51,8 @@ class BuildingsTable
                 IconColumn::make('parking')
                     ->boolean(),
                 TextColumn::make('notes')
-                    ->limit(30),
+                    ->limit(30)
+                    ->tooltip(fn ($record) => $record->notes),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()

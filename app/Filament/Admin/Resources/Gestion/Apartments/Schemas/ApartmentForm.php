@@ -21,6 +21,16 @@ class ApartmentForm
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->required(),
+                Select::make('user_id')
+                    ->label('Propriétaire')
+                    ->relationship(
+                        name: 'user',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn ($query) => $query->where('role', 'proprietaire')
+                    )
+                    ->searchable()
+                    ->preload()
+                    ->required(),
                 TextInput::make('etage')
                     ->label('Étage')
                     ->numeric(),

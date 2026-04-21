@@ -24,8 +24,7 @@ class Document extends Model
     {
         return $this->belongsTo(Building::class);
     }
-      public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }

@@ -24,9 +24,9 @@ class AnnouncementForm
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->required(),
-                DateTimePicker::make('publie_le'),
-                DateTimePicker::make('expire_le'),
-                TextInput::make('cree_par'),
+                DateTimePicker::make('publie_le')->label('Publié le'),
+                DateTimePicker::make('expire_le')->label('Expire le'),
+                TextInput::make('cree_par')->label('Créé par'),
                 Toggle::make('est_actif')->default(true)
                     ->required(),
             ]);

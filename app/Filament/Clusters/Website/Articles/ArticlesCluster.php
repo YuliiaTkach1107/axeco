@@ -7,6 +7,7 @@ use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesCluster extends Cluster
 {
@@ -21,5 +22,9 @@ class ArticlesCluster extends Cluster
     public static function shouldRegisterNavigation(): bool
     {
         return true;
+    }
+    public static function canAccess(): bool
+    {
+        return Auth::user()->role === 'admin';
     }
 }

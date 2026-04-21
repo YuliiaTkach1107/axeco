@@ -9,6 +9,7 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentsTable
 {
@@ -30,8 +31,16 @@ class DocumentsTable
                         'class' => 'cursor-pointer transition hover:scale-105',
                     ])
                     ->searchable(),
-                TextColumn::make('type')
+                TextColumn::make('category')
+                    ->label('Type de fichier')
                     ->badge()
+                    ->formatStateUsing(fn ($state) => match ($state) {
+                        'contrat' => 'Contrat',
+                        'facture' => 'Facture',
+                        'reglement' => 'Règlement',
+                        'pv_ag' => 'PV AG',
+                        default => $state,
+                    })
                     ->color(fn ($state) => match ($state) {
                         'contrat' => 'info',
                         'facture' => 'warning',
@@ -40,6 +49,16 @@ class DocumentsTable
                         default => 'gray',
                     })
                     ->searchable(),
+                TextColumn::make('type')
+                    ->label('Accès')
+                    ->formatStateUsing(fn ($state) => match ($state) {
+                        'personal' => 'Personnel',
+                        'building' => 'Copropriété',
+                        'public' => 'Public',
+                        default => $state,
+                    })
+                    ->badge()
+                    ->sortable(),
                 TextColumn::make('building.nom')
                     ->label('Copropriété')
                     ->searchable(),
@@ -61,7 +80,7 @@ class DocumentsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                SelectFilter::make('type')
+                SelectFilter::make('category')
                     ->options([
                         'contrat' => 'Contrat',
                         'facture' => 'Facture',
@@ -76,11 +95,11 @@ class DocumentsTable
                     ]),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
                 ]),
             ]);
     }

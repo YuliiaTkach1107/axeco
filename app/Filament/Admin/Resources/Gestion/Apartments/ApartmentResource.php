@@ -14,6 +14,8 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ApartmentResource extends Resource
 {
@@ -55,5 +57,49 @@ class ApartmentResource extends Resource
             'create' => CreateApartment::route('/create'),
             'edit' => EditApartment::route('/{record}/edit'),
         ];
+    }
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = Auth::user();
+
+        if ($user->role === 'proprietaire') {
+            return $query->where('user_id', $user->id);
+        }
+
+        return $query;
+    }
+    public static function canView($record): bool
+    {
+        $user = Auth::user();
+
+        if ($user->role === 'proprietaire') {
+            return $record->user_id === $user->id;
+        }
+
+        return true;
+    }
+    public static function canViewAny(): bool
+    {
+        $user = Auth::user();
+
+        return in_array($user->role, ['admin', 'proprietaire']);
+    }
+    public static function canAccess(): bool
+    {
+        return in_array(Auth::user()->role, ['admin', 'proprietaire']);
+    }
+    public static function canCreate(): bool
+    {
+        return Auth::user()->role === 'admin';
+    }
+    public static function canEdit($record): bool
+    {
+        return Auth::user()->role === 'admin';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return Auth::user()->role === 'admin';
     }
 }

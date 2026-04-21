@@ -24,13 +24,21 @@ class DocumentForm
                     ->disk('public')
                     ->directory('documents')
                     ->required(),
-                Select::make('type')
-                    ->label('Type')
+                Select::make('category')
+                    ->label('Type de fichier')
                     ->options([
                         'contrat' => 'Contrat',
                         'facture' => 'Facture',
                         'reglement' => 'Règlement',
                         'pv_ag' => 'PV AG',
+                    ])
+                    ->required(),
+                Select::make('type')
+                    ->label('Type d’accès')
+                    ->options([
+                        'personal' => 'Personnel',
+                        'building' => 'Copropriété',
+                        'public' => 'Public',
                     ])
                     ->required(),
                 Select::make('building_id')

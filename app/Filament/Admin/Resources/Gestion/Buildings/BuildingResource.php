@@ -14,6 +14,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class BuildingResource extends Resource
 {
@@ -55,5 +56,10 @@ class BuildingResource extends Resource
             'create' => CreateBuilding::route('/create'),
             'edit' => EditBuilding::route('/{record}/edit'),
         ];
+    }
+    public static function canViewAny(): bool
+    {
+        return Auth::user()->role === 'admin';
+        
     }
 }

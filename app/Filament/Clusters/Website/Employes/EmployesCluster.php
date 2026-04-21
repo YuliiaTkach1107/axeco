@@ -7,6 +7,7 @@ use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class EmployesCluster extends Cluster
 {
@@ -19,4 +20,9 @@ class EmployesCluster extends Cluster
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
     protected static ?string $clusterBreadcrumb = 'Employés';
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->role === 'admin';
+    }
 }

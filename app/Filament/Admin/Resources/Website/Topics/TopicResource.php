@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class TopicResource extends Resource
 {
@@ -55,5 +56,9 @@ class TopicResource extends Resource
             'create' => CreateTopic::route('/create'),
             'edit' => EditTopic::route('/{record}/edit'),
         ];
+    }
+    public static function canViewAny(): bool
+    {
+        return Auth::user()->role === 'admin';
     }
 }

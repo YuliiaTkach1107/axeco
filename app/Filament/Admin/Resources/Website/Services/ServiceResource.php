@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceResource extends Resource
 {
@@ -51,5 +52,9 @@ class ServiceResource extends Resource
             'create' => CreateService::route('/create'),
             'edit' => EditService::route('/{record}/edit'),
         ];
+    }
+    public static function canViewAny(): bool
+    {
+        return Auth::user()->role === 'admin';
     }
 }

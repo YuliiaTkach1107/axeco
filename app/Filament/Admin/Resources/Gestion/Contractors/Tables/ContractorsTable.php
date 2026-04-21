@@ -45,7 +45,7 @@ class ContractorsTable
                 IconColumn::make('est_actif')
                     ->label('Actif')
                     ->boolean(),
-                TextColumn::make('notes'),
+                TextColumn::make('notes')->limit(30)->tooltip(fn ($record) => $record->notes),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()

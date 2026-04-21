@@ -9,6 +9,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget;
+use Illuminate\Support\Facades\Auth;
 
 class LatestTickets extends TableWidget
 {
@@ -17,9 +18,25 @@ class LatestTickets extends TableWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(
-                Ticket::query()->latest()
-            )
+            ->query(function () {
+
+                $query = Ticket::query();
+
+                $user = Auth::user();
+
+                if ($user->role === 'proprietaire') {
+
+                    $query->whereHas('apartment', function ($q) use ($user) {
+                        $q->where('user_id', $user->id);
+                    });
+
+                }
+                if ($user->role === 'contractor') {
+                    $query->where('contractor_id', $user->contractor->id);
+                }
+
+                return $query->latest();
+            })
             ->columns([
                 TextColumn::make('title')
                     ->label('Titre')
@@ -61,11 +78,16 @@ class LatestTickets extends TableWidget
                     })
                     ->searchable()
                     ->badge(),
+                TextColumn::make('action')
+                    ->label('')
+                    ->state('Modifier')
+                    ->color('primary')
+                    ->alignCenter()
+                    ->extraAttributes([
+                        'class' => 'cursor-pointer text-primary-600',
+                    ])
             ])
             ->paginated(false)
-            ->actions([
-                EditAction::make()->label('Modifier'),
-            ])
             ->recordUrl(fn (Ticket $record): string => TicketResource::getUrl('edit', [
                 'record' => $record,
             ]))

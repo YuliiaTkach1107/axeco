@@ -4,6 +4,7 @@ namespace App\Models\Gestion;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Apartment extends Model
 {
@@ -12,6 +13,7 @@ class Apartment extends Model
     protected $fillable = [
         'numero',
         'copropriete_id',
+        'user_id',
         'etage',
         'surface',
         'nombre_pieces',
@@ -34,5 +36,8 @@ class Apartment extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Gestion\Tickets\Pages;
 use App\Filament\Admin\Resources\Gestion\Tickets\TicketResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Auth;
 
 class ListTickets extends ListRecords
 {
@@ -13,7 +14,7 @@ class ListTickets extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()->visible(fn () => Auth::check() && Auth::user()->role === 'admin' || Auth::user()->role === 'proprietaire'),
         ];
     }
 }

@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class SpecialtyResource extends Resource
 {
@@ -55,5 +56,9 @@ class SpecialtyResource extends Resource
             'create' => CreateSpecialty::route('/create'),
             'edit' => EditSpecialty::route('/{record}/edit'),
         ];
+    }
+    public static function canViewAny(): bool
+    {
+        return Auth::user()->role === 'admin';
     }
 }

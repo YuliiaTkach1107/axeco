@@ -4,6 +4,7 @@ namespace App\Models\Gestion;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Contractor extends Model
 {
@@ -22,6 +23,7 @@ class Contractor extends Model
         'est_actif',
         'nom_entreprise',
         'notes',
+        'user_id',
     ];
 
     public function tickets()
@@ -37,5 +39,9 @@ class Contractor extends Model
     public function getFullNameAttribute(): string
     {
         return "{$this->prenom} {$this->nom}";
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
     }
 }

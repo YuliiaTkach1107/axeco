@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Resources\Gestion\Announcements\Pages;
 use App\Filament\Admin\Resources\Gestion\Announcements\AnnouncementResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Support\Facades\Auth;
 
 class ListAnnouncements extends ListRecords
 {
@@ -13,7 +14,7 @@ class ListAnnouncements extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
         ];
     }
 }

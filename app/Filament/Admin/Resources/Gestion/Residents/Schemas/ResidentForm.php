@@ -8,6 +8,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Get;
+use App\Models\Gestion\Apartment;
 
 class ResidentForm
 {
@@ -33,13 +35,28 @@ class ResidentForm
                     ->placeholder('example@gmail.com')
                     ->email()
                     ->required(),
-                Select::make('copropriete_id')
+               Select::make('copropriete_id')
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
+                    ->live()
                     ->required(),
+
                 Select::make('appartement_id')
                     ->label('Appartement')
-                    ->relationship('apartment', 'numero')
+                    ->options(function (Get $get) {
+
+                        $buildingId = $get('copropriete_id');
+
+                        if (! $buildingId) {
+                            return [];
+                        }
+
+                        return Apartment::query()
+                            ->where('copropriete_id', $buildingId)
+                            ->pluck('numero', 'id')
+                            ->toArray();
+                    })
+                    ->searchable()
                     ->required(),
                 Select::make('role')
                     ->label('Rôle')
@@ -48,6 +65,14 @@ class ResidentForm
                         'locataire' => 'Locataire',
                     ])
                     ->required(),
+                Select::make('user_id')
+                    ->label('Compte utilisateur')
+                    ->relationship('user', 'email')
+                    ->searchable()
+                    ->preload()
+                    ->placeholder('Aucun compte associé')
+                    ->helperText('Associer un compte pour permettre la connexion')
+                    ->nullable(),
                 DatePicker::make('date_entre')
                     ->label('Date d\'entrée'),
                 DatePicker::make('date_sortie')

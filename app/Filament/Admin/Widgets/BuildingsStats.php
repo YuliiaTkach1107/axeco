@@ -5,6 +5,7 @@ namespace App\Filament\Admin\Widgets;
 use App\Models\Gestion\Building;
 use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
+use Illuminate\Support\Facades\Auth;
 
 class BuildingsStats extends StatsOverviewWidget
 {
@@ -19,4 +20,9 @@ class BuildingsStats extends StatsOverviewWidget
     }
 
     protected int|string|array $columnSpan = 1;
+
+    public static function canView(): bool
+    {
+        return !in_array(Auth::user()->role,['proprietaire', 'contractor']);
+    }
 }

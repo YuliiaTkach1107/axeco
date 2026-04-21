@@ -7,6 +7,7 @@ use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
 use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class ServicesCluster extends Cluster
 {
@@ -17,4 +18,9 @@ class ServicesCluster extends Cluster
     protected static ?string $navigationLabel = 'Gestion des services';
 
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
+
+    public static function canAccess(): bool
+    {
+        return Auth::user()->role === 'admin';
+    }
 }

@@ -14,6 +14,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
+use Illuminate\Support\Facades\Auth;
 
 class ValeurResource extends Resource
 {
@@ -49,5 +50,9 @@ class ValeurResource extends Resource
             'create' => CreateValeur::route('/create'),
             'edit' => EditValeur::route('/{record}/edit'),
         ];
+    }
+    public static function canViewAny(): bool
+    {
+        return Auth::user()->role === 'admin';
     }
 }

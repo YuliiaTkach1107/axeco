@@ -2,6 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import AppLogoIcon from '@/components/AppLogoIcon.vue';
 import { PageAccueil } from '@/routes';
+import { route } from 'ziggy-js';
 
 defineProps<{
     title?: string;
@@ -17,7 +18,7 @@ defineProps<{
             <div class="flex flex-col gap-8">
                 <div class="flex flex-col items-center gap-4">
                     <Link
-                        :href="PageAccueil"
+                        :href="route('PageAccueil')"
                         class="flex flex-col items-center gap-2 font-medium"
                     >
                         <div

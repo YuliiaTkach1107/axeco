@@ -10,6 +10,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class ResidentsTable
 {
@@ -40,6 +41,10 @@ class ResidentsTable
                         'locataire' => 'Locataire',
                         default => $state,
                     }),
+                TextColumn::make('user.email')
+                    ->label('Compte')
+                    ->placeholder('—')
+                    ->searchable(),
                 TextColumn::make('date_entre')
                     ->date()
                     ->label('Date d\'entrée')
@@ -49,7 +54,9 @@ class ResidentsTable
                     ->label('Date sortie')
                     ->sortable(),
                 TextColumn::make('notes')
-                    ->label('Notes'),
+                    ->label('Notes')
+                    ->limit(30)
+                    ->tooltip(fn ($record) => $record->notes),
                 IconColumn::make('est_actif')
                     ->label('Actif')
                     ->boolean(),
@@ -78,11 +85,11 @@ class ResidentsTable
                     ->label('Copropriété'),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
                 ]),
             ]);
     }

@@ -11,6 +11,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class AnnouncementsTable
 {
@@ -24,12 +25,15 @@ class AnnouncementsTable
                     ->label('Copropriété')
                     ->searchable(),
                 TextColumn::make('publie_le')
+                    ->label('Publié le')
                     ->date()
                     ->sortable(),
                 TextColumn::make('expire_le')
+                    ->label('Expire le')
                     ->date()
                     ->sortable(),
                 TextColumn::make('cree_par')
+                    ->label('Créé par')
                     ->searchable(),
                 IconColumn::make('est_actif')
                     ->boolean(),
@@ -66,11 +70,11 @@ class AnnouncementsTable
                     }),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
                 ]),
             ]);
     }

@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Auth;
 
 class TicketsTable
 {
@@ -64,7 +65,7 @@ class TicketsTable
                     ->searchable(),
                 TextColumn::make('apartment.numero')
                     ->label('Appartement'),
-                TextColumn::make('contractor.nom')
+                TextColumn::make('contractor.full_name')
                     ->label('Entrepreneur'),
                 TextColumn::make('assigne_le')
                     ->label('Assigné le')
@@ -110,7 +111,7 @@ class TicketsTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
                 ]),
             ]);
     }
