@@ -168,7 +168,7 @@
                <div v-if="suggestions.length" id='search-results' role='listbox' class="absolute top-full left-0 w-full max-h-[250px] overflow-y-auto z-50 mt-2 mb-4">
                   <div class="grid gap-4 w-[90%] m-auto">
                      <article v-for="article in suggestions" :key="article.id" role='option'>
-                        <Link :href="`/article/${article.id}`" class="search-card flex items-center gap-4 p-2 lg:p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 bg-white cursor-pointer h-40">
+                        <Link :href="`/actualites/article/${article.id}`" class="search-card flex items-center gap-4 p-2 lg:p-4 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 bg-white cursor-pointer h-40">
                         <img :src="article.image_url" alt="" class="w-28 h-28 object-cover rounded-lg flex-shrink-0" />
                         <div class="px-2 lg:px-8 py-0 lg:py-6 flex flex-col justify-center gap-4">
                            <h4 class="clamp-2" v-html="article.title.replace(new RegExp(query, 'gi'), match => `<span class='highlight'>${match}</span>`)"></h4>
@@ -296,7 +296,7 @@
                         aria-describedby="email-error"
                         placeholder="Votre adresse email"
                         required
-                        class="w-full h-15 pl-6 rounded-full bg-[#728FB6] placeholder-[#F1F1F1] text-sm lg:text-base focus:outline-none focus:ring-4 focus:ring-[#0d4677]/30" />
+                        class="w-full h-15 pl-6 rounded-full bg-[#728FB6] placeholder-[#F1F1F1] text-gray-100 text-sm lg:text-base focus:outline-none focus:ring-4 focus:ring-[#0d4677]/30" />
                      <button type="submit" class="absolute right-0 top-1/2 -translate-y-1/2 cursor-pointer px-4 lg:px-8 h-15 rounded-full bg-[#f2522e] text-white font-semibold shadow-md hover:bg-[#d84322] transition">
                         S'abonner
                      </button>

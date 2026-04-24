@@ -7,6 +7,8 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
+use Illuminate\Support\HtmlString;
 use Filament\Schemas\Schema;
 
 class ServiceForm
@@ -21,7 +23,7 @@ class ServiceForm
                 Textarea::make('description')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('icon')
+                Select::make('icon')
                     ->label('Icône')
                     ->required()
                     ->columnSpanFull(),

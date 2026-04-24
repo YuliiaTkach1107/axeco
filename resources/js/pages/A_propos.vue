@@ -69,7 +69,7 @@
                </Link>
             </div>
          </div>
-         <div class="relative hidden md:flex items-center justify-center my-auto h-[300px] w-[70%] items-center justify-center mx-auto  lg:flex items-center justify-center my-auto h-[70vh]">
+         <div class="relative hidden md:flex items-center justify-center my-auto h-[400px] w-[90%] items-center justify-center mx-auto  lg:flex items-center justify-center my-auto h-[70vh]">
             <img src="/images/à_propos/à-propos.jpg" loading="lazy" class="w-full h-full rounded-[20px] border-6 border-[#B9D6FE] shadow-xl object-cover object-top" alt="Notre expertise" />
          </div>
       </div>

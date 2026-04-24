@@ -1,4 +1,6 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
@@ -28,8 +30,53 @@
     }
 
     .fi-logo {
-        height: auto !important;
+        height: 100px !important;
         object-fit: contain;
+    }
+
+    .fi-simple-header-heading {
+        font-family: "Poppins", sans-serif !important;
+        color: #4c6e9a !important;
+        font-size: 20px !important;
+        font-weight: normal !important;
+    }
+
+    .poppins {
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .fi-fo-field-label-content {
+        @apply !text-[#0d4677] !font-normal;
+    }
+
+    .fi-simple-layout {
+        @apply !bg-[#ffffff];
+    }
+
+    .fi-simple-main-ctn {
+        @apply h-screen;
+    }
+
+    .fi-input-wrp:focus-within {
+        border-color: #4c6e9a !important;
+        box-shadow: 0 0 0 3px rgba(13, 70, 119, 0.5) !important;
+
+    }
+
+    .fi-input-wrp {
+        color: var(--foreground);
+        width: 100%;
+        min-width: 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        outline: none;
+        transition: color 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    }
+
+
+    .fi-input::placeholder {
+        color: #4c6e9a !important;
     }
 
     /* 📱 mobile */
@@ -39,10 +86,11 @@
             /* увеличили */
         }
 
-        .fi-logo {
+        /*.fi-logo {
             height: 100px !important;
-            /* увеличили */
-        }
+            width: auto !important;
+    } */
+
     }
 
     /* 📱 tablet */

@@ -27,18 +27,10 @@ class ContractorResource extends Resource
 
     protected static ?string $cluster = ContractorsCluster::class;
 
-    public static function getNavigationLabel(): string
-        {
-            return Auth::user()?->role === 'contractor'
-                ? 'Mon profil'
-                : 'Entrepreneurs';
-        }
-    public static function getPluralModelLabel(): string
-            {
-                return Auth::user()?->role === 'contractor'
-                    ? 'Mon profil'
-                    : 'Entrepreneurs';
-            }
+    public static ?string $navigationLabel='Entrepreneurs';
+
+    public static ?string $pluralModelLabel = 'Entrepreneurs';
+
     protected static ?string $modelLabel = 'entrepreneur';
 
     public static function form(Schema $schema): Schema
@@ -69,16 +61,16 @@ class ContractorResource extends Resource
     public static function canViewAny(): bool
     {
         $user = Auth::user();
-        return in_array($user->role, ['admin', 'contractor']);
+        return in_array($user->role, ['admin']);
     }
 
-    public static function getEloquentQuery(): Builder
-    {
-        $query = parent::getEloquentQuery();
+    // public static function getEloquentQuery(): Builder
+    // {
+    //     $query = parent::getEloquentQuery();
 
-        if (Auth::user()?->role === 'contractor') {
-            return $query->where('user_id', Auth::id());
-        }
-        return $query;
-    }
+    //     if (Auth::user()?->role === 'contractor') {
+    //         return $query->where('user_id', Auth::id());
+    //     }
+    //     return $query;
+    // }
 }

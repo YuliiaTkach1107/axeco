@@ -77,6 +77,8 @@ class RegisterController extends Controller
         Auth::login($user);
         $request->session()->regenerate();
         
-        return redirect('/admin');
+        return response('', 409)
+
+        ->header('X-Inertia-Location', url('/admin'));
     }
 }

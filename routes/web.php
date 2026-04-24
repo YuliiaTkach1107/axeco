@@ -42,19 +42,22 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
 Route::get('/contact', [ContactController::class, 'index'])->name('Contact');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 Route::post('/resume-send', [ResumeController::class, 'send'])->name('resume.send');
-
-
 Route::get('/enter-code', function () {
-    return Inertia::render('EnterCode');
+    return Inertia::render('auth/EnterCode');
 })->name('EnterCode');
 
-Route::post('/check-invitation', [InvitationController::class, 'check']);
+Route::middleware('guest')->group(function () {
+// Route::get('/enter-code', function () {
+//     return Inertia::render('auth/EnterCode');
+// })->name('EnterCode');
 
+Route::post('/check-invitation', [InvitationController::class, 'check']);
 Route::get('/register', [RegisterController::class, 'show'])
     ->name('register');
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register');
-
+    
+});
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'role:resident,admin,contractor'])->name('dashboard');

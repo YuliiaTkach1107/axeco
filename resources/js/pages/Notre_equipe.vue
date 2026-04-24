@@ -164,7 +164,7 @@
                 </label>
                 <div class="flex flex-col gap-2">
                     <label for="email" class="text-gray-700 font-medium">Email <span class="text-[#0d4677]">*</span></label>
-                    <input type="email" id="email" name="email" v-model="data.email"  class="px-4 py-3 border border-gray-300 text-gray-400 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition-all" placeholder="exemple@domain.com" required/>
+                    <input type="email" id="email" name="email" v-model="data.email"  class="px-4 py-3 border border-gray-300 text-gray-500 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition-all" placeholder="exemple@domain.com" required/>
                 </div>
                 <button type="submit" class="inline-flex items-center justify-center px-10 py-4 rounded-[33px] w-fit m-auto text-white font-semibold text-[16px] bg-[#0D4677] cursor-pointer shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[color:var(--accent)] transition-all active:scale-[0.97] focus:outline-none touch-manipulation">
                     Envoyer sa candidature

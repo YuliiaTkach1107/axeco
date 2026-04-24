@@ -71,6 +71,8 @@ class User extends Authenticatable
         return in_array($this->role, [
             'admin',
             'proprietaire',
+            'resident',
+            'contractor'
         ]);
     }
     public function apartments(){

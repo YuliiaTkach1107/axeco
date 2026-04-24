@@ -9,14 +9,15 @@ import { Spinner } from '@/components/ui/spinner';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { login } from '@/routes';
 import { store } from '@/routes/register';
+
 </script>
 
 <template>
     <AuthBase
-        title="Create an account"
-        description="Enter your details below to create your account"
+        title="Créer un compte"
+        description="Entrez vos informations ci-dessous pour créer votre compte"
     >
-        <Head title="Register" />
+        <Head title="Inscription" />
 
         <Form
             v-bind="store.form()"
@@ -26,7 +27,7 @@ import { store } from '@/routes/register';
         >
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="name">Name</Label>
+                    <Label for="name">Nom et prénom</Label>
                     <Input
                         id="name"
                         type="text"
@@ -35,13 +36,13 @@ import { store } from '@/routes/register';
                         :tabindex="1"
                         autocomplete="name"
                         name="name"
-                        placeholder="Full name"
+                        placeholder="Nom Prénom"
                     />
                     <InputError :message="errors.name" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
+                    <Label for="email">Adresse e-mail</Label>
                     <Input
                         id="email"
                         type="email"
@@ -55,7 +56,7 @@ import { store } from '@/routes/register';
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password">Password</Label>
+                    <Label for="password">Mot de passe</Label>
                     <Input
                         id="password"
                         type="password"
@@ -63,13 +64,13 @@ import { store } from '@/routes/register';
                         :tabindex="3"
                         autocomplete="new-password"
                         name="password"
-                        placeholder="Password"
+                        placeholder="Mot de passe"
                     />
                     <InputError :message="errors.password" />
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password_confirmation">Confirm password</Label>
+                    <Label for="password_confirmation">Confirmer le mot de passe</Label>
                     <Input
                         id="password_confirmation"
                         type="password"
@@ -77,7 +78,7 @@ import { store } from '@/routes/register';
                         :tabindex="4"
                         autocomplete="new-password"
                         name="password_confirmation"
-                        placeholder="Confirm password"
+                        placeholder="Confirmer le mot de passe"
                     />
                     <InputError :message="errors.password_confirmation" />
                 </div>
@@ -90,18 +91,19 @@ import { store } from '@/routes/register';
                     data-test="register-user-button"
                 >
                     <Spinner v-if="processing" />
-                    Create account
+                    Créer un compte
                 </Button>
             </div>
 
             <div class="text-center text-sm text-muted-foreground">
-                Already have an account?
-                <TextLink
+                Vous avez déjà un compte ?
+                <!-- <TextLink
                     :href="login()"
                     class="underline underline-offset-4"
                     :tabindex="6"
                     >Log in</TextLink
-                >
+                > -->
+                <a href="/admin/login" class="underline underline-offset-4 hover:text-primary"> Se connecter </a>
             </div>
         </Form>
     </AuthBase>

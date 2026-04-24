@@ -19,13 +19,7 @@ class ContractorsCluster extends Cluster
                 ? 'Gestion copropriété'
                 : null;
         }
-    public static function getNavigationLabel(): string
-        {
-            return Auth::user()?->role === 'admin'
-                    ? 'Intervenants'
-                    : 'Mon profil';
-        }
-    
+    public static ?string $navigationLabel='Intervenants';
 
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 
