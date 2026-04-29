@@ -63,6 +63,10 @@
 
     }
 
+    .fi-icon-btn {
+        margin-right: 16px;
+    }
+
     .fi-input-wrp {
         color: var(--foreground);
         width: 100%;
@@ -114,4 +118,69 @@
             max-height: auto;
         }
     }
+
+    .fi-main-ctn {
+        &:where(.dark, .dark *) {
+            background-color: var(--gray-800);
+        }
+    }
+
+    .dark .fi-fo-field-label-content {
+        @apply !text-[#ffffff];
+    }
+
+    .dark .fi-logo {
+        filter: brightness(0) invert(1);
+    }
+
+    .dark .fi-input::placeholder {
+        color: #abbbd0 !important;
+    }
+
+    .fi-topbar-item {
+        &.fi-active {
+            & .fi-topbar-item-label {
+                &:where(.dark, .dark *) {
+                    color: var(--info-200);
+                }
+            }
+        }
+    }
+
+    .fi-topbar-item {
+        &.fi-active {
+            & .fi-topbar-item-btn {
+                &>.fi-icon {
+                    &:where(.dark, .dark *) {
+                        color: var(--info-200);
+                    }
+                }
+            }
+        }
+    }
+
+    .fi-tabs-item {
+        &.fi-active {
+
+            & .fi-tabs-item-label,
+            &>.fi-icon {
+                &:where(.dark, .dark *) {
+                    color: var(--info-200);
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

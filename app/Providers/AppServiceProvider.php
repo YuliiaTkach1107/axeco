@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
+use Filament\Support\Facades\FilamentView;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,16 @@ class AppServiceProvider extends ServiceProvider
                 return Contact::where('type', 'tel')->get();
             },
         ]);
+        FilamentView::registerRenderHook(
+            'panels::body.end',
+            fn () => '<script>
+                document.addEventListener("click", function (e) {
+                    if (e.target.closest("form[action*=logout]")) {
+                        localStorage.removeItem("theme");
+                    }
+                });
+            </script>'
+        );
         $this->configureDefaults();
     }
 

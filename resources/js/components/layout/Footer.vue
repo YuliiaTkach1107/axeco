@@ -78,8 +78,10 @@
          <div class="flex flex-col md:flex-row items-center justify-between mt-10 gap-3 text-center md:text-left">
             <p class="text-[var(--text-blue-light)] text-[14px]">© 2025 Axeco. Tous droits réservés.</p>
             <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-               <a href="#" class="text-[var(--text-blue-light)] text-[14px] underline hover:text-[#205a8c] transition-colors">Mentions légales</a>
-               <a href="#" class="text-[var(--text-blue-light)] text-[14px] underline hover:text-[#205a8c] transition-colors">Politique de confidentialité</a>
+               <Link :href="route('Mentions')" class="text-[var(--text-blue-light)] text-[14px] underline hover:text-[#205a8c] transition-colors">Mentions légales</Link>
+               <Link :href="route('PrivacyPolicy')" class="text-[var(--text-blue-light)] text-[14px] underline hover:text-[#205a8c] transition-colors">Politique de confidentialité</Link>
+               <Link :href="route('CookiePolicy')" class="text-[var(--text-blue-light)] text-[14px] underline hover:text-[#205a8c] transition-colors">Politique de cookies</Link>
+
             </div>
          </div>
       </div>

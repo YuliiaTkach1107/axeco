@@ -151,7 +151,7 @@
 
     /* Secondary Colors */
     --secondary-orange: #f2522e;
-    --secondary-blue-light: rgba(143, 155, 191, 0.8);
+    --secondary-blue-light: #8f9bbfcc;
     --secondary-section-1: #205a8c;
     --secondary-section-2: #fbfbfb;
     --secondary-button-1: #0d4677;
@@ -194,6 +194,7 @@
     --switch-background: #ffffff;
     --ring: #4c6e9a;
     --radius: 0.25rem;
+    --top: #ffffff;
 
     /* Charts */
     --chart-1: #1654d8;
@@ -241,6 +242,8 @@
     --sidebar-accent-foreground: #ffffff;
     --sidebar-border: #6b7887;
     --sidebar-ring: #4c6e9a;
+    --top: #4c6e9a;
+    --text-white: #0d4677;
 }
 
 @layer base {

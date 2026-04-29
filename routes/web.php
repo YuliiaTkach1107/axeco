@@ -56,8 +56,17 @@ Route::get('/register', [RegisterController::class, 'show'])
     ->name('register');
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register');
-    
 });
+
+Route::get('/privacy-policy', function () {
+    return Inertia::render('Legal/Privacy');
+})->name('PrivacyPolicy');
+Route::get('/mentions-legales', function () {
+    return Inertia::render('Legal/Mentions');
+})->name('Mentions');
+Route::get('/cookie-policy', function () {
+    return Inertia::render('Legal/CookiePolicy');
+})->name('CookiePolicy');
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'role:resident,admin,contractor'])->name('dashboard');

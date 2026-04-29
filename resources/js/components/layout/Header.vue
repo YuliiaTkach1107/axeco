@@ -2,6 +2,9 @@
    import { ref,onMounted,onUnmounted } from 'vue'
    import { Link,usePage } from '@inertiajs/vue3'
    import { route } from 'ziggy-js'
+   import { useI18n } from 'vue-i18n'
+
+    const { locale } = useI18n()
 
     const props = defineProps({
         contacts: Array,
@@ -24,6 +27,7 @@
    onUnmounted(() => {
    window.removeEventListener('keydown', handleKeydown)
    })
+   
 
 </script>
 
@@ -33,17 +37,17 @@
       <h1 class="sr-only">AXECO – entreprise de construction</h1>
       <!-- Topbar -->
       <div class="hidden lg:flex topbar bg-[rgb(198,224,250,0.3)] justify-end gap-20">
-         <div v-for="(item) in $page.props.headerContacts" :key="item.id" class='flex items-center justify-center gap-2'>
+         <div v-for="(item) in $page.props.headerContacts" :key="item.id" class='flex items-center justify-center gap-2 h-15 mr-4'>
             <a :href="item.link" target="_blank" rel="noopener noreferrer" :aria-label="'Appeler ' + item.content" class="phone cursor-pointer px-6 rounded-[10px] hover:[color:var(--text-orange)] active:[color:var(--text-orange)] transition">
                <span class="text-base">{{ item.content }}</span>
             </a>
          </div>
          <!-- Desktop -->
-         <ul class='flex items-center justify-end gap-4 mr-15 h-15 '>
-            <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FR</a></li>
-            <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">NL</a></li>
-            <li><a hreflang='#' class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">EN</a></li>
-         </ul>
+         <!-- <ul class='flex items-center justify-end gap-4 mr-15 h-15 '>
+            <li><a href="#" @click.prevent="locale = 'fr'" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">FR</a></li>
+            <li><a href='#'  @click.prevent="locale = 'nl'" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">NL</a></li>
+            <li><a href="#" @click.prevent="locale = 'en'" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">EN</a></li>
+         </ul> -->
       </div>
       <!-- Main Header -->
       <div class="main-header flex items-center justify-between">
@@ -100,11 +104,11 @@
                   <span class="text-[#0e9727] text-[18px]">{{ item.content }}</span>
                </a>
             </div>
-            <ul class="flex items-center justify-center gap-4 mt-6 m-auto">
+            <!-- <ul class="flex items-center justify-center gap-4 mt-6 m-auto">
                <li><a hreflang="#" class="cursor-pointer hover:[color:var(--text-orange)]">FR</a></li>
                <li><a hreflang="#" class="cursor-pointer hover:[color:var(--text-orange)]">NL</a></li>
                <li><a hreflang="#" class="cursor-pointer hover:[color:var(--text-orange)]">EN</a></li>
-            </ul>
+            </ul> -->
          </div>
       </transition>
    </header>

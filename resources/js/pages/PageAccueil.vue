@@ -289,7 +289,7 @@
             </h2>
             <h3 class="text-[28px] lg:text-[40px] mb-[13px]">Actualités</h3>
             <!-- Divider -->
-            <div class="w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
+            <div class="w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-7"></div>
          </div>
          <!-- Mobile/Tablette -->
          <div class="lg:hidden block relative max-w-[90%] md:max-w-[75%] mx-auto">
@@ -345,7 +345,7 @@
                   @fromEdge="isBeginning = isEnd = false"
                   class="flex items-center justify-start px-4"
                >
-                  <SwiperSlide v-for="item in props.articles" :key="item.id" class="!w-[450px] pb-10 px-2">
+                  <SwiperSlide v-for="item in props.articles" :key="item.id" class="!w-[450px] pb-10 pt-3 px-2">
                      <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden shadow-md bg-white h-[320px] transition-shadow duration-500 ease-in-out hover:shadow-[0_5px_10px_rgba(16,43,64,0.25)]">
                         <img :src="item.image_url" :alt="item.title" loading="lazy" class="w-full h-[200px] object-cover"/>
                         <div class="py-4 px-6 h-auto">
