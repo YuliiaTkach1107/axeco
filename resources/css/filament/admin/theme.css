@@ -1,0 +1,186 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+@theme {
+    --radius-lg: 0.25rem;
+    --radius-md: 0.2rem;
+}
+
+@layer components {
+    .fi-btn {
+        @apply !rounded-[33px] !normal-case !tracking-normal;
+        box-shadow: 4px 4px 10px #00000040;
+    }
+
+    .fi-sidebar {
+        background-color: #fbfbfb !important;
+        border-right: 1px solid #ccd0d6 !important;
+    }
+
+    .fi-sidebar-header {
+        height: 100px;
+    }
+
+    .fi-sidebar-item-button {
+        @apply !text-[#0d4677];
+    }
+
+    .fi-logo {
+        height: 100px !important;
+        object-fit: contain;
+    }
+
+    .fi-simple-header-heading {
+        font-family: "Poppins", sans-serif !important;
+        color: #4c6e9a !important;
+        font-size: 20px !important;
+        font-weight: normal !important;
+    }
+
+    .poppins {
+        font-family: "Poppins", sans-serif !important;
+    }
+
+    .fi-fo-field-label-content {
+        @apply !text-[#0d4677] !font-normal;
+    }
+
+    .fi-simple-layout {
+        @apply !bg-[#ffffff];
+    }
+
+    .fi-simple-main-ctn {
+        @apply h-screen;
+    }
+
+    .fi-input-wrp:focus-within {
+        border-color: #4c6e9a !important;
+        box-shadow: 0 0 0 3px rgba(13, 70, 119, 0.5) !important;
+
+    }
+
+    .fi-icon-btn {
+        margin-right: 16px;
+    }
+
+    .fi-input-wrp {
+        color: var(--foreground);
+        width: 100%;
+        min-width: 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        outline: none;
+        transition: color 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    }
+
+
+    .fi-input::placeholder {
+        color: #4c6e9a !important;
+    }
+
+    /* 📱 mobile */
+    @media (max-width: 640px) {
+        .fi-topbar-start {
+            width: 140px;
+            /* увеличили */
+        }
+
+        /*.fi-logo {
+            height: 100px !important;
+            width: auto !important;
+    } */
+
+    }
+
+    /* 📱 tablet */
+    @media (min-width: 641px) and (max-width: 1024px) {
+        .fi-topbar-start {
+            width: 180px;
+        }
+
+        .fi-logo {
+            height: 100px !important;
+        }
+    }
+
+    /* 💻 desktop */
+    @media (min-width: 1025px) {
+        .fi-topbar-start {
+            width: 150px;
+        }
+
+        .fi-logo {
+            max-height: auto;
+        }
+    }
+
+    .fi-main-ctn {
+        &:where(.dark, .dark *) {
+            background-color: var(--gray-800);
+        }
+    }
+
+    .dark .fi-fo-field-label-content {
+        @apply !text-[#ffffff];
+    }
+
+    .dark .fi-logo {
+        filter: brightness(0) invert(1);
+    }
+
+    .dark .fi-input::placeholder {
+        color: #abbbd0 !important;
+    }
+
+    .fi-topbar-item {
+        &.fi-active {
+            & .fi-topbar-item-label {
+                &:where(.dark, .dark *) {
+                    color: var(--info-200);
+                }
+            }
+        }
+    }
+
+    .fi-topbar-item {
+        &.fi-active {
+            & .fi-topbar-item-btn {
+                &>.fi-icon {
+                    &:where(.dark, .dark *) {
+                        color: var(--info-200);
+                    }
+                }
+            }
+        }
+    }
+
+    .fi-tabs-item {
+        &.fi-active {
+
+            & .fi-tabs-item-label,
+            &>.fi-icon {
+                &:where(.dark, .dark *) {
+                    color: var(--info-200);
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

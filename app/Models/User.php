@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use App\Models\Gestion\Document;
+use App\Models\Gestion\Building;
+use App\Models\Gestion\Apartment;
+use App\Models\Gestion\Resident;
+use App\Models\Gestion\Contractor;
 
 class User extends Authenticatable
 {
@@ -22,6 +26,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'building_id',
     ];
 
     /**
@@ -48,5 +54,36 @@ class User extends Authenticatable
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+    public function documents()
+    {
+        return $this->hasMany(Document::class);
+    }
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->prenom} {$this->nom}";
+    }
+    public function building(){
+        return $this->belongsTo(Building::class);
+    }
+    public function canAccessFilament(): bool
+    {
+        return in_array($this->role, [
+            'admin',
+            'proprietaire',
+            'resident',
+            'contractor'
+        ]);
+    }
+    public function apartments(){
+        return $this->hasMany(Apartment::class);
+    }
+    public function resident()
+    {
+        return $this->hasOne(Resident::class);
+    }
+    public function contractor()
+    {
+        return $this->hasOne(Contractor::class,'user_id');
     }
 }

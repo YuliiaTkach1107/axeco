@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::table('articles', function (Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
 
             $table->dropColumn('sujet');
             $table->foreignId('topic_id')->nullable()->constrained('topics')->nullOnDelete()->after('id');

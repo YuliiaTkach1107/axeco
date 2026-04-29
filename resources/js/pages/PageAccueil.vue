@@ -35,58 +35,21 @@
    swiperInstance.value?.slideNext();
    }
 
-   const services = [
-   {
-   title: 'Maintenance et gestion technique',
-   description:'Nous pilotons la gestion technique de votre copropriété avec une vision à long terme, en anticipant les enjeux réglementaires.',
-   icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill=#ffffff d="M240 208h-16v-72l2.34 2.34A8 8 0 0 0 237.66 127l-98.35-98.32a16 16 0 0 0-22.62 0L18.34 127a8 8 0 0 0 11.32 11.31L32 136v72H16a8 8 0 0 0 0 16h224a8 8 0 0 0 0-16M48 120l80-80l80 80v88h-48v-56a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v56H48Zm96 88h-32v-48h32Z"/></svg>`,
-   anchor: 'gestion-technique',
-   link: '/services#gestion-technique'
-   },
-   {
-   title: 'Gestion administrative',
-   description:'Une administration transparente, sécurisée et adaptée à votre réalité pour des échanges fluides et réactifs.',
-   icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke=#ffffff stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.728 3H7.5a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h9a2.25 2.25 0 0 0 2.25-2.25V12M9.728 3C10.971 3 12 4.007 12 5.25V7.5a2.25 2.25 0 0 0 2.25 2.25h2.25A2.25 2.25 0 0 1 18.75 12M9.728 3c3.69 0 9.022 5.36 9.022 9"/></svg>`,
-   anchor: 'gestion-administrative',
-   link: '/services#gestion-administrative'
-   },
-   {
-   title: 'Gestion financière',
-   description:'Nous assurons une gestion financière rigoureuse et transparente pour garantir des comptes clairs, fiables et respectueux des délais.',
-   icon: `<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill=#ffffff d="M4 2H2v26a2 2 0 0 0 2 2h26v-2H4Z"/><path fill=#ffffff d="M30 9h-7v2h3.59L19 18.59l-4.29-4.3a1 1 0 0 0-1.42 0L6 21.59L7.41 23L14 16.41l4.29 4.3a1 1 0 0 0 1.42 0l8.29-8.3V16h2Z"/></svg>`,
-   anchor: 'gestion-financiere',
-   link: '/services#gestion-financiere',
-   }]
-
    const props = defineProps({
       articles: {
             type: Array,
             default: () => []
       },
-      topics: Array})
-
-   const faq=[
-   {
-   id:1,
-   question:'Le syndic est-il obligatoire en Belgique ?',
-   answer:'Oui. Toute copropriété comprenant plusieurs lots doit obligatoirement désigner un syndic, conformément à la loi belge.'
-   },
-   {
-   id:2,
-   question:'Pourquoi choisir un syndic professionnel ?',
-   answer:'Un syndic professionnel garantit une gestion transparente, conforme à la législation et un suivi rigoureux des aspects administratifs, financiers et techniques.'
-   },
-   {
-   id:3,
-   question:'Est-il possible de changer facilement de syndic ?',
-   answer:'Oui. Le changement se fait par vote lors de l’assemblée générale. Nous accompagnons entièrement la transition pour assurer une reprise sans stress.'
-   },
-   {
-   id:4,
-   question:'Comment sont gérées les charges de copropriété ?',
-   answer:'Les charges sont réparties selon les quotes-parts définies et suivies avec une comptabilité claire et accessible aux copropriétaires.'
-   },
-   ]
+      topics: Array,
+      services: {
+            type: Array,
+            default: () => []
+      },
+      faqs:{
+         type: Array,
+            default: () => []
+      }
+   })
 
    // Actualités
    const newsSlider = ref(null)
@@ -136,6 +99,7 @@
    <Head>
       <title>Axeco | Syndic Immobilier Professionnel à Bruxelles</title>
       <meta name="description" content="Plus de 30 ans d'expertise en gestion de copropriété à Bruxelles. Gestion technique, administrative et financière transparente pour votre immeuble."/>
+      <meta property="og:url" content="https://axeco.be/" />
       <meta property="og:title" content="Axeco - Votre syndic de confiance à Bruxelles"/>
       <meta property="og:description" content="Expertise, éthique et transparence pour la gestion de votre patrimoine immobilier."/>
       <meta property="og:image" content="/images/page_accueil/bg-1.jpg" />
@@ -207,7 +171,7 @@
             <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center justify-center mb-16 lg:mb-[100px] w-[90%]">
                <!-- Image -->
                <div class="w-full lg:w-[60%] h-[260px] lg:h-[450px]">
-                  <img src="/images/page_accueil/a_propos.png" alt="Image à propos" class="rounded-[20px] border border-[#0D4677] w-full h-full object-cover object-[center_30%]"/>
+                  <img src="/images/page_accueil/a_propos.png" alt="Image à propos" loading="lazy" class="rounded-[20px] border border-[#0D4677] w-full h-full object-cover object-[center_30%]"/>
                </div>
                <!-- Text block -->
                <div class="w-full lg:w-[40%] bg-gradient-to-b from-[rgb(32,90,140)] to-[rgb(32,90,140,0.8)] rounded-[20px] p-8 lg:p-10 flex flex-col gap-6 lg:gap-8 text-left">
@@ -266,7 +230,7 @@
                :pagination="{ clickable: true }"
                class="mySwiper !px-6 !pb-12"
                >
-               <SwiperSlide v-for="(service, index) in services" :key="index" class="!h-auto flex">
+               <SwiperSlide v-for="(service, index) in props.services" :key="index" class="!h-auto flex">
                   <a
                      :href="service.link"
                      class="flex flex-col h-full rounded-[24px] p-10 border-2 border-[#c6e0fa] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
@@ -289,7 +253,7 @@
          <!-- Cards -->
          <div class="hidden lg:flex justify-center">
             <div class="grid gap-10 grid-cols-1 lg:grid-cols-3 lg:max-w-[95%]">
-               <a v-for="(service, index) in services" :key="index" :href="service.link" class="cursor-pointer group block">
+               <a v-for="(service, index) in props.services" :key="index" :href="service.link" class="cursor-pointer group block">
                   <div class="relative h-[100%] rounded-[24px] p-10 border-2 border-[#c6e0fa] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
                      style="background-image: linear-gradient(-42deg,#ffffff 43%,rgba(224, 239, 255, 0.5) 100%);">
                      <!-- Icon -->
@@ -325,7 +289,7 @@
             </h2>
             <h3 class="text-[28px] lg:text-[40px] mb-[13px]">Actualités</h3>
             <!-- Divider -->
-            <div class="w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
+            <div class="w-[100px] lg:w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-7"></div>
          </div>
          <!-- Mobile/Tablette -->
          <div class="lg:hidden block relative max-w-[90%] md:max-w-[75%] mx-auto">
@@ -334,7 +298,7 @@
                   <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden bg-white shadow-xs">
                      <!-- Image -->
                      <div class="w-full aspect-[16/9] overflow-hidden">
-                        <img :src="item.image_url" alt="" class="w-full h-full object-cover"/>
+                        <img :src="item.image_url" alt="" loading="lazy" class="w-full h-full object-cover"/>
                      </div>
                      <!-- Content -->
                      <div class="py-6 px-4 flex flex-col justify-between h-[110px] md:h-[110px]">
@@ -369,7 +333,7 @@
                   </svg>
                </button>
             </div>
-            <div class="">
+            <div>
                <Swiper
                   :modules="modules"
                   :slides-per-view="'auto'"
@@ -381,9 +345,9 @@
                   @fromEdge="isBeginning = isEnd = false"
                   class="flex items-center justify-start px-4"
                >
-                  <SwiperSlide v-for="item in props.articles" :key="item.id" class="!w-[450px] pb-10 px-2">
-                     <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden shadow-md bg-white transition-shadow duration-500 ease-in-out hover:shadow-[0_5px_10px_rgba(16,43,64,0.25)]">
-                        <img :src="item.image_url" :alt="item.title" class="w-full h-[200px] object-cover"/>
+                  <SwiperSlide v-for="item in props.articles" :key="item.id" class="!w-[450px] pb-10 pt-3 px-2">
+                     <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden shadow-md bg-white h-[320px] transition-shadow duration-500 ease-in-out hover:shadow-[0_5px_10px_rgba(16,43,64,0.25)]">
+                        <img :src="item.image_url" :alt="item.title" loading="lazy" class="w-full h-[200px] object-cover"/>
                         <div class="py-4 px-6 h-auto">
                            <h3 class="text-lg font-semibold text-[#0d4677] clamp-1 mb-2">{{ item.title }}</h3>
                            <p class="text-gray-600 text-sm clamp-2">{{ item.description }}</p>
@@ -429,7 +393,7 @@
             <div class="w-[130px] h-[5px] bg-gradient-to-r from-[#F2522E] to-[#205A8C] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10"></div>
             <p class="text-[14px] lg:text-[18px] text-[color:var(--text-blue-light)] max-w-[80%] font-[var(--font-open-sans)]">Trouvez rapidement les réponses à vos questions.<br />Besoin de plus d'informations ? N'hésitez pas à nous contacter !</p>
          </div>
-         <div v-for="(item,index) in faq" :key="item.id" class="w-[95%] max-w-[95%] md:w-[80%] max-w-[80%] lg:max-w-[60%] mx-auto mb-6 border-2 border-[#C6E0FA] rounded-[20px] p-6 bg-gradient-to-r from-white to-[#E0EFFF]/50">
+         <div v-for="(item,index) in props.faqs" :key="item.id" class="w-[95%] max-w-[95%] md:w-[80%] max-w-[80%] lg:max-w-[60%] mx-auto mb-6 border-2 border-[#C6E0FA] rounded-[20px] p-6 bg-gradient-to-r from-white to-[#E0EFFF]/50">
             <button @click="toggle(index)" :aria-expanded="openIndex === index ? 'true' : 'false'" :aria-controls="`faq-${index}`" class="w-full flex justify-between items-center text-left cursor-pointer py-3 active:scale-[0.98] transition-transform">
                <span class="text-[18px] lg:text-[20px] font-semibold text-[#0d4677] w-[90%]">{{ item.question }}</span>
                <!-- Arrow -->

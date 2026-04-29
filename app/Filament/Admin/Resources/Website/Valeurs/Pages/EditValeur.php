@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Filament\Admin\Resources\Website\Valeurs\Pages;
+
+use App\Filament\Admin\Resources\Website\Valeurs\ValeurResource;
+use Filament\Actions\DeleteAction;
+use Filament\Resources\Pages\EditRecord;
+
+class EditValeur extends EditRecord
+{
+    protected static string $resource = ValeurResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            DeleteAction::make(),
+        ];
+    }
+}

@@ -1,6 +1,7 @@
-<script setup lang="ts">
-import Header from '@/components/layout/Header.vue'
-import Footer from '@/components/layout/Footer.vue'
+<script setup>
+  import Header from '@/components/layout/Header.vue'
+  import Footer from '@/components/layout/Footer.vue'
+  import CookieBanner from '@/components/CookieBanner.vue'
 </script>
 
 <template>
@@ -8,6 +9,7 @@ import Footer from '@/components/layout/Footer.vue'
     <Header />
     <main class="flex-1">
       <slot />
+      <CookieBanner />
     </main>
     <Footer />
   </div>

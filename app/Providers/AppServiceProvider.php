@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Inertia\Inertia;
+use Filament\Support\Facades\FilamentView;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Inertia::share([
+            'footerContacts' => function () {
+                return Contact::all();
+            },
+            'headerContacts' => function () {
+                return Contact::where('type', 'tel')->get();
+            },
+        ]);
+        FilamentView::registerRenderHook(
+            'panels::body.end',
+            fn () => '<script>
+                document.addEventListener("click", function (e) {
+                    if (e.target.closest("form[action*=logout]")) {
+                        localStorage.removeItem("theme");
+                    }
+                });
+            </script>'
+        );
         $this->configureDefaults();
     }
 
