@@ -13,6 +13,7 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Article::with('topic')
+            ->whereDate('date_publication', '<=', now()->toDateString())
             ->orderBy('date_publication', 'desc')
             ->take(6)
             ->get();

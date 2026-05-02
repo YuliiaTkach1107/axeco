@@ -1,5 +1,5 @@
 <script setup>
-   import { ref,watch, onMounted } from 'vue'
+   import { ref, onMounted } from 'vue'
    let analyticsLoaded = false
    
    // État de la bannière
@@ -8,9 +8,9 @@
    
    // Paramètres
    const settingsOpen = ref(false)
-   const functionalCookies = ref(false)
+   // const functionalCookies = ref(false)
    const analyticsCookies = ref(localStorage.getItem('cookies_analytics') === 'true')
-   const performanceCookies = ref(false)
+   // const performanceCookies = ref(false)
    
    const loadAnalytics = () => {
      if (analyticsLoaded) return
@@ -37,17 +37,16 @@
        loadAnalytics()
      }
    
-     document.documentElement.classList.toggle(
-       'functional-on',
-       functionalCookies.value
+   //   document.documentElement.classList.toggle(
+   //     'functional-on',
+   //     functionalCookies.value
+   //   )
    
-     )
+   //   document.documentElement.classList.toggle(
+   //     'perf-on',
+   //     performanceCookies.value
    
-     document.documentElement.classList.toggle(
-       'perf-on',
-       performanceCookies.value
-   
-     )
+   //   )
    
    }
    
@@ -55,11 +54,11 @@
      analyticsCookies.value =
        localStorage.getItem('cookies_analytics') === 'true'
    
-     functionalCookies.value =
-       localStorage.getItem('cookies_functional') === 'true'
+   //   functionalCookies.value =
+   //     localStorage.getItem('cookies_functional') === 'true'
    
-     performanceCookies.value =
-       localStorage.getItem('cookies_performance') === 'true'
+   //   performanceCookies.value =
+   //     localStorage.getItem('cookies_performance') === 'true'
    
         if (analyticsCookies.value) {
        loadAnalytics()
@@ -72,11 +71,11 @@
      localStorage.setItem('cookies_banner', 'accepted')
    
      localStorage.setItem('cookies_analytics', 'true')
-     localStorage.setItem('cookies_functional', 'true')
-     localStorage.setItem('cookies_performance', 'true')
+   //   localStorage.setItem('cookies_functional', 'true')
+   //   localStorage.setItem('cookies_performance', 'true')
    
-     functionalCookies.value = true
-     performanceCookies.value = true
+   //   functionalCookies.value = true
+   //   performanceCookies.value = true
      analyticsCookies.value = true
    
      applyCookies()
@@ -89,12 +88,12 @@
    const rejectAll = () => {
      localStorage.setItem('cookies_banner', 'rejected')
      localStorage.setItem('cookies_analytics', 'false')
-     localStorage.setItem('cookies_functional', 'false')
-     localStorage.setItem('cookies_performance', 'false')
+   //   localStorage.setItem('cookies_functional', 'false')
+   //   localStorage.setItem('cookies_performance', 'false')
    
      analyticsCookies.value = false
-     functionalCookies.value = false
-     performanceCookies.value = false
+   //   functionalCookies.value = false
+   //   performanceCookies.value = false
      applyCookies()
      showBanner.value = false
      cookieDecision.value = 'rejected'
@@ -112,14 +111,14 @@
        'cookies_analytics',
        analyticsCookies.value ? 'true' : 'false'
      )
-     localStorage.setItem(
-       'cookies_functional',
-       functionalCookies.value ? 'true' : 'false'
-     )
-     localStorage.setItem(
-       'cookies_performance',
-       performanceCookies.value ? 'true' : 'false'
-     )
+   //   localStorage.setItem(
+   //     'cookies_functional',
+   //     functionalCookies.value ? 'true' : 'false'
+   //   )
+   //   localStorage.setItem(
+   //     'cookies_performance',
+   //     performanceCookies.value ? 'true' : 'false'
+   //   )
    
      localStorage.setItem('cookies_banner', 'accepted')
      applyCookies()
@@ -169,16 +168,6 @@
             </div>
             <p class="text-sm text-gray-600 mt-2"> Essentiels au fonctionnement du site.</p>
          </div>
-         <!-- FUNCTIONAL -->
-         <div class="border-t pt-4 mt-4">
-            <div class="flex justify-between items-center">
-               <h3 class="font-semibold text-lg">Fonctionnelle</h3>
-               <button role="switch" :aria-checked='functionalCookies' @click="functionalCookies = !functionalCookies" :class="functionalCookies ? 'bg-[#0d4677]' : 'bg-gray-300'" class="relative w-12 h-6 rounded-full transition" >
-                  <span :class="functionalCookies ? 'translate-x-1' : 'translate-x-[-20px]'" class="absolute top-1 w-4 h-4 bg-white rounded-full transition cursor-pointer"></span>
-               </button>
-            </div>
-            <p class="text-sm text-gray-600 mt-2">Fonctionnalités supplémentaires et réseaux sociaux.</p>
-         </div>
          <!-- ANALYTICS -->
          <div class="border-t pt-4 mt-4">
             <div class="flex justify-between items-center">
@@ -188,24 +177,6 @@
                </button>
             </div>
             <p class="text-sm text-gray-600 mt-2">Analyse du trafic et comportement utilisateur.</p>
-         </div>
-         <!-- PERFORMANCE -->
-         <div class="border-t pt-4 mt-4">
-            <div class="flex justify-between items-center">
-               <h3 class="font-semibold text-lg">Performance</h3>
-               <!-- <button
-                  @click="performanceCookies = !performanceCookies"
-                  :class="performanceCookies ? 'bg-[#0d4677]' : 'bg-gray-300'"
-                  class="relative w-12 h-6 rounded-full transition"
-                  >
-                  
-                  <span
-                    :class="performanceCookies ? 'translate-x-1' : 'translate-x-[-20px]'"
-                    class="absolute top-1 w-4 h-4 bg-white rounded-full transition"
-                  ></span>
-                  </button> -->
-            </div>
-            <p class="text-sm text-gray-600 mt-2">Amélioration des performances du site.</p>
          </div>
          <!-- BUTTONS -->
          <div class="flex justify-end gap-3 mt-6">

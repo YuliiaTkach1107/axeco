@@ -48,7 +48,7 @@ class TicketForm
                     ->required()
                     ->default('moyenne')
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire'),
+                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('building_id')
                     ->label('Copropriété')
                     ->relationship(
@@ -73,8 +73,7 @@ class TicketForm
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->hidden(fn () => Auth::user()?->role === 'resident')
-                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire'),
+                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('apartment_id')
                     ->label('Appartement')
                     ->relationship('apartment', 'numero')
@@ -94,8 +93,7 @@ class TicketForm
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire')
-                    ->hidden(fn () => Auth::user()?->role === 'resident'),
+                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('resident_id')
                     ->required()
                     ->label('Résident')
@@ -116,8 +114,7 @@ class TicketForm
                             ->toArray();
                     })
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && Auth::user()->role === 'proprietaire')
-                    ->hidden(fn () => Auth::user()?->role === 'resident'),
+                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('contractor_id')
                     ->label('Entrepreneur')
                     ->relationship('contractor', 'nom')

@@ -198,16 +198,16 @@
             <label tabindex="0" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors">
                <span v-if="!selectedFile" class="text-gray-500 text-base text-center">Cliquez pour téléverser votre CV ou glissez-le ici</span>
                <span v-else class="text-[#0D4677] font-semibold text-base text-center">Fichier sélectionné: {{ selectedFile.name }}</span>
-               <input type="file" class="hidden" @change="handleFileUpload" :aria-invalid="data.errors.file ? 'true' : 'false'" aria-describedby="file-error" required />
+               <input type="file" class="hidden" @change="handleFileUpload" :aria-invalid="data.errors.file ? 'true' : 'false'" aria-describedby="file-error" accept='.pdf,.doc,.docx' required />
                <p v-if="data.errors.file" class="text-red-500 mt-2 text-base">{{ data.errors.file }}</p>
             </label>
-            <span v-if="data.errors.file" id="file-error" role="alert" class="text-red-500 mt-2 text-sm text-center font-medium">Veuillez sélectionner un fichier (CV) au format PDF ou Word.</span>
+            <!-- <span v-if="data.errors.file" id="file-error" role="alert" class="text-red-500 mt-2 text-sm text-center font-medium">Veuillez sélectionner un fichier (CV) au format PDF ou Word.</span> -->
          </div>
          <div v-if="data.subject === 'demande'" class="flex flex-col md:grid grid-cols-2 gap-6 items-center mt-6">
             <div class="champ">
                <label for="telephone" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Téléphone</label>
-               <input type="text" id="telephone" name="telephone" v-model="data.telephone" placeholder="Ex: +33 6 12 34 56 78" :aria-invalid="data.errors.telephone ? 'true' : 'false'" aria-describedby="telephone-error" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition placeholder:text-base" />
-               <span v-if="data.errors.telephone" id="telephone-error" role="alert" class="text-red-500 mt-2 text-sm text-center font-medium">Veuillez renseigner votre numéro de téléphone </span>
+               <input type="tel" id="telephone" name="telephone" v-model="data.telephone" placeholder="Ex: +32 612 34 56 78" :aria-invalid="data.errors.telephone ? 'true' : 'false'" aria-describedby="telephone-error" inputmode="tel" autocomplete="tel" pattern="^(?=(?:\\D*\\d){8,15}\\D*$)\\+?[0-9\\s().-]+$" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition placeholder:text-base" />
+               <span v-if="data.errors.telephone" id="telephone-error" role="alert" class="text-red-500 mt-2 text-sm font-medium">{{ data.errors.telephone }}</span>
             </div>
             <div class="champ">
                <label for="adresse_immeuble" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Adresse immeuble</label>

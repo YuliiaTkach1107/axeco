@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\Gestion\Contractor;
+use App\Models\Gestion\Invitation;
 use App\Models\Gestion\Resident;
+use Illuminate\Validation\Rules\Password;
+
 
 class RegisterController extends Controller
 {
@@ -24,7 +27,14 @@ class RegisterController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => [
+                'required',
+                'confirmed',
+                Password::min(10)
+                    ->letters()
+                    ->mixedCase()
+                    ->numbers(),
+            ],
         ]);
 
         $invitation = session('invitation');
@@ -32,6 +42,17 @@ class RegisterController extends Controller
         if (!$invitation) {
             return redirect()->route('EnterCode')
                 ->withErrors(['error' => 'Invitation expirée']);
+        }
+
+        $invitationRecord = Invitation::whereKey($invitation['id'])
+            ->whereNull('used_at')
+            ->first();
+
+        if (! $invitationRecord) {
+            $request->session()->forget('invitation');
+
+            return redirect()->route('EnterCode')
+                ->withErrors(['error' => 'Code invalide ou déjà utilisé']);
         }
         $nameParts = explode(' ', $request->name, 2);
         $prenom = $nameParts[0] ?? '';
@@ -71,6 +92,8 @@ class RegisterController extends Controller
                 'role'=>null,
             ]);
         }
+
+        $invitationRecord->delete();
 
         $request->session()->forget('invitation');
 

@@ -15,8 +15,17 @@ class Article extends Model
         'image_url',
         'topic_id',
         'date_publication',
+        'newsletter_sent_at',
         'content',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'date_publication' => 'date',
+            'newsletter_sent_at' => 'datetime',
+        ];
+    }
 
     public function topic()
     {

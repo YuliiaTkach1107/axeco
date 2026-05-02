@@ -2,14 +2,27 @@
     import MainLayout from '@/layouts/MainLayout.vue'
     import { Link, Head } from '@inertiajs/vue3'
     import { route } from 'ziggy-js'
-    import { ref, onMounted } from 'vue'
+    import { ref, onMounted, computed } from 'vue'
 
     defineProps({
             article: Object,
             topics: Array,
         })
-    const backSection = ref('articles') 
+    const backSection = ref('articles')
+    const returnTo = ref(null)
+
+    const backHref = computed(() => {
+        if (returnTo.value) {
+            return returnTo.value
+        }
+
+        return route('Actualites') + '#' + backSection.value
+    })
+
     onMounted(() => {
+        const query = new URLSearchParams(window.location.search)
+        returnTo.value = query.get('returnTo')
+
         if (window.location.hash) {
             backSection.value = window.location.hash.replace('#', '')
         }
@@ -31,7 +44,7 @@
          <!-- HERO -->
          <section class="relative min-h-[70vh] md:h-[80vh] flex items-end pt-28 md:pt-40" aria-label="En-tête de l'article">
             <!-- Retour -->
-            <Link :href="route('Actualites') + '#' + backSection" aria-label = "Retour à la liste des articles" class="absolute z-20 top-38 md:top-40 lg:top-46 left-4 md:left-6 text-white flex items-center gap-2 bg-black/40 px-3 py-2 md:px-4 md:py-2 text-sm md:text-base rounded-full backdrop-blur hover:bg-black/60 transition">
+            <Link :href="backHref" aria-label = "Retour à la liste des articles" class="absolute z-20 top-38 md:top-40 lg:top-46 left-4 md:left-6 text-white flex items-center gap-2 bg-black/40 px-3 py-2 md:px-4 md:py-2 text-sm md:text-base rounded-full backdrop-blur hover:bg-black/60 transition">
                 <span aria-hidden="true">←</span> Retour
             </Link>
             <div class="absolute inset-0 bg-cover bg-center" role="img" :aria-label="'Image de couverture: ' + article.title" :style="{ backgroundImage: `url(/${article.image_url})` }"></div>
@@ -45,7 +58,7 @@
                   </ol>
                </nav>
                <div class="flex flex-wrap items-center gap-2 md:gap-4 text-xs md:text-sm opacity-90">
-                  <time :datetime="article.date_publication" v-if="article.date_publication">{{ article.date_publication }}</time>
+                  <time :datetime="article.date_publication" v-if="article.date_publication">{{ new Date(article.date_publication).toLocaleDateString('fr-BE') }}</time>
                   <span v-if="article.topic" class="px-2 py-1 md:px-3 md:py-1 rounded-full text-white text-xs md:text-sm" :style="{ background: article.topic.color }">{{ article.topic.title }}</span>
                </div>
                <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">{{ article.title }}</h1>

@@ -108,7 +108,7 @@ class TicketsTable
                     ->label('Copropriété'),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()->visible(fn () => in_array(Auth::user()?->role, ['admin', 'proprietaire','resident'])),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

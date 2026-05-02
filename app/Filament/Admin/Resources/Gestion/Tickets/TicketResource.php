@@ -107,6 +107,9 @@ class TicketResource extends Resource
         if ($user->role === 'contractor') {
             return $record->contractor_id === $user->contractor?->id;
         }
+        if ($user->role === 'resident' && $user->resident) {
+            return $record->apartment_id === $user->resident->appartement_id;
+        }
 
         return false;
     }

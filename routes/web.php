@@ -10,6 +10,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('PageAccueil');
@@ -33,6 +34,7 @@ Route::get('/a-propos', function () {
 })->name('A_propos');
 
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])
+    ->middleware('throttle:newsletter-subscribe')
     ->name('newsletter.subscribe');
 Route::get('/newsletter/confirm/{token}', [NewsletterController::class, 'confirm'])
     ->name('newsletter.confirm');
@@ -40,9 +42,12 @@ Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'uns
     ->name('newsletter.unsubscribe');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('Contact');
-Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
-Route::post('/resume-send', [ResumeController::class, 'send'])->name('resume.send');
+Route::post('/contact', [ContactController::class, 'send'])->middleware('throttle:contact-form')->name('contact.send');
+Route::post('/resume-send', [ResumeController::class, 'send'])->middleware('throttle:resume-send')->name('resume.send');
 Route::get('/enter-code', function () {
+    if (Auth::check()) {
+        return Inertia::location('/admin');
+    }
     return Inertia::render('auth/EnterCode');
 })->name('EnterCode');
 
@@ -55,7 +60,7 @@ Route::post('/check-invitation', [InvitationController::class, 'check']);
 Route::get('/register', [RegisterController::class, 'show'])
     ->name('register');
 Route::post('/register', [RegisterController::class, 'store'])
-    ->name('register');
+    ->name('register.store');
 });
 
 Route::get('/privacy-policy', function () {
@@ -67,7 +72,5 @@ Route::get('/mentions-legales', function () {
 Route::get('/cookie-policy', function () {
     return Inertia::render('Legal/CookiePolicy');
 })->name('CookiePolicy');
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'role:resident,admin,contractor'])->name('dashboard');
+
 require __DIR__.'/settings.php';
