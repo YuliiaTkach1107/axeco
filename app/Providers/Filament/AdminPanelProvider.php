@@ -57,11 +57,13 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Orange,
                 'gray' => Color::Slate,
             ])
+            ->favicon(asset('favicon-32x32.png'))
             ->font('Open Sans')
             ->brandName('Axeco Syndic')
             ->brandLogo(asset('images/logo/AXECO_Logo.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->defaultThemeMode(\Filament\Enums\ThemeMode::Light)
+            ->databaseNotifications()
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([

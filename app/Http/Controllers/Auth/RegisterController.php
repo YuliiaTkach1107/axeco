@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use App\Models\Gestion\Contractor;
 use App\Models\Gestion\Invitation;
 use App\Models\Gestion\Resident;
+use App\Support\AdminDatabaseNotification;
 use Illuminate\Validation\Rules\Password;
 
 
@@ -67,7 +68,7 @@ class RegisterController extends Controller
         ]);
 
         if ($user->role === 'contractor') {
-            Contractor::create([
+            $contractor = Contractor::create([
                 'user_id' => $user->id,
                 'nom'=>$nom,
                 'prenom'=>$prenom,
@@ -78,10 +79,15 @@ class RegisterController extends Controller
                 'code_postal' => null,
                 'note' => 0,
             ]);
+
+            AdminDatabaseNotification::send(
+                'Nouveau contractor',
+                "Un nouveau contractor a ete ajoute : {$contractor->prenom} {$contractor->nom}"
+            );
         }
 
         if ($user->role === 'resident') {
-            Resident::create([
+            $resident = Resident::create([
                 'user_id' => $user->id,
                 'nom'=>$nom,
                 'prenom'=>$prenom,
@@ -91,6 +97,11 @@ class RegisterController extends Controller
                 'appartement_id'=>null,
                 'role'=>null,
             ]);
+
+            AdminDatabaseNotification::send(
+                'Nouveau resident',
+                "Un nouveau resident a ete ajoute : {$resident->prenom} {$resident->nom}"
+            );
         }
 
         $invitationRecord->delete();
