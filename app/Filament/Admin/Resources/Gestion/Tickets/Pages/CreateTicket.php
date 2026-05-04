@@ -19,7 +19,7 @@ class CreateTicket extends CreateRecord
         if ($user && $user->role !== 'admin') {
             AdminDatabaseNotification::send(
                 'Nouvelle demande',
-                "Une nouvelle demande a ete creee : {$this->record->title}"
+                "Une nouvelle demande a été créée : {$this->record->title}"
             );
         }
 
@@ -27,8 +27,8 @@ class CreateTicket extends CreateRecord
 
         if ($contractorUser) {
             $notification = Notification::make()
-                ->title('Nouvelle demande assignee')
-                ->body("Une nouvelle demande vous a ete assignee : {$this->record->title}")
+                ->title('Nouvelle demande assignée')
+                ->body("Une nouvelle demande vous a été assignée : {$this->record->title}")
                 ->success()
                 ->toDatabase();
 

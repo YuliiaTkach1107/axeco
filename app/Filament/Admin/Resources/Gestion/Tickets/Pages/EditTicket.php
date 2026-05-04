@@ -32,8 +32,8 @@ class EditTicket extends EditRecord
         }
 
         $notification = Notification::make()
-            ->title('Nouvelle demande assignee')
-            ->body("Une demande vous a ete assignee : {$this->record->title}")
+            ->title('Nouvelle demande assignée')
+            ->body("Une demande vous a été assignée : {$this->record->title}")
             ->success()
             ->toDatabase();
 

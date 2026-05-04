@@ -13,8 +13,8 @@ class CreateContractor extends CreateRecord
     protected function afterCreate(): void
     {
         AdminDatabaseNotification::send(
-            'Nouveau contractor',
-            "Un nouveau contractor a ete ajoute : {$this->record->prenom} {$this->record->nom}"
+            'Nouveau prestataire',
+            "Un nouveau prestataire a été ajouté : {$this->record->prenom} {$this->record->nom}"
         );
     }
 }
