@@ -81,8 +81,8 @@ class RegisterController extends Controller
             ]);
 
             AdminDatabaseNotification::send(
-                'Nouveau contractor',
-                "Un nouveau contractor a ete ajoute : {$contractor->prenom} {$contractor->nom}"
+                'Nouveau prestataire',
+                "Un nouveau prestataire a été ajouté : {$contractor->prenom} {$contractor->nom}"
             );
         }
 
@@ -99,8 +99,8 @@ class RegisterController extends Controller
             ]);
 
             AdminDatabaseNotification::send(
-                'Nouveau resident',
-                "Un nouveau resident a ete ajoute : {$resident->prenom} {$resident->nom}"
+                'Nouveau résident',
+                "Un nouveau résident a été ajouté : {$resident->prenom} {$resident->nom}"
             );
         }
 

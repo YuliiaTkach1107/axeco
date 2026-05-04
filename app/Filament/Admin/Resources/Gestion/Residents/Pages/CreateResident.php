@@ -13,8 +13,8 @@ class CreateResident extends CreateRecord
     protected function afterCreate(): void
     {
         AdminDatabaseNotification::send(
-            'Nouveau resident',
-            "Un nouveau resident a ete ajoute : {$this->record->prenom} {$this->record->nom}"
+            'Nouveau résident',
+            "Un nouveau résident a été ajouté : {$this->record->prenom} {$this->record->nom}"
         );
     }
 }

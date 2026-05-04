@@ -22,7 +22,7 @@ class CreateAnnouncement extends CreateRecord
 
         $notification = Notification::make()
             ->title('Nouvelle annonce')
-            ->body("Une nouvelle annonce a ete publiee : {$this->record->titre}")
+            ->body("Une nouvelle annonce a été publiée : {$this->record->titre}")
             ->success()
             ->toDatabase();
 
