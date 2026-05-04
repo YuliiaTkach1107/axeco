@@ -1,7 +1,7 @@
 <script setup>
    import MainLayout from '@/layouts/MainLayout.vue'
    import { Head } from '@inertiajs/vue3'
-   import { ref,onMounted,onUnmounted,computed } from 'vue'
+   import { ref,onMounted,onUnmounted,computed,nextTick } from 'vue'
    import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
    import { Link } from '@inertiajs/vue3'
    import { route } from 'ziggy-js'
@@ -88,10 +88,29 @@
    }
 
    const backSection = ref('form')
-   onMounted(() => {
+
+   const scrollToHashTarget = () => {
+   const hash = window.location.hash
+
+   if (!hash) return
+
+   const target = document.querySelector(hash)
+
+   if (!target) return
+
+   target.scrollIntoView({
+      behavior: 'auto',
+      block: 'start',
+   })
+   }
+
+   onMounted(async () => {
    if (window.location.hash) {
       backSection.value = window.location.hash.replace('#', '')
    }
+
+   await nextTick()
+   requestAnimationFrame(scrollToHashTarget)
    })
 </script>
 <template>
@@ -281,7 +300,7 @@
          </div>
       </section>
       <!-- Actualités -->
-      <section class="py-16 lg:py-20 bg-[color:var(--bg-light-2)]">
+      <section id="actualites" class="py-16 lg:py-20 bg-[color:var(--bg-light-2)]">
          <!-- Header -->
          <div class="flex flex-col items-center text-center mb-5 lg:mb-8">
             <h2 class="text-[12px] mb-[13px] text-[color:var(--text-orange)]">
@@ -295,7 +314,7 @@
          <div class="lg:hidden block relative max-w-[90%] md:max-w-[75%] mx-auto">
             <div ref="newsSlider" class="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide gap-6 px-3 items-start" @scroll="onNewsScroll">
                <div v-for="(item, index) in mobileNews" :key="item.id" class="flex-shrink-0 w-full max-w-[85%] md:max-w-[70%] snap-start snap-always">
-                  <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden bg-white shadow-xs">
+                  <a :href="`/actualites/article/${item.id}?returnTo=${encodeURIComponent('/#actualites')}`" class="block rounded-lg overflow-hidden bg-white shadow-xs">
                      <!-- Image -->
                      <div class="w-full aspect-[16/9] overflow-hidden">
                         <img :src="item.image_url" alt="" loading="lazy" class="w-full h-full object-cover"/>
@@ -346,7 +365,7 @@
                   class="flex items-center justify-start px-4"
                >
                   <SwiperSlide v-for="item in props.articles" :key="item.id" class="!w-[450px] pb-10 pt-3 px-2">
-                     <a :href="`/actualites/article/${item.id}`" class="block rounded-lg overflow-hidden shadow-md bg-white h-[320px] transition-shadow duration-500 ease-in-out hover:shadow-[0_5px_10px_rgba(16,43,64,0.25)]">
+                     <a :href="`/actualites/article/${item.id}?returnTo=${encodeURIComponent('/#actualites')}`" class="block rounded-lg overflow-hidden shadow-md bg-white h-[320px] transition-shadow duration-500 ease-in-out hover:shadow-[0_5px_10px_rgba(16,43,64,0.25)]">
                         <img :src="item.image_url" :alt="item.title" loading="lazy" class="w-full h-[200px] object-cover"/>
                         <div class="py-4 px-6 h-auto">
                            <h3 class="text-lg font-semibold text-[#0d4677] clamp-1 mb-2">{{ item.title }}</h3>

@@ -16,10 +16,18 @@ class CreateArticle extends CreateRecord
     {
         $article = $this->record;
 
+        if ($article->date_publication?->isFuture()) {
+            return;
+        }
+
         $subscribers = Subscriber::where('is_verified', true)->get();
 
         foreach ($subscribers as $subscriber) {
             Mail::to($subscriber->email)->send(new NewArticlePublishedMail($article, $subscriber));
         }
+
+        $article->forceFill([
+            'newsletter_sent_at' => now(),
+        ])->save();
     }
 }

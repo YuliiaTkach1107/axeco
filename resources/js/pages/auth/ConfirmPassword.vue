@@ -17,7 +17,8 @@ import { store } from '@/routes/password/confirm';
         <Head title="Confirmation du mot de passe" />
 
         <Form
-            v-bind="store.form()"
+            :action="store.url()"
+            method="post"
             reset-on-success
             v-slot="{ errors, processing }"
         >

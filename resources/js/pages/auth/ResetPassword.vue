@@ -25,7 +25,8 @@ const inputEmail = ref(props.email);
         <Head title="Réinitialisation du mot de passe"  />
 
         <Form
-            v-bind="update.form()"
+            :action="update.url()"
+            method="post"
             :transform="(data) => ({ ...data, token, email })"
             :reset-on-success="['password', 'password_confirmation']"
             v-slot="{ errors, processing }"

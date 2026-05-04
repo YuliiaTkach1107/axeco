@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\NewsletterArticleMail;
 use App\Models\Article;
-use App\Models\Subscriber;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -18,6 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::with('topic')
+            ->whereDate('date_publication', '<=', now()->toDateString())
             ->orderBy('date_publication', 'desc')
             ->get();
         $topics = Topic::all();
@@ -49,8 +48,12 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        $article = Article::with('topic')->findOrFail($id);
+        $article = Article::with('topic')
+            ->where('id', $id)
+            ->whereDate('date_publication', '<=', now()->toDateString())
+            ->firstOrFail();
         $articles = Article::with('topic')
+            ->whereDate('date_publication', '<=', now()->toDateString())
             ->orderBy('date_publication', 'desc')
             ->get();
         $topics = Topic::all();
@@ -83,12 +86,4 @@ class ArticleController extends Controller
         //
     }
 
-    public function sendNewsletter(Article $article)
-    {
-        $subscribers = Subscriber::where('is_verified', true)->get();
-
-        foreach ($subscribers as $subscriber) {
-            Mail::to($subscriber->email)->send(new NewsletterArticleMail($subscriber, $article));
-        }
-    }
 }

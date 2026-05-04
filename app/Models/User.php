@@ -27,7 +27,6 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'building_id',
     ];
 
     /**
@@ -62,9 +61,6 @@ class User extends Authenticatable
     public function getFullNameAttribute(): string
     {
         return "{$this->prenom} {$this->nom}";
-    }
-    public function building(){
-        return $this->belongsTo(Building::class);
     }
     public function canAccessFilament(): bool
     {

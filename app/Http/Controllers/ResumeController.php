@@ -11,12 +11,13 @@ class ResumeController extends Controller
     public function send(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|max:5120',
+            'file' => 'required|file|mimes:pdf,doc,docx|max:5120',
             'email' => 'required|email',
         ],
             [
                 'file.required' => 'Veuillez sélectionner un fichier.',
                 'file.file' => 'Le fichier doit être valide.',
+                'file.mimes' => 'Le fichier doit être un document PDF, DOC ou DOCX.',
                 'file.max' => 'Le fichier est trop volumineux (max 5 Mo).',
                 'email.required' => 'L\'email est obligatoire.',
                 'email.email' => 'Veuillez saisir un email valide.',

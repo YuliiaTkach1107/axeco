@@ -1,7 +1,7 @@
 <script setup>
    import MainLayout from '@/layouts/MainLayout.vue'
    import ArrowRight from '@/components/icons/ArrowRightIcon.vue'
-   import { ref, onMounted } from 'vue'
+   import { ref, onMounted, nextTick } from 'vue'
    import { Link, Head } from '@inertiajs/vue3'
    import { route } from 'ziggy-js'
    import { Swiper,SwiperSlide } from 'swiper/vue'
@@ -54,10 +54,33 @@
      })
    }
    const backSection = ref('form')
-    onMounted(() => {
+
+   const scrollToHashTarget = () => {
+      const hash = window.location.hash
+
+      if (! hash) {
+         return
+      }
+
+      const target = document.querySelector(hash)
+
+      if (! target) {
+         return
+      }
+
+      target.scrollIntoView({
+         behavior: 'auto',
+         block: 'start',
+      })
+   }
+
+   onMounted(async () => {
       if (window.location.hash) {
          backSection.value = window.location.hash.replace('#', '')
       }
+
+      await nextTick()
+      requestAnimationFrame(scrollToHashTarget)
    })
    
    const structuredData = JSON.stringify({

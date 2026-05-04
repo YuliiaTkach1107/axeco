@@ -30,7 +30,7 @@
             </form>
             <div class="text-center text-sm text-[#4c6e9a]">
                 Vous n’avez pas encore de compte ?
-                <a href="/register" class="underline underline-offset-4 hover:text-[#0d4677]">S’inscrire</a>
+                <a href="/enter-code" class="underline underline-offset-4 hover:text-[#0d4677]">S’inscrire</a>
             </div>
             <div class="text-center text-sm text-[#4c6e9a] space-y-2">
                 <a href="/forgot-password" class="text-[#0d4677] hover:underline"> Mot de passe oublié ?</a>

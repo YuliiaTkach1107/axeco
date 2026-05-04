@@ -24,6 +24,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Pages\Auth\EditProfile;
 use App\Filament\Pages\Auth\Login;
 
 class AdminPanelProvider extends PanelProvider
@@ -34,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->profile(isSimple: false)
+            ->profile(EditProfile::class, isSimple: false)
             ->login(Login::class)
             ->colors([
                 'primary' => [
@@ -56,11 +57,13 @@ class AdminPanelProvider extends PanelProvider
                 'warning' => Color::Orange,
                 'gray' => Color::Slate,
             ])
+            ->favicon(asset('favicon-32x32.png'))
             ->font('Open Sans')
             ->brandName('Axeco Syndic')
             ->brandLogo(asset('images/logo/AXECO_Logo.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->defaultThemeMode(\Filament\Enums\ThemeMode::Light)
+            ->databaseNotifications()
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([

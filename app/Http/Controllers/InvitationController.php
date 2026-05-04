@@ -19,7 +19,7 @@ class InvitationController extends Controller
                 'code'=>'Code invalide ou déjà utilisé'
             ]);
         }
-        $invitation->update(['used_at' => now()]);
+
         session()->regenerate();
         session([
             'invitation' => [
