@@ -25,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
+            'has.invitation' => \App\Http\Middleware\EnsureHasInvitation::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

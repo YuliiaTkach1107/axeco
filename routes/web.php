@@ -50,11 +50,16 @@ Route::get('/enter-code', function () {
 
 Route::middleware('guest')->group(function () {
     Route::post('/check-invitation', [InvitationController::class, 'check']);
-    Route::get('/register', [RegisterController::class, 'show'])
-        ->name('register');
-    Route::post('/register', [RegisterController::class, 'store'])
-        ->name('register.store');
+
+    Route::middleware('has.invitation')->group(function () {
+        Route::get('/register', [RegisterController::class, 'show'])
+            ->name('register');
+
+        Route::post('/register', [RegisterController::class, 'store'])
+            ->name('register.store');
+    });
 });
+
 
 Route::get('/privacy-policy', function () {
     return Inertia::render('Legal/Privacy');
