@@ -2,16 +2,16 @@
 
 namespace App\Filament\Admin\Resources\Gestion\Tickets\Schemas;
 
+use App\Models\Gestion\Apartment;
+use App\Models\Gestion\Contractor;
+use App\Models\Gestion\Resident;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Gestion\Apartment;
-use App\Models\Gestion\Resident;
-use Filament\Schemas\Components\Utilities\Get;
-use App\Models\Gestion\Contractor;
 
 class TicketForm
 {
@@ -48,32 +48,32 @@ class TicketForm
                     ->required()
                     ->default('moyenne')
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('building_id')
                     ->label('Copropriété')
                     ->relationship(
                         name: 'building',
                         titleAttribute: 'nom',
                         modifyQueryUsing: function ($query) {
-                        $user = Auth::user();
+                            $user = Auth::user();
 
-                        if ($user->role === 'proprietaire') {
-                        return $query->whereExists(function ($sub) use ($user) {
-                        $sub->selectRaw(1)
-                            ->from('apartments')
-                            ->whereColumn('apartments.copropriete_id', 'buildings.id')
-                            ->where('apartments.user_id', $user->id);
-                    });
-                        }
+                            if ($user->role === 'proprietaire') {
+                                return $query->whereExists(function ($sub) use ($user) {
+                                    $sub->selectRaw(1)
+                                        ->from('apartments')
+                                        ->whereColumn('apartments.copropriete_id', 'buildings.id')
+                                        ->where('apartments.user_id', $user->id);
+                                });
+                            }
 
-                        return $query;
-                    })
+                            return $query;
+                        })
                     ->reactive()
                     ->required()
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('apartment_id')
                     ->label('Appartement')
                     ->relationship('apartment', 'numero')
@@ -87,13 +87,14 @@ class TicketForm
                         if ($buildingId) {
                             $query->where('copropriete_id', $buildingId);
                         }
+
                         return $query->pluck('numero', 'id');
                     })
                     ->reactive()
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('resident_id')
                     ->required()
                     ->label('Résident')
@@ -105,16 +106,17 @@ class TicketForm
                         if (! $apartmentId) {
                             return [];
                         }
+
                         return Resident::query()
                             ->where('appartement_id', $apartmentId)
                             ->get()
                             ->mapWithKeys(fn ($r) => [
-                                $r->id => $r->nom . ' ' . $r->prenom,
+                                $r->id => $r->nom.' '.$r->prenom,
                             ])
                             ->toArray();
                     })
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) =>$record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
                 Select::make('contractor_id')
                     ->label('Entrepreneur')
                     ->relationship('contractor', 'nom')
@@ -123,20 +125,20 @@ class TicketForm
                         return Contractor::query()
                             ->get()
                             ->mapWithKeys(fn ($r) => [
-                                $r->id => $r->nom . ' ' . $r->prenom,
+                                $r->id => $r->nom.' '.$r->prenom,
                             ])
                             ->toArray();
-                        })
+                    })
                     ->preload()
                     ->searchable(),
                 Textarea::make('note_contractor')
-                    ->visible(fn () => Auth::user()->role === 'contractor') 
+                    ->visible(fn () => Auth::user()->role === 'contractor')
                     ->label('Note du technicien'),
                 Textarea::make('note_admin')
                     ->label('Note de l\'administrateur')
                     ->visible(fn () => Auth::user()->role === 'admin'),
-                DateTimePicker::make('assigne_le')->label('Assigné le') ->visible(fn () => Auth::user()?->role === 'admin'),
-                DateTimePicker::make('resolu_le')->label('Résolu le') ->visible(fn () => Auth::user()?->role === 'admin'),
-                    ]);
-            }
+                DateTimePicker::make('assigne_le')->label('Assigné le')->visible(fn () => Auth::user()?->role === 'admin'),
+                DateTimePicker::make('resolu_le')->label('Résolu le')->visible(fn () => Auth::user()?->role === 'admin'),
+            ]);
+    }
 }

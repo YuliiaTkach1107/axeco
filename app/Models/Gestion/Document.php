@@ -2,17 +2,17 @@
 
 namespace App\Models\Gestion;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Document extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'titre',
-        'description' , 
+        'description',
         'fichier_lien',
         'type',
         'building_id',
@@ -24,22 +24,25 @@ class Document extends Model
     {
         return $this->belongsTo(Building::class);
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
+
     protected static function booted()
     {
         static::saving(function ($doc) {
 
-        if ($doc->type === 'public') {
-            $doc->building_id = null;
-            $doc->user_id = null;
-        }
+            if ($doc->type === 'public') {
+                $doc->building_id = null;
+                $doc->user_id = null;
+            }
 
-        if ($doc->type === 'building') {
-            $doc->user_id = null;
-        }
-        $doc->est_public = ($doc->type === 'public');
-    });
+            if ($doc->type === 'building') {
+                $doc->user_id = null;
+            }
+            $doc->est_public = ($doc->type === 'public');
+        });
     }
 }

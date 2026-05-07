@@ -8,7 +8,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
 @theme inline {
     /* Colors */
     --color-background: var(--background);
@@ -101,7 +100,6 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -112,7 +110,6 @@
 }
 
 @layer utilities {
-
     body,
     html {
         --font-sans:
@@ -120,11 +117,8 @@
             'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
             'Noto Color Emoji';
         overscroll-behavior-y: none;
-
     }
 }
-
-
 
 :root {
     /* Font Families */
@@ -257,7 +251,6 @@
         font-size: var(--font-size);
     }
 
-
     /**
   * Typography styles based on UIKit
   * H1: Poppins/Bold/65
@@ -340,34 +333,33 @@
     }
 
     a {
-        @apply active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation;
-
+        @apply touch-manipulation focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 active:scale-[0.97];
     }
 }
 
 @layer components {
     .hero-paragraph {
-        @apply text-[16px] lg:text-[18px] text-[#4c6e9a] max-w-[90%] lg:max-w-[50%] leading-relaxed mt-1 mb-6;
+        @apply mt-1 mb-6 max-w-[90%] text-[16px] leading-relaxed text-[#4c6e9a] lg:max-w-[50%] lg:text-[18px];
     }
 
     .hero-h1 {
-        @apply text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold text-[#0D4677];
+        @apply mt-6 text-[35px] leading-tight font-semibold text-[#0D4677] md:text-[50px] lg:text-[60px];
     }
 
     .section-h2 {
-        @apply text-[12px] mb-[13px] text-[color:var(--text-orange)]
+        @apply mb-[13px] text-[12px] text-[color:var(--text-orange)];
     }
 
     .section-h3 {
-        @apply text-[28px] lg:text-[40px] mb-[13px];
+        @apply mb-[13px] text-[28px] lg:text-[40px];
     }
 
     .line {
-        @apply w-[100px] lg:w-[130px] h-[5px] rounded mt-[2px] lg:mt-[5px] mb-5 lg:mb-10
+        @apply mt-[2px] mb-5 h-[5px] w-[100px] rounded lg:mt-[5px] lg:mb-10 lg:w-[130px];
     }
 
     .section-container {
-        @apply w-full max-w-7xl mx-auto px-6 lg:px-12;
+        @apply mx-auto w-full max-w-7xl px-6 lg:px-12;
     }
 
     .section-h4 {
@@ -375,11 +367,11 @@
     }
 
     .button {
-        @apply inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] font-semibold shadow-[4px_4px_10px_#00000040] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation
+        @apply inline-flex w-fit touch-manipulation items-center gap-3 rounded-[33px] px-10 py-4 font-semibold shadow-[4px_4px_10px_#00000040] transition-all focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 active:scale-[0.97] lg:w-auto;
     }
 
     .description {
-        @apply text-sm lg:text-[18px] text-[#4c6e9a] leading-relaxed
+        @apply text-sm leading-relaxed text-[#4c6e9a] lg:text-[18px];
     }
 
     /* Ограничение 2 строки с многоточием */
@@ -420,24 +412,24 @@
     }
 
     #contact input {
-        @apply border-1 border-gray-200 rounded-xl;
+        @apply rounded-xl border-1 border-gray-200;
     }
 
     .champ {
-        @apply flex flex-col
+        @apply flex flex-col;
     }
 
     .champ input {
-        @apply mt-4 bg-white shadow-sm h-[50px] pl-4;
+        @apply mt-4 h-[50px] bg-white pl-4 shadow-sm;
     }
 
     .subject label {
-        @apply mt-4
+        @apply mt-4;
     }
 
     :focus-visible {
         outline: none;
-        ring: 2px solid #0D4677;
+        ring: 2px solid #0d4677;
         box-shadow: 0 0 0 4px rgba(13, 70, 119, 0.2);
         border-radius: 8px;
         transition: box-shadow 0.2s ease-in-out;
@@ -448,13 +440,13 @@
     input:focus-visible,
     textarea:focus-visible,
     select:focus-visible,
-    [tabindex="0"]:focus-visible {
-        outline: 2px solid #0D4677;
+    [tabindex='0']:focus-visible {
+        outline: 2px solid #0d4677;
         outline-offset: 2px;
     }
 
     .rich-editor p {
-        @apply text-[#4c6e9a] text-[16px] lg:text-[18px] leading-relaxed mb-4;
+        @apply mb-4 text-[16px] leading-relaxed text-[#4c6e9a] lg:text-[18px];
     }
 
     input.newsletter {
@@ -464,15 +456,15 @@
 
     /* Стилизуем сам плейсхолдер */
     input.newsletter::placeholder {
-        color: #F1F1F1 !important;
-        -webkit-text-fill-color: #F1F1F1 !important;
+        color: #f1f1f1 !important;
+        -webkit-text-fill-color: #f1f1f1 !important;
         opacity: 1 !important;
     }
 
     /* Для Chrome и Safari */
     input.newsletter::-webkit-input-placeholder {
-        color: #F1F1F1 !important;
-        -webkit-text-fill-color: #F1F1F1 !important;
+        color: #f1f1f1 !important;
+        -webkit-text-fill-color: #f1f1f1 !important;
         opacity: 1 !important;
     }
 }

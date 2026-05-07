@@ -6,20 +6,21 @@ use BackedEnum;
 use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
-use UnitEnum;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class ContractorsCluster extends Cluster
 {
     protected static string|BackedEnum|null $navigationIcon = Heroicon::WrenchScrewdriver;
 
     public static function getNavigationGroup(): string|UnitEnum|null
-        {
-            return Auth::user()?->role === 'admin'
-                ? 'Gestion copropriété'
-                : null;
-        }
-    public static ?string $navigationLabel='Intervenants';
+    {
+        return Auth::user()?->role === 'admin'
+            ? 'Gestion copropriété'
+            : null;
+    }
+
+    public static ?string $navigationLabel = 'Intervenants';
 
     protected static ?SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
 

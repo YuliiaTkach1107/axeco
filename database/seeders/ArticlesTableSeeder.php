@@ -12,7 +12,6 @@ class ArticlesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Article::truncate();
         Article::factory()->count(10)->create();
     }
 }

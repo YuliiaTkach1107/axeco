@@ -13,20 +13,18 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class AnnouncementResource extends Resource
 {
-
     protected static ?string $model = Announcement::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::Megaphone;
 
     protected static ?string $recordTitleAttribute = 'titre';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
     public static function getNavigationGroup(): string|UnitEnum|null
     {
         return Auth::user()?->role === 'admin'
@@ -65,6 +63,7 @@ class AnnouncementResource extends Resource
             'edit' => EditAnnouncement::route('/{record}/edit'),
         ];
     }
+
     public static function getEloquentQuery(): Builder
     {
         $query = parent::getEloquentQuery();
@@ -83,14 +82,17 @@ class AnnouncementResource extends Resource
 
         return $query;
     }
+
     public static function canViewAny(): bool
     {
         return in_array(Auth::user()->role, ['admin', 'proprietaire', 'resident']);
     }
+
     public static function canAccess(): bool
     {
-        return in_array(Auth::user()->role, ['admin', 'proprietaire','resident']);
+        return in_array(Auth::user()->role, ['admin', 'proprietaire', 'resident']);
     }
+
     public static function canCreate(): bool
     {
         return Auth::user()->role === 'admin';

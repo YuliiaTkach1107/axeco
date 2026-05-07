@@ -32,12 +32,7 @@ class TicketsStats extends StatsOverviewWidget
                 ->description('Total des demandes')
                 ->color('primary'),
         ];
-        // return [
-        //     Stat::make('Demandes', '')
-        //         ->description('Total des demandes')
-        //         ->value(Ticket::count())
-        //         ->color('primary'),
-        // ];
+      
     }
 
     protected int|string|array $columnSpan = 1;

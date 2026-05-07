@@ -114,7 +114,6 @@
    </header>
 </template>
 <style scoped>
-/* Animation d'apparition du menu mobile */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.4s ease;

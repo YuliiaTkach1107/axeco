@@ -1,7 +1,6 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 
@@ -12,7 +11,7 @@
 
 @layer components {
     .fi-btn {
-        @apply !rounded-[33px] !normal-case !tracking-normal;
+        @apply !rounded-[33px] !tracking-normal !normal-case;
         box-shadow: 4px 4px 10px #00000040;
     }
 
@@ -35,18 +34,18 @@
     }
 
     .fi-simple-header-heading {
-        font-family: "Poppins", sans-serif !important;
+        font-family: 'Poppins', sans-serif !important;
         color: #4c6e9a !important;
         font-size: 20px !important;
         font-weight: normal !important;
     }
 
     .poppins {
-        font-family: "Poppins", sans-serif !important;
+        font-family: 'Poppins', sans-serif !important;
     }
 
     .fi-fo-field-label-content {
-        @apply !text-[#0d4677] !font-normal;
+        @apply !font-normal !text-[#0d4677];
     }
 
     .fi-simple-layout {
@@ -60,7 +59,6 @@
     .fi-input-wrp:focus-within {
         border-color: #4c6e9a !important;
         box-shadow: 0 0 0 3px rgba(13, 70, 119, 0.5) !important;
-
     }
 
     .fi-icon-btn {
@@ -75,9 +73,11 @@
         border-radius: 6px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
         outline: none;
-        transition: color 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+        transition:
+            color 150ms ease,
+            box-shadow 150ms ease,
+            border-color 150ms ease;
     }
-
 
     .fi-input::placeholder {
         color: #4c6e9a !important;
@@ -94,7 +94,6 @@
             height: 100px !important;
             width: auto !important;
     } */
-
     }
 
     /* 📱 tablet */
@@ -150,7 +149,7 @@
     .fi-topbar-item {
         &.fi-active {
             & .fi-topbar-item-btn {
-                &>.fi-icon {
+                & > .fi-icon {
                     &:where(.dark, .dark *) {
                         color: var(--info-200);
                     }
@@ -161,26 +160,12 @@
 
     .fi-tabs-item {
         &.fi-active {
-
             & .fi-tabs-item-label,
-            &>.fi-icon {
+            & > .fi-icon {
                 &:where(.dark, .dark *) {
                     color: var(--info-200);
                 }
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

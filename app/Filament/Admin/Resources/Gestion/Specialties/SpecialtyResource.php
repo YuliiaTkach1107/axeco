@@ -57,6 +57,7 @@ class SpecialtyResource extends Resource
             'edit' => EditSpecialty::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';

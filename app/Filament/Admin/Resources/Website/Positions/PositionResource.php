@@ -59,6 +59,7 @@ class PositionResource extends Resource
             'edit' => EditPosition::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';

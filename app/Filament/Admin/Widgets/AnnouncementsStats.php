@@ -7,9 +7,10 @@ use Filament\Widgets\StatsOverviewWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Support\Facades\Auth;
 
+
 class AnnouncementsStats extends StatsOverviewWidget
 {
-      protected function getStats(): array
+    protected function getStats(): array
     {
         $user = Auth::user();
 
@@ -31,7 +32,7 @@ class AnnouncementsStats extends StatsOverviewWidget
                     ->from('residents')
                     ->where('user_id', $user->id);
             });
-    }
+        }
 
         return [
             Stat::make('Annonces', $query->count())
@@ -46,5 +47,4 @@ class AnnouncementsStats extends StatsOverviewWidget
     {
         return Auth::user()?->role !== 'contractor';
     }
-   
 }

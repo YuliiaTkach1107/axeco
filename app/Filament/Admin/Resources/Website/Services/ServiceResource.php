@@ -53,6 +53,7 @@ class ServiceResource extends Resource
             'edit' => EditService::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';

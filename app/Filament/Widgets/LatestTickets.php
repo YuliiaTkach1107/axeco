@@ -4,7 +4,6 @@ namespace App\Filament\Widgets;
 
 use App\Filament\Admin\Resources\Gestion\Tickets\TicketResource;
 use App\Models\Gestion\Ticket;
-use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -88,7 +87,7 @@ class LatestTickets extends TableWidget
                     ->alignCenter()
                     ->extraAttributes([
                         'class' => 'cursor-pointer text-primary-600',
-                    ])
+                    ]),
             ])
             ->paginated(false)
             ->recordUrl(fn (Ticket $record): string => TicketResource::getUrl('edit', [

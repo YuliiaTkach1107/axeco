@@ -14,8 +14,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 
 class ContractorResource extends Resource
 {
@@ -27,7 +27,7 @@ class ContractorResource extends Resource
 
     protected static ?string $cluster = ContractorsCluster::class;
 
-    public static ?string $navigationLabel='Entrepreneurs';
+    public static ?string $navigationLabel = 'Entrepreneurs';
 
     public static ?string $pluralModelLabel = 'Entrepreneurs';
 
@@ -58,19 +58,11 @@ class ContractorResource extends Resource
             'edit' => EditContractor::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         $user = Auth::user();
+
         return in_array($user->role, ['admin']);
     }
-
-    // public static function getEloquentQuery(): Builder
-    // {
-    //     $query = parent::getEloquentQuery();
-
-    //     if (Auth::user()?->role === 'contractor') {
-    //         return $query->where('user_id', Auth::id());
-    //     }
-    //     return $query;
-    // }
 }

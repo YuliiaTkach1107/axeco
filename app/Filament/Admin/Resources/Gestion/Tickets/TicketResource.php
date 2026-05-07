@@ -13,9 +13,9 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class TicketResource extends Resource
 {
@@ -25,7 +25,6 @@ class TicketResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'title';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
     public static function getNavigationGroup(): string|UnitEnum|null
     {
         return Auth::user()?->role === 'admin'
@@ -73,8 +72,8 @@ class TicketResource extends Resource
         if ($user->role === 'proprietaire') {
             return $query->whereIn('apartment_id', function ($q) use ($user) {
                 $q->select('id')
-                ->from('apartments')
-                ->where('user_id', $user->id);
+                    ->from('apartments')
+                    ->where('user_id', $user->id);
             });
         }
         if ($user->role === 'contractor') {
@@ -86,14 +85,17 @@ class TicketResource extends Resource
 
         return $query;
     }
+
     public static function canViewAny(): bool
     {
-        return in_array(Auth::user()->role, ['admin', 'proprietaire','contractor','resident']);
+        return in_array(Auth::user()->role, ['admin', 'proprietaire', 'contractor', 'resident']);
     }
+
     public static function canCreate(): bool
     {
-        return in_array(Auth::user()->role, ['admin', 'proprietaire','resident']);
+        return in_array(Auth::user()->role, ['admin', 'proprietaire', 'resident']);
     }
+
     public static function canEdit($record): bool
     {
         $user = Auth::user();
@@ -113,9 +115,9 @@ class TicketResource extends Resource
 
         return false;
     }
+
     public static function canDelete($record): bool
     {
         return Auth::user()->role === 'admin';
     }
-    
 }

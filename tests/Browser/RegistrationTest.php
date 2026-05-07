@@ -2,8 +2,8 @@
 
 use App\Models\Gestion\Invitation;
 use App\Models\User;
-use Laravel\Dusk\Browser;
 use Illuminate\Support\Str;
+use Laravel\Dusk\Browser;
 
 test('user can register with a valid invitation code', function () {
     $email = 'kate+'.Str::lower(Str::random(6)).'@example.com';

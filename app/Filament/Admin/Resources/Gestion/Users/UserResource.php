@@ -13,8 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class UserResource extends Resource
 {
@@ -31,7 +31,6 @@ class UserResource extends Resource
     protected static ?string $pluralModelLabel = 'Utilisateurs';
 
     protected static ?string $modelLabel = 'utilisateur';
-
 
     public static function form(Schema $schema): Schema
     {
@@ -58,9 +57,9 @@ class UserResource extends Resource
             'edit' => EditUser::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';
     }
-    
 }

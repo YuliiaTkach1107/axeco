@@ -4,12 +4,12 @@ namespace App\Providers;
 
 use App\Models\Contact;
 use Carbon\CarbonImmutable;
+use Filament\Support\Facades\FilamentView;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
-use Filament\Support\Facades\FilamentView;
 
 class AppServiceProvider extends ServiceProvider
 {

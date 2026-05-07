@@ -13,9 +13,9 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class ApartmentResource extends Resource
 {
@@ -25,13 +25,13 @@ class ApartmentResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'numero';
 
-    // protected static string|UnitEnum|null $navigationGroup = 'Gestion copropriété';
     public static function getNavigationGroup(): string|UnitEnum|null
     {
         return Auth::user()?->role === 'admin'
             ? 'Gestion copropriété'
             : null;
     }
+
     protected static ?string $navigationLabel = 'Appartements';
 
     protected static ?string $pluralModelLabel = 'Appartements';
@@ -63,6 +63,7 @@ class ApartmentResource extends Resource
             'edit' => EditApartment::route('/{record}/edit'),
         ];
     }
+
     public static function getEloquentQuery(): Builder
     {
         $query = parent::getEloquentQuery();
@@ -74,6 +75,7 @@ class ApartmentResource extends Resource
 
         return $query;
     }
+
     public static function canView($record): bool
     {
         $user = Auth::user();
@@ -84,20 +86,24 @@ class ApartmentResource extends Resource
 
         return true;
     }
+
     public static function canViewAny(): bool
     {
         $user = Auth::user();
 
         return in_array($user->role, ['admin', 'proprietaire']);
     }
+
     public static function canAccess(): bool
     {
         return in_array(Auth::user()->role, ['admin', 'proprietaire']);
     }
+
     public static function canCreate(): bool
     {
         return Auth::user()->role === 'admin';
     }
+
     public static function canEdit($record): bool
     {
         return Auth::user()->role === 'admin';

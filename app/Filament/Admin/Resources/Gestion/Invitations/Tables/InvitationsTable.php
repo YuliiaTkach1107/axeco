@@ -19,7 +19,7 @@ class InvitationsTable
                     ->badge()
                     ->color('gray'),
                 TextColumn::make('role')
-                   ->badge()
+                    ->badge()
                     ->color(fn (string $state) => match ($state) {
                         'admin' => 'danger',
                         'proprietaire' => 'warning',

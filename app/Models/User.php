@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Gestion\Apartment;
+use App\Models\Gestion\Contractor;
+use App\Models\Gestion\Document;
+use App\Models\Gestion\Resident;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use App\Models\Gestion\Document;
-use App\Models\Gestion\Building;
-use App\Models\Gestion\Apartment;
-use App\Models\Gestion\Resident;
-use App\Models\Gestion\Contractor;
-use Filament\Models\Contracts\FilamentUser;
-use Filament\Panel;
-
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -57,42 +55,39 @@ class User extends Authenticatable implements FilamentUser
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
     public function documents()
     {
         return $this->hasMany(Document::class);
     }
+
     public function getFullNameAttribute(): string
     {
         return "{$this->prenom} {$this->nom}";
     }
-    // public function canAccessFilament(): bool
-    // {
-    //     return in_array($this->role, [
-    //         'admin',
-    //         'proprietaire',
-    //         'resident',
-    //         'contractor'
-    //     ]);
-    // }
-    public function apartments(){
+
+    public function apartments()
+    {
         return $this->hasMany(Apartment::class);
     }
+
     public function resident()
     {
         return $this->hasOne(Resident::class);
     }
+
     public function contractor()
     {
-        return $this->hasOne(Contractor::class,'user_id');
+        return $this->hasOne(Contractor::class, 'user_id');
     }
-    public function canAccessPanel(Panel $panel): bool
-{
-    return in_array($this->role, [
-        'admin',
-        'proprietaire',
-        'resident',
-        'contractor',
-    ], true);
-}
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return in_array($this->role, [
+            'admin',
+            'proprietaire',
+            'resident',
+            'contractor',
+        ], true);
+    }
 }

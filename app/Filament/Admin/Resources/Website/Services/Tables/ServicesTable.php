@@ -61,8 +61,8 @@ class ServicesTable
                     ->html()
                     ->wrap()
                     ->extraAttributes([
-                                        'style' => 'width: 400px; white-space: normal;',
-                                    ]),
+                        'style' => 'width: 400px; white-space: normal;',
+                    ]),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()
@@ -76,15 +76,15 @@ class ServicesTable
             ])
 
             ->filters([
-                                //
-                            ])
+                //
+            ])
             ->recordActions([
-                                EditAction::make(),
-                            ])
+                EditAction::make(),
+            ])
             ->toolbarActions([
-                                BulkActionGroup::make([
-                                    DeleteBulkAction::make(),
-                                ]),
-                            ]);
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 }

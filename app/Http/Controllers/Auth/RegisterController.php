@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 use App\Models\Gestion\Contractor;
 use App\Models\Gestion\Invitation;
 use App\Models\Gestion\Resident;
+use App\Models\User;
 use App\Support\AdminDatabaseNotification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
-
+use Inertia\Inertia;
 
 class RegisterController extends Controller
 {
@@ -23,6 +22,7 @@ class RegisterController extends Controller
             'invitation' => session('invitation'),
         ]);
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
         $invitation = session('invitation');
 
-        if (!$invitation) {
+        if (! $invitation) {
             return redirect()->route('EnterCode')
                 ->withErrors(['error' => 'Invitation expirée']);
         }
@@ -70,9 +70,9 @@ class RegisterController extends Controller
         if ($user->role === 'contractor') {
             $contractor = Contractor::create([
                 'user_id' => $user->id,
-                'nom'=>$nom,
-                'prenom'=>$prenom,
-                'email'=>$user->email,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'email' => $user->email,
                 'telephone' => null,
                 'adresse' => null,
                 'ville' => null,
@@ -89,13 +89,13 @@ class RegisterController extends Controller
         if ($user->role === 'resident') {
             $resident = Resident::create([
                 'user_id' => $user->id,
-                'nom'=>$nom,
-                'prenom'=>$prenom,
-                'email'=>$user->email,
+                'nom' => $nom,
+                'prenom' => $prenom,
+                'email' => $user->email,
                 'telephone' => null,
-                'copropriete_id'=>null,
-                'appartement_id'=>null,
-                'role'=>null,
+                'copropriete_id' => null,
+                'appartement_id' => null,
+                'role' => null,
             ]);
 
             AdminDatabaseNotification::send(
@@ -110,9 +110,8 @@ class RegisterController extends Controller
 
         Auth::login($user);
         $request->session()->regenerate();
-        
-        return response('', 409)
 
-        ->header('X-Inertia-Location', url('/admin'));
+        return response('', 409)
+            ->header('X-Inertia-Location', url('/admin'));
     }
 }

@@ -51,6 +51,7 @@ class ArticleResource extends Resource
             'edit' => EditArticle::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';

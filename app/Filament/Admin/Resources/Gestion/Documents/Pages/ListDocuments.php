@@ -4,7 +4,6 @@ namespace App\Filament\Admin\Resources\Gestion\Documents\Pages;
 
 use App\Filament\Admin\Resources\Gestion\Documents\DocumentResource;
 use Filament\Actions\CreateAction;
-use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +15,8 @@ class ListDocuments extends ListRecords
     {
         return [
             CreateAction::make()
-            ->visible(fn () => Auth::user()?->role === 'admin'),
-            
+                ->visible(fn () => Auth::user()?->role === 'admin'),
+
         ];
     }
 }
