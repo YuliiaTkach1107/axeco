@@ -333,7 +333,9 @@
             <!-- Bottom Button -->
             <div class="flex justify-center">
                <div class="flex flex-col items-center mt-2 md:flex-row justify-center lg:flex-row gap-4 w-[280px] md:w-auto lg:w-auto">
-                  <a href="tel:+3228972008" aria-label="Appeler +32 2 897 20 08" class="inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:text-[color:var(--accent)] border-[color:var(--accent)] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation"> Appelez-nous</a>
+                  <div v-for="(item) in $page.props.headerContacts" :key="item.id">
+                     <a :href="item.link" :aria-label="'Appeler ' + item.content" class="inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:text-[color:var(--accent)] border-[color:var(--accent)] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation"> Appelez-nous</a>
+                  </div>
                   <Link :href="route('Contact') + '#' + backSection" class="inline-flex items-center gap-3 w-fit lg:w-auto px-10 py-4 rounded-[33px] text-white font-semibold text-[16px] bg-[color:var(--accent)] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#d94827] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                      Contactez-nous!<ArrowRight/>
                   </Link>
