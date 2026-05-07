@@ -29,7 +29,7 @@ class Document extends Model
     }
     protected static function booted()
     {
-        static::creating(function ($doc) {
+        static::saving(function ($doc) {
 
         if ($doc->type === 'public') {
             $doc->building_id = null;

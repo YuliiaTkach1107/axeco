@@ -11,8 +11,11 @@ use App\Models\Gestion\Building;
 use App\Models\Gestion\Apartment;
 use App\Models\Gestion\Resident;
 use App\Models\Gestion\Contractor;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+
+class User extends Authenticatable implements FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
@@ -62,15 +65,15 @@ class User extends Authenticatable
     {
         return "{$this->prenom} {$this->nom}";
     }
-    public function canAccessFilament(): bool
-    {
-        return in_array($this->role, [
-            'admin',
-            'proprietaire',
-            'resident',
-            'contractor'
-        ]);
-    }
+    // public function canAccessFilament(): bool
+    // {
+    //     return in_array($this->role, [
+    //         'admin',
+    //         'proprietaire',
+    //         'resident',
+    //         'contractor'
+    //     ]);
+    // }
     public function apartments(){
         return $this->hasMany(Apartment::class);
     }
@@ -82,4 +85,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Contractor::class,'user_id');
     }
+    public function canAccessPanel(Panel $panel): bool
+{
+    return in_array($this->role, [
+        'admin',
+        'proprietaire',
+        'resident',
+        'contractor',
+    ], true);
+}
+
 }

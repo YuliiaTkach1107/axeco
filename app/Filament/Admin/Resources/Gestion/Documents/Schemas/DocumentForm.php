@@ -24,6 +24,11 @@ class DocumentForm
                     ->label('Fichier')
                     ->disk('public')
                     ->directory('documents')
+                    ->acceptedFileTypes([
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                    ])
                     ->required(),
                 Select::make('category')
                     ->label('Type de fichier')
@@ -42,11 +47,13 @@ class DocumentForm
                         'public' => 'Public',
                     ])
                     ->required()
-                    ->reactive(),
+                    ->live(),
                 Select::make('building_id')
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->searchable()
+                    ->visible(fn (Get $get) => $get('type') === 'building')
+                    ->dehydrated(fn (Get $get) => $get('type') === 'building')
                     ->preload()
                     ->required()
                     ->nullable(),
@@ -58,6 +65,8 @@ class DocumentForm
                         modifyQueryUsing: fn ($query) =>
                             $query->whereIn('role', ['proprietaire', 'resident'])
                     )
+                    ->visible(fn (Get $get) => $get('type') === 'personal')
+                    ->dehydrated(fn (Get $get) => $get('type') === 'personal')
                     ->preload()
                     ->searchable()
                     ->nullable()

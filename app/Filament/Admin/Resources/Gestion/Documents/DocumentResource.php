@@ -84,13 +84,12 @@ class DocumentResource extends Resource
         }
 
         if ($user?->role === 'resident' && $user->resident) {
-            $residentId = $user->resident->id;
-            return $query->where(function ($q) use ($residentId) {
+            return $query->where(function ($q) use ($user) {
                 $q->where('type', 'public')
                 
-                ->orWhere(function ($q) use ($residentId) {
+                ->orWhere(function ($q) use ($user) {
                     $q->where('type', 'personal')
-                        ->where('resident_id', $residentId);
+                        ->where('user_id', $user->id);
                 });
             });
         }
