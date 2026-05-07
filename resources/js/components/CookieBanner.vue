@@ -8,9 +8,7 @@
    
    // Paramètres
    const settingsOpen = ref(false)
-   // const functionalCookies = ref(false)
    const analyticsCookies = ref(localStorage.getItem('cookies_analytics') === 'true')
-   // const performanceCookies = ref(false)
    
    const loadAnalytics = () => {
      if (analyticsLoaded) return
@@ -37,29 +35,11 @@
        loadAnalytics()
      }
    
-   //   document.documentElement.classList.toggle(
-   //     'functional-on',
-   //     functionalCookies.value
-   //   )
-   
-   //   document.documentElement.classList.toggle(
-   //     'perf-on',
-   //     performanceCookies.value
-   
-   //   )
-   
    }
    
    onMounted(() => {
      analyticsCookies.value =
        localStorage.getItem('cookies_analytics') === 'true'
-   
-   //   functionalCookies.value =
-   //     localStorage.getItem('cookies_functional') === 'true'
-   
-   //   performanceCookies.value =
-   //     localStorage.getItem('cookies_performance') === 'true'
-   
         if (analyticsCookies.value) {
        loadAnalytics()
      }
@@ -71,11 +51,6 @@
      localStorage.setItem('cookies_banner', 'accepted')
    
      localStorage.setItem('cookies_analytics', 'true')
-   //   localStorage.setItem('cookies_functional', 'true')
-   //   localStorage.setItem('cookies_performance', 'true')
-   
-   //   functionalCookies.value = true
-   //   performanceCookies.value = true
      analyticsCookies.value = true
    
      applyCookies()
@@ -88,18 +63,13 @@
    const rejectAll = () => {
      localStorage.setItem('cookies_banner', 'rejected')
      localStorage.setItem('cookies_analytics', 'false')
-   //   localStorage.setItem('cookies_functional', 'false')
-   //   localStorage.setItem('cookies_performance', 'false')
    
      analyticsCookies.value = false
-   //   functionalCookies.value = false
-   //   performanceCookies.value = false
      applyCookies()
      showBanner.value = false
      cookieDecision.value = 'rejected'
    }
    
-   // const openSettings = () => settingsOpen.value = true
    const openSettings = () => {
      console.log('CLICK OK')
      settingsOpen.value = true
@@ -111,14 +81,6 @@
        'cookies_analytics',
        analyticsCookies.value ? 'true' : 'false'
      )
-   //   localStorage.setItem(
-   //     'cookies_functional',
-   //     functionalCookies.value ? 'true' : 'false'
-   //   )
-   //   localStorage.setItem(
-   //     'cookies_performance',
-   //     performanceCookies.value ? 'true' : 'false'
-   //   )
    
      localStorage.setItem('cookies_banner', 'accepted')
      applyCookies()

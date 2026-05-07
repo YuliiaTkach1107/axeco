@@ -59,6 +59,7 @@ class DepartementResource extends Resource
             'edit' => EditDepartement::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';

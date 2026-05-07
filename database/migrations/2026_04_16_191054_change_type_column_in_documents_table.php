@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-        $table->dropColumn('type');
-    });
+            $table->dropColumn('type');
+        });
 
-    Schema::table('documents', function (Blueprint $table) {
-        
-        $table->enum('type', ['personal', 'building', 'public'])
-              ->default('building')
-              ->after('description');
+        Schema::table('documents', function (Blueprint $table) {
 
-        $table->enum('category', ['contrat', 'facture', 'reglement', 'pv_ag'])
-              ->default('reglement')
-              ->after('type');
-    });
+            $table->enum('type', ['personal', 'building', 'public'])
+                ->default('building')
+                ->after('description');
+
+            $table->enum('category', ['contrat', 'facture', 'reglement', 'pv_ag'])
+                ->default('reglement')
+                ->after('type');
+        });
     }
 
     /**
@@ -34,7 +34,7 @@ return new class extends Migration
     {
         Schema::table('documents', function (Blueprint $table) {
             $table->dropColumn(['type', 'category']);
-            $table->string('type')->nullable(); 
+            $table->string('type')->nullable();
         });
     }
 };

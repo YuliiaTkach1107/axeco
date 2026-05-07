@@ -5,8 +5,6 @@ namespace App\Filament\Admin\Resources\Website\Valeurs\Schemas;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
-
 
 class ValeurForm
 {

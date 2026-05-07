@@ -2,14 +2,14 @@
 
 namespace App\Filament\Admin\Resources\Gestion\Residents\Schemas;
 
+use App\Models\Gestion\Apartment;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Utilities\Get;
-use App\Models\Gestion\Apartment;
+use Filament\Schemas\Schema;
 
 class ResidentForm
 {
@@ -35,7 +35,7 @@ class ResidentForm
                     ->placeholder('example@gmail.com')
                     ->email()
                     ->required(),
-               Select::make('copropriete_id')
+                Select::make('copropriete_id')
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->live()

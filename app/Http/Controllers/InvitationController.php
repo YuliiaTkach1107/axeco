@@ -2,33 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Gestion\Invitation;
+use Illuminate\Http\Request;
 
 class InvitationController extends Controller
 {
-    public function check(Request $request){
+    public function check(Request $request)
+    {
         $request->validate([
-            'code'=>'required|string'
+            'code' => 'required|string',
         ]);
-        $invitation = Invitation::where('code',$request->code)
+        $invitation = Invitation::where('code', $request->code)
             ->whereNull('used_at')
             ->first();
-        if(!$invitation){
+        if (! $invitation) {
             return back()->withErrors([
-                'code'=>'Code invalide ou déjà utilisé'
+                'code' => 'Code invalide ou déjà utilisé',
             ]);
         }
 
         session()->regenerate();
         session([
             'invitation' => [
-            'role' => $invitation->role,
-            'id' => $invitation->id,
-            ]
+                'role' => $invitation->role,
+                'id' => $invitation->id,
+            ],
         ]);
-        return redirect()->route('register');    
+
+        return redirect()->route('register');
     }
+
     /**
      * Display a listing of the resource.
      */

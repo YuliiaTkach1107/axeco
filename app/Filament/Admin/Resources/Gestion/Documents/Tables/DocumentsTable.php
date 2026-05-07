@@ -7,8 +7,8 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentsTable
@@ -20,9 +20,9 @@ class DocumentsTable
                 TextColumn::make('titre')
                     ->searchable(),
                 TextColumn::make('fichier_lien')
-                     ->label('Fichier')
+                    ->label('Fichier')
                     ->formatStateUsing(fn () => '📄 Ouvrir')
-                    ->url(fn ($record) => asset('storage/' . $record->fichier_lien))
+                    ->url(fn ($record) => asset('storage/'.$record->fichier_lien))
                     ->openUrlInNewTab()
                     ->badge()
                     ->color('primary')
@@ -66,8 +66,8 @@ class DocumentsTable
                     ->label('Propriétaire du document')
                     ->searchable(),
                 IconColumn::make('est_public')
-                     ->label('Visible aux résidents')
-                     ->boolean(),
+                    ->label('Visible aux résidents')
+                    ->boolean(),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()

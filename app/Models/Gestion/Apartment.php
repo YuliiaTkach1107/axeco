@@ -2,9 +2,9 @@
 
 namespace App\Models\Gestion;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Apartment extends Model
 {
@@ -37,7 +37,9 @@ class Apartment extends Model
     {
         return $this->hasMany(Ticket::class);
     }
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

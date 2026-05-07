@@ -2,13 +2,12 @@
 
 namespace App\Filament\Admin\Resources\Gestion\Documents\Schemas;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
-use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Schema;
 
 class DocumentForm
 {
@@ -24,6 +23,11 @@ class DocumentForm
                     ->label('Fichier')
                     ->disk('public')
                     ->directory('documents')
+                    ->acceptedFileTypes([
+                        'application/pdf',
+                        'application/msword',
+                        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                    ])
                     ->required(),
                 Select::make('category')
                     ->label('Type de fichier')
@@ -42,11 +46,13 @@ class DocumentForm
                         'public' => 'Public',
                     ])
                     ->required()
-                    ->reactive(),
+                    ->live(),
                 Select::make('building_id')
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->searchable()
+                    ->visible(fn (Get $get) => $get('type') === 'building')
+                    ->dehydrated(fn (Get $get) => $get('type') === 'building')
                     ->preload()
                     ->required()
                     ->nullable(),
@@ -55,12 +61,13 @@ class DocumentForm
                     ->relationship(
                         name: 'user',
                         titleAttribute: 'name',
-                        modifyQueryUsing: fn ($query) =>
-                            $query->whereIn('role', ['proprietaire', 'resident'])
+                        modifyQueryUsing: fn ($query) => $query->whereIn('role', ['proprietaire', 'resident'])
                     )
+                    ->visible(fn (Get $get) => $get('type') === 'personal')
+                    ->dehydrated(fn (Get $get) => $get('type') === 'personal')
                     ->preload()
                     ->searchable()
-                    ->nullable()
+                    ->nullable(),
             ]);
     }
 }

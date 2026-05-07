@@ -68,7 +68,7 @@ class ApartmentsTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin')
+                    DeleteBulkAction::make()->visible(fn () => Auth::user()?->role === 'admin'),
                 ]),
             ]);
     }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Topic;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class ArticleController extends Controller
@@ -85,5 +84,4 @@ class ArticleController extends Controller
     {
         //
     }
-
 }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::table('contractors', function (Blueprint $table) {
+        Schema::table('contractors', function (Blueprint $table) {
 
             $table->dropForeign(['user_id']);
 

@@ -6,8 +6,8 @@ use BackedEnum;
 use Filament\Clusters\Cluster;
 use Filament\Pages\Enums\SubNavigationPosition;
 use Filament\Support\Icons\Heroicon;
-use UnitEnum;
 use Illuminate\Support\Facades\Auth;
+use UnitEnum;
 
 class ArticlesCluster extends Cluster
 {
@@ -23,6 +23,7 @@ class ArticlesCluster extends Cluster
     {
         return true;
     }
+
     public static function canAccess(): bool
     {
         return Auth::user()->role === 'admin';

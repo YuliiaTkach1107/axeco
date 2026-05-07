@@ -4,8 +4,6 @@ namespace App\Models\Gestion;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-
 
 class Building extends Model
 {
@@ -46,9 +44,9 @@ class Building extends Model
     {
         return $this->hasMany(Announcement::class, 'announcement_id');
     }
+
     public function documents()
     {
         return $this->hasMany(Document::class);
     }
-
 }

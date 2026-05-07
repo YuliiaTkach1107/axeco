@@ -3,8 +3,8 @@
 namespace App\Filament\Admin\Resources\Gestion\Invitations\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class InvitationForm

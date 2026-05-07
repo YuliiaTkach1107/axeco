@@ -31,9 +31,9 @@ class ResidentsStats extends StatsOverviewWidget
     }
 
     protected int|string|array $columnSpan = 1;
-    
+
     public static function canView(): bool
     {
-         return !in_array(Auth::user()->role,[ 'contractor','resident']);
+        return ! in_array(Auth::user()->role, ['contractor', 'resident']);
     }
 }

@@ -57,6 +57,7 @@ class TopicResource extends Resource
             'edit' => EditTopic::route('/{record}/edit'),
         ];
     }
+
     public static function canViewAny(): bool
     {
         return Auth::user()->role === 'admin';

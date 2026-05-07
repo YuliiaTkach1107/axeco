@@ -7,6 +7,8 @@ use App\Filament\Admin\Widgets\BuildingsStats;
 use App\Filament\Admin\Widgets\IntervenantsStats;
 use App\Filament\Admin\Widgets\ResidentsStats;
 use App\Filament\Admin\Widgets\TicketsStats;
+use App\Filament\Pages\Auth\EditProfile;
+use App\Filament\Pages\Auth\Login;
 use App\Filament\Widgets\LatestAnnouncements;
 use App\Filament\Widgets\LatestTickets;
 use App\Filament\Widgets\QuickActions;
@@ -24,8 +26,6 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use App\Filament\Pages\Auth\EditProfile;
-use App\Filament\Pages\Auth\Login;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -80,7 +80,6 @@ class AdminPanelProvider extends PanelProvider
                 QuickActions::class,
                 LatestAnnouncements::class,
             ])
-            // ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
