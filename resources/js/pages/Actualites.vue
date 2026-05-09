@@ -187,15 +187,15 @@
                <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C]'></div>
                <Link :href="`actualites/article/${latestArticle.id}#featured`">
                <article class='flex flex-col lg:grid grid-cols-2 h-[80%] bg-white rounded-[30px] overflow-hidden m-auto' >
-                  <div class="relative h-[200px] md:h-[300px] lg:h-[400px]">
+                  <div class="relative h-[200px] md:h-[300px] lg:h-full">
                      <span class="absolute top-6 left-4 lg:left-10 text-white text-sm bg-[#f2522e] px-3 py-2 rounded-full">NOUVEAU</span>
                      <img v-if='latestArticle.image_url' :src = latestArticle.image_url alt="" class="w-full h-full object-cover"/>
                   </div>
-                  <div class='py-6 lg:py-10 px-6 lg:px-14 flex flex-col gap-2 lg:gap-4 justify-center'>
+                  <div class='py-6 lg:py-10 px-6 lg:px-14 flex flex-col gap-4 lg:gap-4 justify-center'>
                      <span v-if='latestArticle.topic' class="text-white font-semibold text-sm w-fit px-3 py-2 rounded-full " :style="{background: latestArticle.topic.color }" :aria-label="'Catégorie: ' + latestArticle.topic.title" > 
                         {{ latestArticle.topic.title }}
                      </span>
-                     <h4 class='section-h4 mb-4'>{{latestArticle.title}}</h4>
+                     <h4 class='section-h4 mb-2 lg:mb-4'>{{latestArticle.title}}</h4>
                      <p class='text-[16px] lg:text-[18px] text-[#4c6e9a] leading-relaxed clamp-3'>{{latestArticle.description}}</p>
                      <Link :href="`actualites/article/${latestArticle.id}#featured`" class='button text-white bg-[#0d4677] w-fit lg:w-fit mt-2 lg:mt-6 text-sm lg:text-base'>
                         Lire l'article <ArrowRight/>
@@ -211,7 +211,7 @@
                <h3 class="section-h3 text-center">Nos publications récentes</h3>
                <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C] '></div>
                <div>
-                  <div class="relative w-fit left-26 md:left-96">
+                  <div class="relative w-fit ml-auto">
                      <label for="sort-select" class="sr-only">Trier les articles</label>
                      <select id='sort-select' v-model="sortOrder" class='appearance-none mt-6 mb-6 bg-white border border-[#0d4677] rounded-xl px-6 py-3 cursor-pointer'>
                         <option value="desc">Par date ↓</option>

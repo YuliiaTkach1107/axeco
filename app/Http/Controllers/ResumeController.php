@@ -26,7 +26,7 @@ class ResumeController extends Controller
         $file = $request->file('file');
         $email = $request->email;
 
-        Mail::to('info@axeco.immo')->send(new ResumeMail($file, $email));
+        Mail::to(config('mail.contact_recipient'))->send(new ResumeMail($file, $email));
 
         return back()->with('success', 'CV envoyé !');
     }

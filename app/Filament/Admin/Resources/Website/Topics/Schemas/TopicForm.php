@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources\Website\Topics\Schemas;
 
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\ColorPicker;
 
 class TopicForm
 {
@@ -14,10 +15,9 @@ class TopicForm
                 TextInput::make('title')
                     ->label('Nom')
                     ->required(),
-                TextInput::make('color')
+                ColorPicker::make('color')
                     ->label('Couleur')
-                    ->required()
-                    ->default('#0d4677'),
+                    ->required(),
             ]);
     }
 }

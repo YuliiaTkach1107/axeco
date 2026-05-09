@@ -111,13 +111,13 @@
          <div v-if="show && flash.error" role="alert" aria-live="assertive" class="fixed top-24 lg:top-5 right-0 md:right-5 bg-[#f2522e] text-white px-6 py-3 rounded-xl shadow-lg z-50"> {{ flash.error }} </div>
     </transition>
     <section id="main-content" class="hero relative w-full h-full min-h-screen px-6 lg:px-12" style="background: linear-gradient(rgba(255,255,255) 0%, rgba(240,246,252) 50%, rgba(255,255,255) 100%)">
-        <div aria-hidden='true' class="hidden md:flex absolute left-20 top-50 w-[150px] h-[150px] border-3 border-[#F2522E] rotate-22 rounded-[33px] opacity-20"></div>
-        <div aria-hidden='true' class="hidden md:flex absolute right-70 top-140 w-[100px] h-[100px] border-3 border-[#2E7EED] -rotate-54 rounded-[33px] opacity-20"></div>
-        <div class="px-6 flex flex-col items-center relative z-20 w-full max-w-7xl mx-auto pt-40 md:pt-60 lg:pt-60 pb-6 lg:pb-6 h-[100%]">
-            <div class="flex flex-col gap-6 justify-center text-center lg:text-center items-center lg:items-center">
+        <div aria-hidden='true' class="flex absolute left-20 top-50 w-[150px] h-[150px] border-3 border-[#F2522E] rotate-22 rounded-[33px] opacity-20"></div>
+        <div aria-hidden='true' class="flex absolute right-70 top-140 w-[100px] h-[100px] border-3 border-[#2E7EED] -rotate-54 rounded-[33px] opacity-20"></div>
+        <div class="px-6 flex flex-col items-center justify-center relative z-20 w-full max-w-7xl mx-auto pt-28 md:pt-20 lg:pt-60 pb-6 min-h-screen">
+            <div class="flex flex-col gap-8 justify-center text-center items-center">
                 <h1 class='text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold  text-[#0D4677]'>Notre équipe </h1>
                 <p class="text-[16px] lg:text-[18px] text-[#4c6e9a] max-w-[90%]  leading-relaxed mt-1 mb-6">Une équipe de professionnels passionnés, dédiée à l'excellence en gestion immobilière depuis plus de 30 ans</p>
-                <picture class="block w-full max-w-xl rounded-xl overflow-hidden border-4 md:border-6 border-[#B9D6FE] shadow-md">
+                <picture class="hidden md:block w-full max-w-xl rounded-xl overflow-hidden border-4 md:border-6 border-[#B9D6FE] shadow-md">
                     <img src="images/équipe/equipe.jpg" class="w-full h-auto object-contain" alt="Notre équipe"/>
                 </picture>
             </div>

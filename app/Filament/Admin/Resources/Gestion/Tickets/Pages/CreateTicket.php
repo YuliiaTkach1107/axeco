@@ -12,6 +12,19 @@ class CreateTicket extends CreateRecord
 {
     protected static string $resource = TicketResource::class;
 
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $user = Auth::user();
+
+        if ($user?->role === 'resident' && $user->resident) {
+            $data['building_id'] = $user->resident->copropriete_id;
+            $data['apartment_id'] = $user->resident->appartement_id;
+            $data['resident_id'] = $user->resident->id;
+        }
+
+        return $data;
+    }
+
     protected function afterCreate(): void
     {
         $user = Auth::user();

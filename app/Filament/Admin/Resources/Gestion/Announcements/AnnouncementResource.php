@@ -76,7 +76,10 @@ class AnnouncementResource extends Resource
                     ->where('user_id', $user->id);
             });
         }
-        if ($user?->role === 'resident' && $user->resident) {
+        if ($user?->role === 'resident') {
+            if (! $user->resident) {
+                return $query->whereRaw('1 = 0');
+            }
             return $query->where('building_id', $user->resident->copropriete_id);
         }
 

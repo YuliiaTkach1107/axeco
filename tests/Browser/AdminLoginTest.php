@@ -5,7 +5,7 @@ use Laravel\Dusk\Browser;
 
 test('admin can log in to filament', function () {
     $user = User::factory()->create([
-        'email' => 'admin5@test.com',
+        'email' => 'admin8@test.com',
         'password' => bcrypt('password'),
         'role' => 'admin',
     ]);

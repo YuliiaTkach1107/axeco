@@ -144,8 +144,8 @@
          <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C] '></div>
          <p class='description text-center'>Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais</p>
       </div>
-      <form id="contact" @submit.prevent="submit" class="w-[80%] m-auto bg-[#F0F6FC]/50 px-8 py-10 mt-10 border-2 rounded-xl border-[#B9D6FE]">
-         <div class="flex flex-col md:grid grid-cols-2 gap-6 items-center">
+      <form id="contact" @submit.prevent="submit" class="w-[92%] md:w-[88%] lg:w-[80%] m-auto bg-[#F0F6FC]/50 px-4 md:px-6 lg:px-8 py-8 md:py-10 mt-10 border-2 rounded-xl border-[#B9D6FE]">
+         <div class="flex flex-col md:grid grid-cols-2 gap-6 items-stretch">
             <!-- Nom -->
             <div class="champ">
                <label for="fname" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Nom</label>
@@ -159,7 +159,7 @@
                <span v-if="data.errors.name" id="name-error" role="alert" class="text-red-500 text-xs mt-1"> Veuillez renseigner votre prénom </span>
             </div>
             <!-- Email -->
-            <div class="champ col-span-2">
+            <div class="champ md:col-span-2">
                <label for="email" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Email</label>
                <input type="email" id="email" name="email" v-model="data.email" placeholder="exemple@domain.com" :aria-invalid="data.errors.email ? 'true' : 'false'" :aria-describedby="data.errors.email ? 'email-error' : ''" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition placeholder:text-base" />
                <span v-if="data.errors.email" id="email-error" role="alert" class="text-red-500 text-xs mt-1">Veuillez renseigner votre email</span>
@@ -168,23 +168,25 @@
          <!-- Sujet -->
          <fieldset class="subject rounded-md mt-6" :aria-invalid="data.errors.subject ? 'true' : 'false'" aria-describedby="subject-error">
             <legend class="after:content-['*'] after:text-[#0d4677] after:ml-1">Sujet</legend>
-            <div class="flex flex-col md:flex-row md:gap-6 mt-2">
-               <label class="flex items-center gap-2">
+            <div class="mt-3 flex flex-col items-start">
+               <div class="flex flex-col gap-3 w-full max-w-[280px] md:max-w-none md:flex-row md:flex-wrap md:gap-x-6 md:gap-y-3">
+               <label class="flex items-center gap-2 text-left">
                <input type="radio" id="information_generale" name="subject" value="info" v-model="data.subject" checked>
                   Information générale
                </label>
-               <label class="flex items-center gap-2">
+               <label class="flex items-center gap-2 text-left">
                <input type="radio" id="commande_plaquette" name="subject" value="commande" v-model="data.subject">
                   Commande plaquette(s)
                </label>
-               <label class="flex items-center gap-2">
+               <label class="flex items-center gap-2 text-left">
                <input type="radio" id="demande_offre" name="subject" value="demande" v-model="data.subject">
                   Demande offre
                </label>
-               <label class="flex items-center gap-2">
+               <label class="flex items-center gap-2 text-left">
                <input type="radio" id="demande_stage" name="subject" value="stage" v-model="data.subject">
                   Demande de stage
                </label>
+               </div>
             </div>
             <span v-if="data.errors.subject" id="subject-error" role="alert" class="text-red-500 text-xs mt-2 font-medium">Veuillez sélectionner le sujet de votre demande.</span>
          </fieldset>
@@ -195,7 +197,7 @@
             <span v-if='data.errors.message' id="message-error" role="alert" class="text-red-500 text-xs mt-1">Veuillez écrire votre message</span>
          </div>
          <div v-if="data.subject === 'stage'" class="mt-6">
-            <label tabindex="0" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors">
+            <label tabindex="0" class="flex flex-col items-center justify-center p-5 md:p-6 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-[#0D4677] transition-colors">
                <span v-if="!selectedFile" class="text-gray-500 text-base text-center">Cliquez pour téléverser votre CV ou glissez-le ici</span>
                <span v-else class="text-[#0D4677] font-semibold text-base text-center">Fichier sélectionné: {{ selectedFile.name }}</span>
                <input type="file" class="hidden" @change="handleFileUpload" :aria-invalid="data.errors.file ? 'true' : 'false'" aria-describedby="file-error" accept='.pdf,.doc,.docx' required />
@@ -203,7 +205,7 @@
             </label>
             <!-- <span v-if="data.errors.file" id="file-error" role="alert" class="text-red-500 mt-2 text-sm text-center font-medium">Veuillez sélectionner un fichier (CV) au format PDF ou Word.</span> -->
          </div>
-         <div v-if="data.subject === 'demande'" class="flex flex-col md:grid grid-cols-2 gap-6 items-center mt-6">
+         <div v-if="data.subject === 'demande'" class="flex flex-col md:grid grid-cols-2 gap-6 items-stretch mt-6">
             <div class="champ">
                <label for="telephone" class="after:content-['*'] after:text-[#0d4677] after:ml-1">Téléphone</label>
                <input type="tel" id="telephone" name="telephone" v-model="data.telephone" placeholder="Ex: +32 612 34 56 78" :aria-invalid="data.errors.telephone ? 'true' : 'false'" aria-describedby="telephone-error" inputmode="tel" autocomplete="tel" pattern="^(?=(?:\\D*\\d){8,15}\\D*$)\\+?[0-9\\s().-]+$" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition placeholder:text-base" />
@@ -231,7 +233,7 @@
             </div>
          </div>
          <div class="mt-6 text-center md:col-span-2">
-            <button type="submit" :disabled="data.processing" class="bg-[#f2522e] text-white px-6 py-3 rounded-full cursor-pointer text-lg font-semibold hover:bg-[#0b3b62] transition focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition ">Envoyer le message</button>
+            <button type="submit" :disabled="data.processing" class="w-full md:w-auto bg-[#f2522e] text-white px-6 py-3 rounded-full cursor-pointer text-base md:text-lg font-semibold hover:bg-[#0b3b62] transition focus:ring-2 focus:ring-[#0D4677] focus:border-[#0D4677] outline-none transition ">Envoyer le message</button>
          </div>
       </form>
    </section>
