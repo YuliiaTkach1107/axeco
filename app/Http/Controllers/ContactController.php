@@ -68,7 +68,7 @@ class ContactController extends Controller
 
             $data['file'] = $file;
         }
-        Mail::to('info@axeco.immo')->send(new ContactFormMail($data, $file));
+        Mail::to(config('mail.contact_recipient'))->send(new ContactFormMail($data, $file));
 
         return back()->with('success', 'Votre demande a été envoyée !');
     }

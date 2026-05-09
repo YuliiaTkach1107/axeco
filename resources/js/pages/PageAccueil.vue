@@ -131,7 +131,7 @@
          <div class="absolute pointer-events-none inset-0 bg-[url(/images/page_accueil/bg-1.jpg)] bg-no-repeat bg-[position:100%_left] bg-[length:120%_120%] z-0">
             <div class="absolute inset-0 bg-black/40 pointer-events-none"></div>
          </div>
-         <div class="absolute left-[-60%] md:left-[-50%] pointer-events-none lg:left-[-35%] top-[55%] md:top-[54%] lg:top-[59%] w-[160%] md:w-[120%] lg:w-[100%] h-[100%] sm:h-[90%] md:h-[95%] lg:h-[85%] bg-white/80 rounded-full z-10 -translate-y-1/2 origin-center transition-all duration-700 ease-in-out"></div>
+         <div class="absolute left-[-60%] md:left-[-50%] pointer-events-none lg:left-[-38%] xl:left-[-35%] top-[55%] md:top-[54%] lg:top-[50%] xl:top-[59%] w-[160%] md:w-[120%] lg:w-[118%] xl:w-[100%] h-[100%] sm:h-[90%] md:h-[95%] lg:h-[112%] xl:h-[85%] bg-white/80 rounded-full z-10 -translate-y-1/2 origin-center transition-all duration-700 ease-in-out"></div>
          <div class="relative z-20 w-full max-w-7xl mx-auto px-6 pt-25 md:pt-32 lg:pt-40">
             <div class="max-w-[650px]">
                <span class="inline-block text-xs border-2 border-[#205a8c] rounded-[33px] py-2 px-4 font-semibold">
@@ -252,7 +252,7 @@
                <SwiperSlide v-for="(service, index) in props.services" :key="index" class="!h-auto flex">
                   <a
                      :href="service.link"
-                     class="flex flex-col h-full rounded-[24px] p-10 border-2 border-[#c6e0fa] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_15px_35px_rgba(16,43,64,0.25)]"
+                     class="flex flex-col h-full rounded-[24px] p-10 border-2 border-[#c6e0fa] transition-all duration-300"
                      style="background-image: linear-gradient(-42deg,#ffffff 43%,rgba(224, 239, 255, 0.5) 100%);">
                         <div
                            class="w-[60px] h-[60px] rounded-[10px] mb-8 flex items-center justify-center flex-shrink-0"

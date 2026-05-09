@@ -100,6 +100,7 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
     *,
     ::after,
     ::before,
@@ -110,6 +111,7 @@
 }
 
 @layer utilities {
+
     body,
     html {
         --font-sans:
@@ -429,7 +431,6 @@
 
     :focus-visible {
         outline: none;
-        ring: 2px solid #0d4677;
         box-shadow: 0 0 0 4px rgba(13, 70, 119, 0.2);
         border-radius: 8px;
         transition: box-shadow 0.2s ease-in-out;

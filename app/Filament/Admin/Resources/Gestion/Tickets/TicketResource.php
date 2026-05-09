@@ -79,8 +79,11 @@ class TicketResource extends Resource
         if ($user->role === 'contractor') {
             return $query->where('contractor_id', $user->contractor?->id);
         }
-        if ($user->role === 'resident' && $user->resident) {
-            return $query->where('apartment_id', $user->resident->appartement_id);
+        if ($user->role === 'resident') {
+            if (! $user->resident) {
+                return $query->whereRaw('1 = 0');
+            }
+        return $query->where('apartment_id', $user->resident->appartement_id);
         }
 
         return $query;

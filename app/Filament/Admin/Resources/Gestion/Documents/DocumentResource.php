@@ -82,7 +82,10 @@ class DocumentResource extends Resource
             });
         }
 
-        if ($user?->role === 'resident' && $user->resident) {
+        if ($user?->role === 'resident') {
+            if (! $user->resident) {
+                return $query->whereRaw('1 = 0');
+            }
             return $query->where(function ($q) use ($user) {
                 $q->where('type', 'public')
                     ->orWhere(function ($q) use ($user) {

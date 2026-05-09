@@ -23,8 +23,12 @@ class TicketsStats extends StatsOverviewWidget
         if ($user->role === 'contractor') {
             $query->where('contractor_id', $user->contractor->id);
         }
-        if ($user->role === 'resident' && $user->resident) {
-            $query->where('resident_id', $user->resident->id);
+        if ($user->role === 'resident') {
+            if (! $user->resident) {
+                $query->whereRaw('1 = 0');
+            } else {
+                $query->where('resident_id', $user->resident->id);
+            }
         }
 
         return [

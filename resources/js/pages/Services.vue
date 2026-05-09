@@ -147,35 +147,35 @@
    <div id="services" role="main">
       <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-white text-[#0D4677] px-4 py-2 rounded z-50">Aller au contenu principal</a>
       <!-- Hero Section -->
-      <section id="main-content" class="hero relative min-h-[700px] h-screen w-full flex items-center overflow-hidden" style="background: linear-gradient(180deg, rgba(232,243,255,0.8) 0%, rgba(255,255,255,0.5) 100%)">
+      <section id="main-content" class="hero relative min-h-screen xl:h-screen w-full flex items-start xl:items-center overflow-hidden" style="background: linear-gradient(180deg, rgba(232,243,255,0.8) 0%, rgba(255,255,255,0.5) 100%)">
          <div aria-hidden='true' class="hidden md:flex absolute left-15 top-50 w-[150px] h-[150px] border-3 border-[#F2522E] rotate-22 rounded-[33px] opacity-20"></div>
          <div aria-hidden='true' class="hidden md:flex absolute left-170 top-140 w-[100px] h-[100px] border-3 border-[#2E7EED] -rotate-54 rounded-[33px] opacity-20"></div>
-         <div class="px-6 flex md:flex-col justify-center lg:flex-row relative z-20 w-full max-w-7xl mx-auto pt-25 md:pt-40 lg:pt-40 h-[100%]">
-            <div class="flex flex-col gap-6 justify-center text-center lg:text-start items-center lg:items-start">
+         <div class="px-6 flex flex-col my-auto xl:flex-row relative z-20 w-full max-w-7xl mx-auto pt-28 md:pt-40 xl:pt-40 h-auto xl:h-[100%]">
+            <div class="flex flex-col gap-6 justify-start xl:justify-center text-center items-center xl:text-start xl:items-start">
                <div class='flex gap-4 border-2 border-[#205a8c] rounded-[33px] py-2 px-4 items-center w-fit bg-white'>
                   <div class="bg-[#0d4677] rounded-[33px] w-[27px] h-[27px] flex items-center justify-center">
                      <svg aria-hidden='true' xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 25 24">
                         <path fill="white" d="M9.063 18.045c-.046-1.131-.794-2.194-1.803-3.18a7.5 7.5 0 1 1 10.48 0c-1.041 1.017-1.805 2.117-1.805 3.29v1.595a2.25 2.25 0 0 1-2.25 2.25h-2.373a2.25 2.25 0 0 1-2.25-2.25zM6.5 9.5a5.98 5.98 0 0 0 1.808 4.293c.741.724 1.512 1.633 1.933 2.707h4.518c.421-1.074 1.192-1.984 1.933-2.707A6 6 0 1 0 6.5 9.5m4.063 8.713v1.537c0 .414.335.75.75.75h2.372a.75.75 0 0 0 .75-.75V18h-3.873v.017a4 4 0 0 1 0 .196M1.75 9.5a.75.75 0 0 1 .75-.75h1a.75.75 0 0 1 0 1.5h-1a.75.75 0 0 1-.75-.75m2.465-5.65a.75.75 0 1 0-.75 1.3l.866.5a.75.75 0 1 0 .75-1.3zM3.19 14.875a.75.75 0 0 1 .275-1.024l.866-.5a.75.75 0 0 1 .75 1.298l-.866.5a.75.75 0 0 1-1.025-.274M21.5 8.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5zm-1.855 4.875a.75.75 0 0 1 1.025-.274l.866.5a.75.75 0 1 1-.75 1.298l-.866-.5a.75.75 0 0 1-.275-1.024m.275-9.275a.75.75 0 0 0 .75 1.3l.866-.5a.75.75 0 1 0-.75-1.3z"/>
                      </svg>
                   </div>
-                  <span class='inline-block text-sm py-2 px-2 lg:px-4 font-semibold'>SOLUTIONS PROFESSIONNELLES</span>
+                  <span class='inline-block text-sm py-2 px-2 xl:px-4 font-semibold'>SOLUTIONS PROFESSIONNELLES</span>
                </div>
                <h1 class='text-[35px] md:text-[50px] lg:text-[60px] leading-tight mt-6 font-semibold  text-[#0D4677]'>Nos services</h1>
-               <p class="text-[16px] lg:text-[18px] text-[#4c6e9a] max-w-[90%] lg:max-w-[50%] leading-relaxed mt-1 mb-6">Des solutions complètes et personnalisées pour la gestion de votre copropriété</p>
-               <div class="flex flex-col items-center mt-2 lg:flex-row gap-4 w-[280px] md:w-[280px] lg:w-auto">
+               <p class="text-[16px] lg:text-[18px] text-[#4c6e9a] max-w-[90%] xl:max-w-[50%] leading-relaxed mt-1 mb-6">Des solutions complètes et personnalisées pour la gestion de votre copropriété</p>
+               <div class="flex flex-col items-center mt-2 xl:flex-row gap-4 w-[280px] md:w-[280px] xl:w-auto">
                   <Link :href="route('Contact', { subject: 'demande' }) + '#' + backSection" class="inline-flex items-center gap-3 px-10 py-4 rounded-[33px] text-white font-semibold text-[16px] bg-[color:var(--accent)] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:bg-[#d94827] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                      Demander une offre <ArrowRight/>
                   </Link>
-                  <Link :href="route('Contact') + '#' + backSection" class="inline-flex items-center gap-3 w-55 lg:w-auto px-10 py-4 rounded-[33px] text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:text-[color:var(--accent)] border-[color:var(--accent)] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
+                  <Link :href="route('Contact') + '#' + backSection" class="inline-flex items-center gap-3 w-55 xl:w-auto px-10 py-4 rounded-[33px] text-[color:var(--text-dark-blue)] border-2 border-[color:var(--text-dark-blue)] font-semibold text-[16px] shadow-[4px_4px_10px_rgba(0,0,0,0.25)] hover:text-[color:var(--accent)] border-[color:var(--accent)] transition-all active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-[#F2522E] focus-visible:ring-offset-2 touch-manipulation">
                      Contactez-nous!
                   </Link>
                </div>
             </div>
-            <div class="relative hidden md:flex items-center justify-center mx-auto w-full max-w-[60%] mt-10 lg:max-w-[600px]  lg:w-[45vw] lg:mt-0">
-               <img src="/images/services/hero-office.webp" loading="lazy" class="relative z-0 w-[75%] rotate-6 rounded-[20px] border-6 border-[#B9D6FE] shadow-xl object-cover" alt="" aria-hidden="true"/>
+            <div class="relative hidden md:flex items-center justify-center mx-auto mt-10 w-[90%] h-[320px] lg:h-[380px] xl:my-auto xl:max-w-[600px] xl:w-[45vw] xl:h-[70vh]">
+               <img src="/images/services/hero-office.webp" loading="lazy" class="w-[75%] h-[90%] rounded-[20px] border-6 border-[#B9D6FE] shadow-sm object-cover object-center xl:relative xl:z-0 xl:w-[75%] xl:rotate-6" alt="" aria-hidden="true"/>
                <img src="/images/services/hero-analysis.webp" loading="lazy"
-                  class="absolute top-[10%] left-[5%] w-[40%] -rotate-8 z-10 rounded-[20px] border-6 border-[#B9D6FE] shadow-lg object-cover" alt="" aria-hidden="true"/>
-               <img src="/images/services/hero-building.webp" loading="lazy" class="absolute bottom-[5%] right-[5%] w-[45%] h-[30%] rotate-8 z-10 rounded-[20px] border-6 border-[#B9D6FE] shadow-lg object-cover" alt="" aria-hidden="true"/>
+                  class="hidden xl:block absolute top-[10%] left-[5%] w-[40%] -rotate-8 z-10 rounded-[20px] border-6 border-[#B9D6FE] shadow-sm object-cover" alt="" aria-hidden="true"/>
+               <img src="/images/services/hero-building.webp" loading="lazy" class="hidden xl:block absolute bottom-[5%] right-[5%] w-[45%] h-[30%] rotate-8 z-10 rounded-[20px] border-6 border-[#B9D6FE] shadow-sm object-cover" alt="" aria-hidden="true"/>
             </div>
          </div>
       </section>
@@ -235,7 +235,7 @@
                         </div>
                      </div>
                   </div>
-                  <div class=" rich-editor w-full lg:w-1/2 flex flex-col justify-start">
+                  <div class="rich-editor w-full lg:w-1/2 flex flex-col justify-start">
                      <p v-html="service.content"></p>
                         <button
                            :id="'service-button-' + index"

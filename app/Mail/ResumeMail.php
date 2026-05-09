@@ -24,7 +24,7 @@ class ResumeMail extends Mailable
     {
         $fileContents = file_get_contents($this->file->getRealPath());
 
-        return $this->from('hello@axeco.com', 'AXECO')
+        return $this->from(config('mail.from.address'), config('mail.from.name'))
             ->replyTo($this->email)
             ->subject("CV de l'employé Mail")
             ->view('emails.resume')

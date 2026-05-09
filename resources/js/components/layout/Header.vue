@@ -81,11 +81,11 @@
       <transition name="slide-fade">
          <div id="mobile-menu" v-if="mobileMenuOpen" class="lg:hidden w-full min-h-screen bg-white px-6 py-4 ">
             <ul class="flex flex-col gap-6 text-[18px] text-center" style="font-family: var(--font-open-sans); font-weight: var(--font-weight-normal)">
-               <li><Link :href="route('A_propos')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">À propos</Link></li>
-               <li><Link :href="route('Services')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Nos services</Link></li>
-               <li><Link :href="route('Notre_equipe')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Notre équipe</Link></li>
-               <li><Link :href="route('Actualites')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Actualités</Link></li>
-               <li><Link :href="route('Contact')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]">Contact</Link></li>
+               <li><Link :href="route('A_propos')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url.split('#')[0].startsWith('/a-propos') }">À propos</Link></li>
+               <li><Link :href="route('Services')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url.split('#')[0].startsWith('/services') }">Nos services</Link></li>
+               <li><Link :href="route('Notre_equipe')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url.split('#')[0].startsWith('/notre-equipe') }">Notre équipe</Link></li>
+               <li><Link :href="route('Actualites')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url.split('#')[0].startsWith('/actualites') }">Actualités</Link></li>
+               <li><Link :href="route('Contact')" @click="mobileMenuOpen = false" class="cursor-pointer hover:[color:var(--text-orange)] active:[color:var(--text-orange)]" :class="{ '[color:var(--text-orange)]': page.url.split('#')[0].startsWith('/contact') }">Contact</Link></li>
                <li>
                   <!-- Bouton MyAXECO dans le menu mobile -->
                   <Link :href="route('EnterCode')" role="button" aria-label="Accéder à MyAXECO" class="cursor-pointer text-white bg-foreground items-center m-auto w-full text-[18px] py-[11px] px-[18px] gap-2 rounded-[33px] shadow-[4px_4px_6px_rgba(0,0,0,0.2)] mt-4 flex justify-center hover:[background:var(--accent)]  active:[background:var(--accent)] active:scale-[0.97] touch-manipulation">

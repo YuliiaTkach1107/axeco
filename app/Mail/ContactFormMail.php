@@ -27,7 +27,7 @@ class ContactFormMail extends Mailable
 
     public function build()
     {
-        $mail = $this->from('hello@axeco.com', 'AXECO')
+        $mail = $this->from(config('mail.from.address'), config('mail.from.name'))
             ->replyTo($this->data['email'], $this->data['frname'].' '.$this->data['name'])
             ->subject('Contact Form: '.$this->data['subject'])
             ->view('emails.contact')

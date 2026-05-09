@@ -27,6 +27,7 @@ class EmployeForm
                     ->placeholder('example@gmail.com')
                     ->email(),
                 TextInput::make('telephone')
+                    ->minLength(10)
                     ->afterStateUpdated(function ($state, callable $set) {
                         if (! $state) {
                             return;

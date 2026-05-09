@@ -68,15 +68,21 @@ class TicketForm
 
                             return $query;
                         })
+                    ->default(fn () => Auth::user()?->role === 'resident'
+                        ? Auth::user()?->resident?->copropriete_id
+                        : null)
                     ->reactive()
                     ->required()
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => Auth::user()?->role === 'resident' || ($record && in_array(Auth::user()?->role, ['proprietaire', 'resident']))),
                 Select::make('apartment_id')
                     ->label('Appartement')
                     ->relationship('apartment', 'numero')
+                    ->default(fn () => Auth::user()?->role === 'resident'
+                        ? Auth::user()?->resident?->appartement_id
+                        : null)
                     ->options(function (callable $get) {
                         $user = Auth::user();
                         $buildingId = $get('building_id');
@@ -91,16 +97,20 @@ class TicketForm
                         return $query->pluck('numero', 'id');
                     })
                     ->reactive()
+                    ->required()
                     ->preload()
                     ->searchable()
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => Auth::user()?->role === 'resident' || ($record && in_array(Auth::user()?->role, ['proprietaire', 'resident']))),
                 Select::make('resident_id')
                     ->required()
                     ->label('Résident')
                     ->relationship('resident', 'nom')
                     ->preload()
                     ->searchable()
+                    ->default(fn () => Auth::user()?->role === 'resident'
+                        ? Auth::user()?->resident?->id
+                        : null)
                     ->options(function (Get $get) {
                         $apartmentId = $get('apartment_id');
                         if (! $apartmentId) {
@@ -116,7 +126,7 @@ class TicketForm
                             ->toArray();
                     })
                     ->hidden(fn () => Auth::user()->role === 'contractor')
-                    ->disabled(fn ($record) => $record && in_array(Auth::user()?->role, ['proprietaire', 'resident'])),
+                    ->disabled(fn ($record) => Auth::user()?->role === 'resident' || ($record && in_array(Auth::user()?->role, ['proprietaire', 'resident']))),
                 Select::make('contractor_id')
                     ->label('Entrepreneur')
                     ->relationship('contractor', 'nom')
