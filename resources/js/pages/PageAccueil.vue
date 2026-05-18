@@ -118,12 +118,12 @@
    <Head>
       <title>Axeco | Syndic Immobilier Professionnel à Bruxelles</title>
       <meta name="description" content="Plus de 30 ans d'expertise en gestion de copropriété à Bruxelles. Gestion technique, administrative et financière transparente pour votre immeuble."/>
-      <meta property="og:url" content="https://axeco.be/" />
+      <meta property="og:url" content="https://axeco.tkach.be/" />
       <meta property="og:title" content="Axeco - Votre syndic de confiance à Bruxelles"/>
       <meta property="og:description" content="Expertise, éthique et transparence pour la gestion de votre patrimoine immobilier."/>
       <meta property="og:image" content="/images/page_accueil/bg-1.jpg" />
       <meta property="og:type" content="website" />
-      <link rel="canonical" href="https://axeco.be/" />
+      <link rel="canonical" href="https://axeco.tkach.be/" />
    </Head>
    <div id="page_accueil">
    <!-- Hero Section -->

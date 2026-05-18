@@ -1,10 +1,7 @@
 <script setup>
-   import { ref,onMounted,onUnmounted } from 'vue'
+   import { ref,onMounted,onUnmounted,watch } from 'vue'
    import { Link,usePage } from '@inertiajs/vue3'
    import { route } from 'ziggy-js'
-   import { useI18n } from 'vue-i18n'
-
-    const { locale } = useI18n()
 
     const props = defineProps({
         contacts: Array,
@@ -13,6 +10,10 @@
    const page = usePage()
 
    const mobileMenuOpen = ref(false)
+
+   const toggleBodyScroll = (isLocked) => {
+      document.body.style.overflow = isLocked ? 'hidden' : ''
+   }
 
    const handleKeydown = (e) => {
    if (e.key === 'Escape' && mobileMenuOpen.value) {
@@ -26,6 +27,11 @@
 
    onUnmounted(() => {
    window.removeEventListener('keydown', handleKeydown)
+   toggleBodyScroll(false)
+   })
+
+   watch(mobileMenuOpen, (isOpen) => {
+   toggleBodyScroll(isOpen)
    })
    
 

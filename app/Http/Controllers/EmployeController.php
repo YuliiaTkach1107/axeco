@@ -6,6 +6,7 @@ use App\Models\Departement;
 use App\Models\Employe;
 use App\Models\Position;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class EmployeController extends Controller
@@ -15,7 +16,14 @@ class EmployeController extends Controller
      */
     public function index()
     {
-        $employes = Employe::with(['position', 'departement'])->get();
+        $employes = Employe::with(['position', 'departement'])->get()
+            ->map(function ($employe) {
+                $employe->avatar = $employe->avatar
+                    ? Storage::url($employe->avatar)
+                    : null;
+
+                return $employe;
+            });
         $position = Position::all();
         $departement = Departement::all();
 

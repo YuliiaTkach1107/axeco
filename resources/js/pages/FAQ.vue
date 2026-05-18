@@ -17,7 +17,7 @@
       <meta name="description" content="Trouvez des réponses à vos questions sur la gestion de copropriété, les charges et le rôle du syndic en Belgique. Axeco vous accompagne avec transparence." />
       <meta property="og:title" content="FAQ - Axeco Syndic Immobilier" />
       <meta property="og:description" content="Toutes les réponses à vos questions sur la gestion de votre immeuble à Bruxelles." />
-      <link rel="canonical" href="https://axeco.be/faq" />
+      <link rel="canonical" href="https://axeco.tkach.be/faq" />
    </Head>
    <MainLayout>
       <div class="mx-auto pt-50 lg:pt-55 px-4 max-w-7xl relative">

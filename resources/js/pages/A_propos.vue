@@ -38,10 +38,10 @@
       <Head>
          <title>À propos d'Axeco | Syndic de Copropriété à Bruxelles</title>
          <meta name="description" content="Découvrez Axeco, votre syndic professionnel à Bruxelles depuis 30 ans. Éthique, transparence et expertise pour la gestion de votre immeuble." />
-         <meta property="og:url" content="https://axeco.be/a-propos" />
+         <meta property="og:url" content="https://axeco.tkach.be/a-propos" />
          <meta property="og:title" content="À propos d'Axeco - Expertise Immobilière" />
          <meta property="og:type" content="website" />
-         <link rel="canonical" href="https://axeco.be/a-propos" />
+         <link rel="canonical" href="https://axeco.tkach.be/a-propos" />
       </Head>
       <div id="à_propos" role="main">
          <section class="hero relative w-full flex items-center overflow-hidden min-h-screen xl:h-screen xl:pb-0 pb-16" style="background: linear-gradient(180deg, rgba(232,243,255,0.8) 0%, rgba(255,255,255,0.5) 100%)">

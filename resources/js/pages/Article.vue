@@ -33,11 +33,11 @@
       <Head>
          <title>{{ article.title }} | Axeco Actualités</title>
          <meta name="description" :content="article.description" />
-         <link rel="canonical" :href="'https://axeco.be/actualites/article/' + article.id" />
+         <link rel="canonical" :href="'https://axeco.tkach.be/actualites/article/' + article.id" />
          <meta property="og:type" content="article" />
          <meta property="og:title" :content="article.title" />
          <meta property="og:description" :content="article.description" />
-         <meta property="og:image" :content="'https://axeco.be/' + article.image_url" />
+         <meta property="og:image" :content="article.image_url" />
          <meta property="article:published_time" :content="article.date_publication" />
       </Head>
       <div id="article" role="main">
@@ -47,7 +47,7 @@
             <Link :href="backHref" aria-label = "Retour à la liste des articles" class="absolute z-20 top-38 md:top-40 lg:top-46 left-4 md:left-6 text-white flex items-center gap-2 bg-black/40 px-3 py-2 md:px-4 md:py-2 text-sm md:text-base rounded-full backdrop-blur hover:bg-black/60 transition">
                 <span aria-hidden="true">←</span> Retour
             </Link>
-            <div class="absolute inset-0 bg-cover bg-center" role="img" :aria-label="'Image de couverture: ' + article.title" :style="{ backgroundImage: `url(/${article.image_url})` }"></div>
+            <div class="absolute inset-0 bg-cover bg-center" role="img" :aria-label="'Image de couverture: ' + article.title" :style="{ backgroundImage: `url(${article.image_url})` }"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" aria-hidden = "true"></div>
             <div class="section-container relative z-10 text-white pb-8 md:pb-10 flex flex-col gap-3 md:gap-4 max-w-4xl">
                <nav aria-label="Fil d'Ariane" class="text-xs md:text-sm opacity-80 leading-snug">

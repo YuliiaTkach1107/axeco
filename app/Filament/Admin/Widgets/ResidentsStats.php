@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ResidentsStats extends StatsOverviewWidget
 {
+    protected ?string $pollingInterval = null;
+
     protected function getStats(): array
     {
         $user = Auth::user();

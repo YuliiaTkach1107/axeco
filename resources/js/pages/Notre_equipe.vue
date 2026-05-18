@@ -97,11 +97,11 @@
     <Head>
         <title>Notre Équipe | Experts en Gestion Immobilière à Bruxelles - Axeco</title>
         <meta name="description" content="Découvrez les experts d'Axeco : une équipe passionnée et expérimentée dédiée à la gestion technique, administrative et financière de votre copropriété." />
-        <link rel="canonical" href="https://axeco.be/notre-equipe" />
+        <link rel="canonical" href="https://axeco.tkach.be/notre-equipe" />
         
         <meta property="og:title" content="Rencontrez l'équipe Axeco | Syndic Professionnel" />
         <meta property="og:description" content="Plus de 30 ans d'expertise en gestion immobilière à votre service." />
-        <meta property="og:image" content="https://axeco.be/images/équipe/equipe.jpg" />
+        <meta property="og:image" content="https://axeco.tkach.be/images/équipe/equipe.jpg" />
     </Head>
     <div id="notre_equipe">
         <transition name="fade">

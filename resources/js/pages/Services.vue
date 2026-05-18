@@ -136,12 +136,12 @@
    <Head>
       <title>Nos Services | Syndic de Copropriété à Bruxelles - Axeco</title>
       <meta name="description" content="Gestion technique, administrative et financière de votre copropriété à Bruxelles. Expertise, transparence et solutions 360° pour votre immeuble." />
-      <link rel="canonical" href="https://axeco.be/services" />
+      <link rel="canonical" href="https://axeco.tkach.be/services" />
 
       <meta property="og:title" content="Services de Syndic Professionnel à Bruxelles | Axeco" />
       <meta property="og:description" content="Découvrez nos pôles d'expertise : gestion technique, financière et administrative." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://axeco.be/services" />
+      <meta property="og:url" content="https://axeco.tkach.be/services" />
       <component :is="'script'" type="application/ld+json"> {{ structuredData }}</component>
    </Head>
    <div id="services" role="main">
@@ -320,7 +320,7 @@
                      <!-- Title -->
                      <h4 class="text-[18px] font-semibold text-[#0d4677] text-center mb-3">{{ valeur.title }}</h4>
                      <!-- Description -->
-                     <p class="text-[15px] text-[#4c6e9a] text-center leading-relaxed flex-grow"> {{ valeur.text }}  </p>
+                     <p class="text-[15px] text-[#4c6e9a] text-center leading-relaxed flex-grow"> {{ valeur.content }}</p>
                   </div>
                </SwiperSlide>
             </Swiper>

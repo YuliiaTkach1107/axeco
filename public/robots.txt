@@ -2,4 +2,4 @@ User-agent: *
 Disallow:/admin
 Disallow:/register
 Disallow:/enter-code
-Sitemap: https://axeco.test/sitemap.xml
+Sitemap: https://axeco.tkach.be/sitemap.xml

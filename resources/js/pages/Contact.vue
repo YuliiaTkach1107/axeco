@@ -73,11 +73,11 @@
   <Head>
     <title>Contactez Axeco | Syndic de Copropriété à Bruxelles</title>
     <meta name="description" content="Une question ? Besoin d'un devis pour la gestion de votre copropriété ? Contactez l'équipe d'Axeco par téléphone, email или via notre formulaire en ligne." />
-    <link rel="canonical" href="https://axeco.be/contact" />
+    <link rel="canonical" href="https://axeco.tkach.be/contact" />
     
     <meta property="og:title" content="Contactez Axeco - Votre Syndic à Bruxelles" />
     <meta property="og:description" content="Notre équipe est à votre écoute pour toute demande d'information ou de gestion immobilière." />
-    <meta property="og:image" content="https://axeco.be/images/contact-og.jpg" />
+    <meta property="og:image" content="https://axeco.tkach.be/images/contact-og.jpg" />
   </Head>
   <transition name="fade">
     <div v-if="show && flash.success" role="status" aria-live="polite" class="fixed top-24 lg:top-5 right-0 md:right-5 bg-[#0d4677] text-white px-6 py-3 rounded-xl shadow-lg z-50">
@@ -101,17 +101,25 @@
          <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C]'></div>
       </div>
 
-      <div class='flex flex-col  md:grid grid-cols-2'>
-         <a :href="info.link" target="_blank" v-for="info in props.contacts" :key="info.text" class='w-full mb-8' :aria-label="info.link ? info.title + ': ' + info.content : ''">
-            <div class='group flex bg-white shadow-xl rounded-[15px] p-6 gap-6 mx-auto items-center h-25 w-[90%] transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:shadow-2xl focus-within:-translate-y-1"' >
+      <div class="flex flex-col md:grid grid-cols-2">
+         <component
+            :is="info.link ? 'a' : 'div'"
+            v-for="info in props.contacts"
+            :key="info.title"
+            v-bind="info.link ? { href: info.link, target: '_blank', rel: 'noopener noreferrer' } : {}"
+            class="w-full mb-8"
+            :aria-label="info.link ? info.title + ': ' + info.content : undefined"
+         >
+            <div class="group flex bg-white shadow-xl rounded-[15px] p-6 gap-6 mx-auto items-center h-25 w-[90%] transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 focus-within:shadow-2xl focus-within:-translate-y-1">
                <div v-html="info.icon" aria-hidden="true" class="border rounded-[10px] p-3 bg-white w-fit" :style="{ borderColor: info.color, backgroundColor: info.color + '15' }"></div>
                <div>
-                  <h4 class='section-h4 text-base lg:text-lg'>{{ info.title }}</h4>
-                  <p class='text-sm md:text-xs lg:text-base text-[#205A8C] leading-relaxed'>{{ info.content }}</p>
+                  <h4 class="section-h4 text-base lg:text-lg">{{ info.title }}</h4>
+                  <p class="text-sm md:text-xs lg:text-base text-[#205A8C] leading-relaxed">{{ info.content }}</p>
                </div>
             </div>
-         </a>
+         </component>
       </div>
+
    </section>
    <section style="background: linear-gradient(rgba(255,176,158,0.2) 0%, rgba(255,176,158,0.05) 100%)" class='px-6 lg:px-12 py-16 lg:py-20'>
       <div class="flex flex-col gap-6 md:flex-row">
@@ -133,7 +141,7 @@
             </div>
          </div>
          <div class='border-5 border-white rounded-[20px] overflow-hidden w-full'>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40352.37881881486!2d4.390074563491565!3d50.7936697946478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f0b2e7d5f3ce5fb%3A0xd492f4265615de1e!2saxeco%20srl!5e0!3m2!1sru!2sbe!4v1772889414855!5m2!1sru!2sbe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" target="_blank" class="w-full"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40352.37881881486!2d4.390074563491565!3d50.7936697946478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f0b2e7d5f3ce5fb%3A0xd492f4265615de1e!2saxeco%20srl!5e0!3m2!1sru!2sbe!4v1772889414855!5m2!1sru!2sbe" width="600" height="450" title="Carte Google Maps du bureau Axeco" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" target="_blank" class="w-full"></iframe>
          </div>
       </div>
    </section>

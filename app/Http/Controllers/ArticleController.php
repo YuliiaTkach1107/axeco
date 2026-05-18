@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ArticleController extends Controller
@@ -17,7 +18,14 @@ class ArticleController extends Controller
         $articles = Article::with('topic')
             ->whereDate('date_publication', '<=', now()->toDateString())
             ->orderBy('date_publication', 'desc')
-            ->get();
+            ->get()
+            ->map(function ($article) {
+                $article->image_url = $article->image_url
+                    ? Storage::url($article->image_url)
+                    : null;
+
+                return $article;
+            });
         $topics = Topic::all();
 
         return Inertia::render('Actualites', [
@@ -51,10 +59,22 @@ class ArticleController extends Controller
             ->where('id', $id)
             ->whereDate('date_publication', '<=', now()->toDateString())
             ->firstOrFail();
+
+        $article->image_url = $article->image_url
+            ? Storage::url($article->image_url)
+            : null;
+
         $articles = Article::with('topic')
             ->whereDate('date_publication', '<=', now()->toDateString())
             ->orderBy('date_publication', 'desc')
-            ->get();
+            ->get()
+            ->map(function ($article) {
+                $article->image_url = $article->image_url
+                    ? Storage::url($article->image_url)
+                    : null;
+
+                return $article;
+            });
         $topics = Topic::all();
 
         return Inertia::render('Article', ['article' => $article, 'articles' => $articles, 'topics' => $topics,

@@ -8,11 +8,11 @@
          <title>Mentions légales | Axeco</title>
          <meta name="description" content="Mentions légales du site Axeco SRL : informations légales, coordonnées, agréation professionnelle et cadre juridique de l’activité immobilière en Belgique." />
          <meta name="robots" content="index, follow" />
-         <link rel="canonical" href="https://axeco.immo/mentions-legales" />
+         <link rel="canonical" href="https://axeco.tkach.be/mentions-legales" />
          <meta property="og:title" content="Mentions légales | Axeco" />
          <meta property="og:description" content="Informations légales de la société AXECO SRL en Belgique." />
          <meta property="og:type" content="website" />
-         <meta property="og:url" content="https://axeco.immo/mentions-legales" />
+         <meta property="og:url" content="https://axeco.tkach.be/mentions-legales" />
       </Head>
       <div class="max-w-4xl mx-auto px-6 py-12 pt-35 md:pt-38 lg:pt-56 text-[#0d4677] leading-relaxed">
          <h1 class="text-3xl font-bold mb-8"> Mentions légales </h1>

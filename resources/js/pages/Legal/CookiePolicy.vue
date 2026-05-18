@@ -9,12 +9,12 @@
       <Head>
          <title>Politique de cookies | Axeco</title>
          <meta name="description" content="Politique de cookies du site Axeco : informations sur l’utilisation des cookies, leur finalité, leur gestion et votre consentement conformément au RGPD." />
-         <link rel="canonical" href="https://axeco.immo/cookie-policy" />
+         <link rel="canonical" href="https://axeco.tkach.be/cookie-policy" />
          <meta name="robots" content="index, follow" />
          <meta property="og:title" content="Politique de cookies | Axeco" />
          <meta property="og:description" content="Informations sur l’utilisation des cookies." />
          <meta property="og:type" content="website" />
-         <meta property="og:url" content="https://axeco.immo/cookie-policy" />
+         <meta property="og:url" content="https://axeco.tkach.be/cookie-policy" />
       </Head>
       <div class="max-w-4xl mx-auto px-6 py-12 pt-35 md:pt-38 lg:pt-56 text-[#0d4677] leading-relaxed">
          <h1 class="text-3xl font-bold mb-10"> Politique de cookies </h1>

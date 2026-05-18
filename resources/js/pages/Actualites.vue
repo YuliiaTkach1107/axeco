@@ -125,10 +125,10 @@
       <Head>
          <title>Actualités & Conseils Immobiliers | Axeco Syndic Bruxelles</title>
          <meta name="description" content="Suivez l'actualité de la copropriété à Bruxelles : conseils d'experts, tendances du marché et informations pratiques pour les copropriétaires." />
-         <link rel="canonical" href="https://axeco.be/actualites" />
+         <link rel="canonical" href="https://axeco.tkach.be/actualites" />
          <meta property="og:title" content="Actualités Immobilières - Axeco" />
          <meta property="og:description" content="Découvrez nos derniers articles et conseils pour une meilleure gestion de votre immeuble." />
-         <meta property="og:image" content="https://axeco.be/images/page_accueil/bg-1.jpg" />
+         <meta property="og:image" content="https://axeco.tkach.be/images/page_accueil/bg-1.jpg" />
       </Head>
       <transition name="fade">
          <div v-if="show && flash.success" role="status" aria-live="polite" class="fixed top-24 lg:top-5 right-0 md:right-5 bg-[#0d4677] text-white px-6 py-3 rounded-xl shadow-lg z-50">
@@ -186,18 +186,27 @@
                <h3 class="section-h3">À la une</h3>
                <div class='line bg-gradient-to-r from-[#F2522E] to-[#205A8C]'></div>
                <Link :href="`actualites/article/${latestArticle.id}#featured`">
-               <article class='flex flex-col lg:grid grid-cols-2 bg-white rounded-[30px] overflow-hidden m-auto' >
-                  <div class="relative h-[200px] md:h-[300px] lg:h-[420px]">
-                     <span class="absolute top-6 left-4 lg:left-10 text-white text-sm bg-[#f2522e] px-3 py-2 rounded-full">NOUVEAU</span>
-                     <img v-if='latestArticle.image_url' :src = latestArticle.image_url alt="" class="w-full h-full object-cover object-top"/>
+               <article class='flex flex-col lg:grid grid-cols-2 bg-white rounded-[30px] overflow-hidden m-auto'>
+                  <div class="relative h-[200px] md:h-[300px] lg:h-auto lg:min-h-0">
+                     <span class="absolute top-6 left-4 lg:left-10 text-white text-sm bg-[#f2522e] px-3 py-2 rounded-full z-10">NOUVEAU</span>
+                     <img 
+                        v-if='latestArticle.image_url' 
+                        :src="latestArticle.image_url" 
+                        alt="" 
+                        class="w-full h-full object-cover lg:absolute lg:inset-0"
+                     />
                   </div>
                   <div class='py-6 lg:py-10 px-6 lg:px-14 flex flex-col gap-4 lg:gap-4 justify-center'>
-                     <span v-if='latestArticle.topic' class="text-white font-semibold text-sm w-fit px-3 py-2 rounded-full " :style="{background: latestArticle.topic.color }" :aria-label="'Catégorie: ' + latestArticle.topic.title" > 
+                     <span v-if='latestArticle.topic' 
+                        class="text-white font-semibold text-sm w-fit px-3 py-2 rounded-full"
+                        :style="{background: latestArticle.topic.color}"
+                        :aria-label="'Catégorie: ' + latestArticle.topic.title">
                         {{ latestArticle.topic.title }}
                      </span>
-                     <h4 class='section-h4 mb-2 lg:mb-4'>{{latestArticle.title}}</h4>
-                     <p class='text-[16px] lg:text-[18px] text-[#4c6e9a] leading-relaxed clamp-3'>{{latestArticle.description}}</p>
-                     <Link :href="`actualites/article/${latestArticle.id}#featured`" class='button text-white bg-[#0d4677] w-fit lg:w-fit mt-2 lg:mt-6 text-sm lg:text-base'>
+                     <h4 class='section-h4 mb-2 lg:mb-4'>{{ latestArticle.title }}</h4>
+                     <p class='text-[16px] lg:text-[18px] text-[#4c6e9a] leading-relaxed clamp-3'>{{ latestArticle.description }}</p>
+                     <Link :href="`actualites/article/${latestArticle.id}#featured`" 
+                        class='button text-white bg-[#0d4677] w-fit mt-2 lg:mt-6 text-sm lg:text-base'>
                         Lire l'article <ArrowRight/>
                      </Link>
                   </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AnnouncementsStats extends StatsOverviewWidget
 {
+    protected ?string $pollingInterval = null;
     protected function getStats(): array
     {
         $user = Auth::user();

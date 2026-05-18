@@ -10,6 +10,10 @@
 }
 
 @layer components {
+    .fi-body {
+        background-color: white !important;
+    }
+
     .fi-btn {
         @apply !rounded-[33px] !tracking-normal !normal-case;
         box-shadow: 4px 4px 10px #00000040;
@@ -136,6 +140,15 @@
         color: #abbbd0 !important;
     }
 
+    .dark .fi-sidebar {
+        background-color: #1f2937 !important;
+        border-right: 1px solid #374151 !important;
+    }
+
+    .dark .fi-body {
+        background-color: #1f2937 !important;
+    }
+
     .fi-topbar-item {
         &.fi-active {
             & .fi-topbar-item-label {
@@ -149,7 +162,7 @@
     .fi-topbar-item {
         &.fi-active {
             & .fi-topbar-item-btn {
-                & > .fi-icon {
+                &>.fi-icon {
                     &:where(.dark, .dark *) {
                         color: var(--info-200);
                     }
@@ -160,8 +173,9 @@
 
     .fi-tabs-item {
         &.fi-active {
+
             & .fi-tabs-item-label,
-            & > .fi-icon {
+            &>.fi-icon {
                 &:where(.dark, .dark *) {
                     color: var(--info-200);
                 }

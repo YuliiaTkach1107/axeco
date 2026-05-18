@@ -6,6 +6,7 @@ use App\Models\Detail;
 use App\Models\Service;
 use App\Models\Valeur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class ServiceController extends Controller
@@ -15,7 +16,14 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::with('details')->get();
+        $services = Service::with('details')->get()
+            ->map(function ($service) {
+                $service->image_url = $service->image_url
+                    ? Storage::url($service->image_url)
+                    : null;
+
+                return $service;
+            });
         $details = Detail::all();
         $valeurs = Valeur::all();
 

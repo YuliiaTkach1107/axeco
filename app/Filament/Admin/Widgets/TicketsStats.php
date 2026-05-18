@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TicketsStats extends StatsOverviewWidget
 {
+    protected ?string $pollingInterval = null;
     protected function getStats(): array
     {
         $user = Auth::user();

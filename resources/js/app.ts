@@ -5,7 +5,6 @@ import { createHead } from '@unhead/vue/client';
 import { createApp, h } from 'vue';
 import '../css/app.css';
 import { initializeTheme } from './composables/useAppearance';
-import i18n from './i18n';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const head = createHead();
@@ -18,7 +17,6 @@ createInertiaApp({
         ),
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
-            .use(i18n)
             .use(plugin)
             .use(head)
             .mount(el);

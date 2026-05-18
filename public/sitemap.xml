@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-domain.com/</loc>
+    <loc>https://axeco.tkach.be/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/a-propos</loc>
+    <loc>https://axeco.tkach.be/a-propos</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/services</loc>
+    <loc>https://axeco.tkach.be/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/actualites</loc>
+    <loc>https://axeco.tkach.be/actualites</loc>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/faq</loc>
+    <loc>https://axeco.tkach.be/faq</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/notre-equipe</loc>
+    <loc>https://axeco.tkach.be/notre-equipe</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/contact</loc>
+    <loc>https://axeco.tkach.be/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/privacy-policy</loc>
+    <loc>https://axeco.tkach.be/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/mentions-legales</loc>
+    <loc>https://axeco.tkach.be/mentions-legales</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://your-domain.com/cookie-policy</loc>
+    <loc>https://axeco.tkach.be/cookie-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

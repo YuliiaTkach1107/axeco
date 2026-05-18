@@ -11,8 +11,8 @@
                 </a>
 
                 <div class="space-y-2 text-center">
-                    <h1 class="poppins text-xl font-medium text-[#0d4677] ">
-                         Connectez-vous à votre compte
+                    <h1 class="poppins text-xl font-medium text-[#0d4677]">
+                        Connectez-vous à votre compte
                     </h1>
                     <p class="text-center text-sm text-[#4c6e9a]">
                         Entrez vos identifiants ci-dessous pour continuer
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <form wire:submit.prevent="authenticate" class="flex flex-col gap-6 text-[#0d4677] w-[368px]">
+            <form wire:submit.prevent="authenticate" class="flex flex-col gap-6 text-[#0d4677] w-full">
                 @foreach ($this->form->getComponents() as $component)
                     {{ $component }}
                 @endforeach
@@ -28,12 +28,13 @@
                     Se connecter
                 </button>
             </form>
+
             <div class="text-center text-sm text-[#4c6e9a]">
-                Vous n’avez pas encore de compte ?
-                <a href="/enter-code" class="underline underline-offset-4 hover:text-[#0d4677]">S’inscrire</a>
+                Vous n'avez pas encore de compte ?
+                <a href="/enter-code" class="underline underline-offset-4 hover:text-[#0d4677]">S'inscrire</a>
             </div>
-            <div class="text-center text-sm text-[#4c6e9a] space-y-2">
-                <a href="/forgot-password" class="text-[#0d4677] hover:underline"> Mot de passe oublié ?</a>
+            <div class="text-center text-sm text-[#4c6e9a]">
+                <a href="/forgot-password" class="text-[#0d4677] hover:underline">Mot de passe oublié ?</a>
             </div>
         </div>
     </div>
