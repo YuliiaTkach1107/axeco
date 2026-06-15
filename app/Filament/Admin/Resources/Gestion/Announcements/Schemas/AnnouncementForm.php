@@ -2,7 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Gestion\Announcements\Schemas;
 
-use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -24,8 +24,8 @@ class AnnouncementForm
                     ->label('Copropriété')
                     ->relationship('building', 'nom')
                     ->required(),
-                DateTimePicker::make('publie_le')->label('Publié le'),
-                DateTimePicker::make('expire_le')->label('Expire le'),
+                DatePicker::make('publie_le')->label('Publié le'),
+                DatePicker::make('expire_le')->label('Expire le'),
                 TextInput::make('cree_par')->label('Créé par'),
                 Toggle::make('est_actif')->default(true)
                     ->required(),

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class BuildingsStats extends StatsOverviewWidget
 {
+    protected ?string $pollingInterval = null;
+
     protected function getStats(): array
     {
         return [
